@@ -1,0 +1,360 @@
+<!-- Banner Section Code Start -->
+<section class="banner-section-box" *ngIf="changeResolutionFlag">
+    <div class="row m-0 section-heading-txt-box">
+        <div [ngClass]="removeBorder ? 'remove-top-border col-12 section-heading-txt' : 'col-12 section-heading-txt'">
+            <h5 class="mb-0" *ngIf="data.articleType.key !== 3">
+                <a class="text-decoration-none" [href]="authorService.generateSlug(data.name, data.referenceId, data.articleType.key)">
+                    {{ data.name }}
+                </a>
+            </h5>
+            <div class="state-drop-down-box" *ngIf="data.articleType.key === 3">
+                <span class="state-title-txt"> STATE WATCH &nbsp;&nbsp; </span>
+                <div class="spacer"></div>
+                <mat-form-field appearance="outline">
+                    <button type="button" class="btn filter-btn p-0" (click)="select1.open(); stateSearch()">
+                        <mat-icon>
+                            <span class="material-symbols-outlined">instant_mix</span>
+                        </mat-icon>
+                    </button>
+                    <mat-select
+                        #select1
+                        [compareWith]="utils.idComparer"
+                        [(ngModel)]="data.stateView"
+                        [ngModelOptions]="{ standalone: true }"
+                        (selectionChange)="onStateChange($event)"
+                        class="state-filter-dropdown"
+                    >
+                        <mat-select-filter
+                            placeholder="Search By State Name"
+                            *ngIf="select1.focused"
+                            [array]="stateList"
+                            displayMember="name"
+                            (filteredReturn)="filteredStateList = $event"
+                        ></mat-select-filter>
+                        <mat-option *ngFor="let data of filteredStateList" [value]="data">
+                            {{ data.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="mt-4 article-with-banner-img-box" *ngIf="!hasData">
+            <div class="default-other-address-txt" *ngFor="let i of [0, 1]">
+                <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+            </div>
+        </div>
+        <div *ngFor="let article of data.contentViews.slice(0, data.recordToBeDisplayedForMobile)">
+            <div class="row m-0">
+                <div class="col-12 p-0 article-img-box">
+                    <a class="text-decoration-none" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                        <img [src]="apiUrl.DOWNLOAD_IMAGE + article.bannerFileView.fileId" />
+                    </a>
+                </div>
+            </div>
+            <div class="padding-20">
+                <div class="row m-0 article-txt-con">
+                    <div class="col-12 p-0 article-category-txt" *ngIf="data.showCategory">
+                        <p *ngIf="article.categoryViews && article.categoryViews.length !== 0">
+                            {{ article.categoryViews[0].name }}
+                        </p>
+                    </div>
+                    <div class="col-12 p-0 article-txt">
+                        <a class="text-decoration-none article-title-txt" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                            <p>
+                                {{ article.title }}
+                            </p>
+                        </a>
+                    </div>
+                    <!-- Banner Section with Sub-heading Code Start -->
+                    <div class="col-12 p-0 article-txt" *ngIf="data.mobileArticleLayout.key === 7">
+                        <p class="article-sub-description-txt">{{ article.subHeading }}</p>
+                    </div>
+                    <!-- Banner Section with Sub-heading Code End -->
+                    <div class="col-9 p-0 article-by-read-time-box">
+                        <app-article-author *ngIf="article.authorViews" [authorViews]="article.authorViews"></app-article-author>
+                        &nbsp;·&nbsp;
+                        <span>{{ article.readTime | number: '1.0-0' }} min read</span>
+                    </div>
+                    <div class="col-3 article-bookmark-upload-icon p-0 text-right">
+                        <div class="article-bookmark-upload-icon-box">
+                            <a (click)="onBookmark(article)">
+                                <mat-icon>
+                                    <span
+                                        [ngClass]="article.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                        matTooltip="Bookmark"
+                                        >bookmark</span
+                                    >
+                                </mat-icon>
+                            </a>
+                            <app-article-share [article]="article"></app-article-share>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0 mb-4 px-2" *ngIf="data.hasViewMore">
+        <div class="col-12">
+            <button class="w-100 view-all-btn-box" type="button" mat-flat-button (click)="onViewAll(data)">View All</button>
+        </div>
+    </div>
+</section>
+<!-- Banner Section Code End -->
+
+<!-- Desktop Site Banner Section Code Start -->
+<section class="banner-section-box desktop-banner-section-box" [ngClass]="removeBorder ? 'mb-4' : 'my-4'" *ngIf="!changeResolutionFlag">
+    <div [ngClass]="data.desktopArticleLayout.key === 7 ? 'banner-bg-box' : ''" *ngIf="!articleType">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row m-0 section-heading-txt-box" [ngClass]="removeBorder ? 'remove-top-border' : ''">
+                    <div class="col-md-10 section-heading-txt">
+                        <h5 class="mb-0" *ngIf="data.articleType.key !== 3">
+                            <a
+                                class="text-decoration-none"
+                                [href]="authorService.generateSlug(data.name, data.referenceId, data.articleType.key)"
+                            >
+                                {{ data.name }}
+                            </a>
+                        </h5>
+                        <div class="state-drop-down-box" *ngIf="data.articleType.key === 3">
+                            <span class="state-title-txt"> STATE WATCH &nbsp;&nbsp; </span>
+                            <mat-form-field appearance="outline">
+                                <button type="button" class="btn filter-btn" (click)="select.open(); stateSearch()">
+                                    <mat-icon>
+                                        <span class="material-symbols-outlined">instant_mix</span>
+                                    </mat-icon>
+                                </button>
+                                <mat-select
+                                    #select
+                                    [compareWith]="utils.idComparer"
+                                    [(ngModel)]="data.stateView"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    (selectionChange)="onStateChange($event)"
+                                    class="state-filter-dropdown"
+                                >
+                                    <mat-select-filter
+                                        placeholder="Search By State Name"
+                                        *ngIf="select.focused"
+                                        [array]="stateList"
+                                        displayMember="name"
+                                        (filteredReturn)="filteredStateList = $event"
+                                    ></mat-select-filter>
+                                    <mat-option *ngFor="let data of filteredStateList" [value]="data">
+                                        {{ data.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-2 view-all-txt-box pe-0" *ngIf="data.hasViewMore">
+                        <a (click)="onViewAll(data)">View All</a>
+                    </div>
+                </div>
+                <div class="row mt-4" *ngIf="!hasData">
+                    <div class="col-md-6 col-lg-4" *ngFor="let i of [0, 1, 2, 3, 4, 5]">
+                        <app-line-skeleton-loader [theme]="thumbnailTheme"></app-line-skeleton-loader>
+                    </div>
+                </div>
+                <div class="row">
+                    <div
+                        class="col-md-6 col-lg-4 banner-article-click-box"
+                        *ngFor="let article of data.contentViews.slice(0, data.recordToBeDisplayedForDesktop)"
+                    >
+                        <div class="row m-0">
+                            <div class="col-md-12 p-0 article-img-box">
+                                <a class="text-decoration-none" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                    <img [src]="apiUrl.DOWNLOAD_IMAGE + article.bannerFileView.fileId" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="padding-top-bottom-20">
+                            <div class="row m-0 article-txt-con">
+                                <div class="col-12 p-0 article-category-txt" *ngIf="data.showCategory">
+                                    <p *ngIf="article.categoryViews && article.categoryViews.length !== 0">
+                                        {{ article.categoryViews[0]?.name }}
+                                    </p>
+                                </div>
+                                <div class="col-md-12 p-0 article-txt banner-article-txt">
+                                    <a class="text-decoration-none article-title-txt" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                        <p>
+                                            {{ article.title }}
+                                        </p>
+                                    </a>
+                                </div>
+                                <!-- Banner Section with Sub-heading Code Start -->
+                                <div class="col-12 p-0 article-txt mb-2" *ngIf="data.desktopArticleLayout.key === 5">
+                                    <p class="article-sub-description-txt">{{ article.subHeading }}</p>
+                                </div>
+                                <!-- Banner Section with Sub-heading Code end -->
+                                <div class="row banner-article-by-btn-box m-0">
+                                    <div class="col-md-8 col-lg-9 p-0 article-by-read-time-box">
+                                        <app-article-author
+                                            *ngIf="article.authorViews"
+                                            [authorViews]="article.authorViews"
+                                        ></app-article-author>
+                                    </div>
+                                    <div class="col-md-4 col-lg-3 article-bookmark-upload-icon p-0 text-right">
+                                        <div class="article-bookmark-upload-icon-box">
+                                            <a (click)="onBookmark(article)">
+                                                <mat-icon>
+                                                    <span
+                                                        [ngClass]="article.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                        matTooltip="Bookmark"
+                                                        >bookmark</span
+                                                    >
+                                                </mat-icon>
+                                            </a>
+                                            <app-article-share [article]="article"></app-article-share>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Site Banner Section All Content Code Start -->
+    <div *ngIf="articleType" class="mb-4">
+        <div class="row m-0 section-heading-txt-box pt-0 mt-4 border-top-none" *ngIf="!hide">
+            <div class="col-12 section-heading-txt" *ngIf="!authorView">
+                <h5 class="mb-0" *ngIf="!stateView">
+                    <a class="text-decoration-none cursor-none">{{ typeName }}</a>
+                </h5>
+                <div class="state-drop-down-box" *ngIf="stateView">
+                    <span class="state-title-txt"> STATE WATCH &nbsp;&nbsp; </span>
+                    <mat-form-field appearance="outline">
+                        <button type="button" class="btn filter-btn" (click)="select2.open(); stateSearch()">
+                            <mat-icon>
+                                <span class="material-symbols-outlined">instant_mix</span>
+                            </mat-icon>
+                        </button>
+                        <mat-select
+                            #select2
+                            [compareWith]="utils.idComparer"
+                            [(ngModel)]="stateView"
+                            [ngModelOptions]="{ standalone: true }"
+                            (selectionChange)="onStateChange($event)"
+                            class="state-filter-dropdown"
+                        >
+                            <mat-select-filter
+                                placeholder="Search By State Name"
+                                *ngIf="select2.focused"
+                                [array]="stateList"
+                                displayMember="name"
+                                (filteredReturn)="filteredStateList = $event"
+                            ></mat-select-filter>
+                            <mat-option *ngFor="let data of filteredStateList" [value]="data">
+                                {{ data.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-12 section-heading-txt banner-border-bottom" *ngIf="authorView">
+                <div class="author-detail-box">
+                    <div class="author-profile-pic-box">
+                        <img
+                            [src]="
+                                authorView?.imageFileView
+                                    ? apiUrl.DOWNLOAD_IMAGE + authorView.imageFileView.fileId
+                                    : '/assets/images/default-profile-picture.jpg'
+                            "
+                        />
+                    </div>
+                    <div class="author-title-social-box">
+                        <h6 class="mb-0">{{ authorView.displayName }}</h6>
+                        <div
+                            class="author-social-link-box"
+                            *ngIf="authorView?.socialMediaViewList && authorView?.socialMediaViewList.length !== 0"
+                        >
+                            <a
+                                [href]="socialProfile.socialMediaLink"
+                                target="_blank"
+                                *ngFor="let socialProfile of authorView.socialMediaViewList"
+                            >
+                                <img
+                                    [src]="
+                                        socialProfile.socialMediaType.key === 1
+                                            ? '/assets/images/author-twitter-icon.svg'
+                                            : socialProfile.socialMediaType.key === 2
+                                            ? '/assets/images/author-linkdin-icon.svg'
+                                            : '/assets/images/author-web-icon.svg'
+                                    "
+                                />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="author-description-txt-box" *ngIf="authorView?.description">
+                    <span class="author-description-txt" #textbox [ngClass]="isReadMore ? '' : 'author-description-read-less-txt'">{{
+                        authorView.description
+                    }}</span>
+                    <span
+                        *ngIf="textbox.offsetHeight < textbox.scrollHeight || (isReadMore === true && textbox.offsetHeight > 66)"
+                        [ngClass]="isReadMore ? 'read-less-txt' : 'read-more-txt'"
+                        (click)="isReadMore = !isReadMore"
+                    >
+                        Show {{ isReadMore ? 'less' : 'more' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div infiniteScroll [infiniteScrollDistance]="0" [scrollWindow]="true" [infiniteScrollThrottle]="1500" (scrolled)="onScroll()">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 banner-article-click-box" *ngFor="let article of data">
+                    <div class="row m-0">
+                        <div class="col-md-12 p-0 article-img-box">
+                            <a class="text-decoration-none" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                <img [src]="apiUrl.DOWNLOAD_IMAGE + article.bannerFileView.fileId" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="padding-top-bottom-20">
+                        <div class="row m-0 article-txt-con">
+                            <div class="col-md-12 p-0 article-txt banner-article-txt">
+                                <a class="text-decoration-none article-title-txt" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                    <p>
+                                        {{ article.title }}
+                                    </p>
+                                </a>
+                            </div>
+                            <!-- Banner Section with Sub-heading Code End -->
+                            <div class="row banner-article-by-btn-box m-0">
+                                <div class="col-md-8 col-lg-9 p-0 article-by-read-time-box">
+                                    <app-article-author
+                                        *ngIf="article.authorViews"
+                                        [authorViews]="article.authorViews"
+                                    ></app-article-author>
+                                </div>
+                                <div class="col-md-4 col-lg-3 article-bookmark-upload-icon p-0 text-right">
+                                    <div class="article-bookmark-upload-icon-box">
+                                        <a (click)="onBookmark(article)">
+                                            <mat-icon>
+                                                <span
+                                                    [ngClass]="article.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                    matTooltip="Bookmark"
+                                                    >bookmark</span
+                                                >
+                                            </mat-icon>
+                                        </a>
+                                        <app-article-share [article]="article"></app-article-share>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" *ngIf="blockUI">
+            <img src="/assets/images/loader.gif" />
+        </div>
+    </div>
+    <!-- Desktop Site Banner Section All Content Code End -->
+</section>
+<!-- Desktop Site Banner Section Code End -->

@@ -1,0 +1,35 @@
+.thumbnail-section-box {
+    .thumbnail-img-txt-con {
+        padding: 0 20px;
+        &:not(:last-child) {
+            .thumbnail-img-con {
+                border-bottom: solid 1px $secondaryBgColor;
+                margin-bottom: 20px !important;
+            }
+        }
+        .thumbnail-img-con {
+            padding-bottom: 20px;
+            .article-img-box {
+                text-align: right;
+                img {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+            .thumbnail-txt-box {
+                .article-txt-con {
+                    .article-txt {
+                        .article-title-txt {
+                            p {
+                                @include text(20px, 26px, $blackColor, $cabinetGrotesk, $medium);
+                                margin-bottom: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

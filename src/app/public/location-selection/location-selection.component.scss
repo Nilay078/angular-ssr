@@ -1,0 +1,85 @@
+@import '/src/assets/scss/variables';
+
+// Desktop Site Design Css Start
+.registration-con {
+  border: none;
+  padding: 0;
+  .privacy-terms-txt {
+    padding: 120px 0px 0px;
+    font-size: 12px !important;
+    line-height: 20px !important;
+    text-align: center;
+    a {
+      font-weight: 700;
+      text-decoration: none !important;
+      color:$blackColor;
+    }
+  }
+  .registration-box {
+    border: none;
+    p {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: $normal;
+      color: $secondaryOuterSpaceCrayola;
+    }
+    .location-title-box {
+      font-size: 24px;
+      line-height: 30px;
+      font-weight: $medium;
+    }
+    .logo-img {
+      width: 130px;
+    }
+  }
+  .close-modal-btn {
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 10px;
+    button  {
+      background-color: transparent;
+      box-shadow: none;
+      font-size: 28px;
+      color: $secondaryOuterSpaceCrayola;
+      padding: 0;
+      min-width: 30px;
+    }
+  }
+}
+::ng-deep .registration-con {
+  .registration-box {
+    .location-form-box {
+      .mat-form-field-appearance-outline {
+        .mat-form-field-flex {
+          background: $primarySapphireBlue;
+          .mat-form-field-outline {
+            .mat-form-field-outline-end {
+              border-bottom: none;
+            }
+          }
+          .mat-form-field-infix {
+            padding-top: 0 !important;
+            padding-bottom: 10px !important;
+            .mat-select-trigger {
+              text-align: center;
+            }
+            .mat-select-placeholder, .mat-select-value {
+              color: $whiteColor;
+            }
+            .mat-select-arrow-wrapper {
+              height: auto;
+              .mat-select-arrow {
+                color: $whiteColor;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Desktop Site Design Css End
+::ng-deep .cdk-overlay-container {
+  z-index: 9999;
+}

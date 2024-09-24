@@ -1,0 +1,14 @@
+@import '/src/assets/scss/variables';
+
+.without-image-section-box {
+    .without-img-txt-con {
+        padding: 0 20px;
+        margin-bottom: 20px;
+        &:not(:last-child) {
+            .without-img-txt-box {
+                border-bottom: solid 1px $secondaryBgColor;
+                padding-bottom: 20px;
+            }
+        }
+    }
+}

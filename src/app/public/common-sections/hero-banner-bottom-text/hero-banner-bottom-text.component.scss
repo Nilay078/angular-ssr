@@ -1,0 +1,30 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+//  Desktop Site Hero Banner with Bottom Text Section Css Start
+.desktop-site-hero-banner-box {
+    &.hero-banner-with-thumbnail-con {
+        .hero-banner-with-thumbnail-box {
+            .hero-banner-content-box {
+                .hero-banner-title-box {
+                    padding: 20px 0;
+                    .article-txt-con {
+                        border-bottom: 0;
+                        margin-bottom: 0;
+                        .article-txt {
+                            .article-title-txt {
+                                p {
+                                    @include text(30px, 36px, $blackColor, $cabinetGrotesk, $medium);
+                                }
+                            }
+                            .article-sub-description-txt {
+                                @include text(18px, 24px, $secondaryOuterSpaceCrayola, $literata, $normal);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+//  Desktop Site Hero Banner with Bottom Text Section Css End

@@ -1,0 +1,57 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+.app-splash-screen {
+    background: $primarySapphireBlue;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    transition: top 0.5s;
+}
+.app-splash-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    .splash-screen-img-box {
+        height: 110px;
+        .logo-img{
+            animation-name: wipe-in-right;
+            animation-duration: 1s;
+        }
+        .symbol-img{
+            animation: fadeInOut 2s linear forwards;
+        }
+    }
+    p {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        @include text(16px, 20px, $whiteColor, $cabinetGrotesk, $bold);
+    }
+}
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0;}
+}
+@keyframes wipe-in-right {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+}

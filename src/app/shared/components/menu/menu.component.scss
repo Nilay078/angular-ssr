@@ -1,0 +1,45 @@
+@import '/src/assets/scss/variables';
+
+.menu-con {
+  background-color: $whiteColor;
+  padding: 5px 0;
+  position: sticky;
+  bottom: 0px;
+  z-index: 99;
+  .navbar-nav {
+    width: 100%;
+    .nav-item {
+      width: 25%;
+      text-align: center;
+      mat-icon {
+        height: auto;
+        width: auto;
+        .material-symbols-outlined {
+          color: $secondaryOuterSpaceCrayola;
+          font-size: 28px;
+        }
+      }
+      p {
+        margin-bottom: 0;
+        color: $secondaryOuterSpaceCrayola;
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 700;
+        font-family: $cabinetGrotesk;
+      }
+      .nav-link {
+        &.active, &:hover {
+          mat-icon {
+            .material-symbols-outlined {
+              font-family: "Material Icons";
+              color: $primarySapphireBlue;
+            }
+          }
+          p {
+            color: $primarySapphireBlue;
+          }
+        }
+      }
+    }
+  }
+}

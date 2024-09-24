@@ -1,0 +1,113 @@
+<section class="exclusive-screen-box" *ngIf="changeResolutionFlag">
+    <div class="row m-0 mt-5">
+        <div class="col-12">
+            <img src="assets/images/thesecretariat-logo.png" class="logo-img" alt="header-logo" />
+        </div>
+    </div>
+    <div class="row m-0 mt-4">
+        <div class="col-12">
+            <img src="assets/images/login-header-img.png" class="logo-img" alt="header-logo" />
+        </div>
+    </div>
+
+    <div class="exclusive-login-content row m-0">
+        <div class="col-12">
+            <div class="wait-list-success-mesg">
+                <p>
+                    {{ waitListMessage }}
+                </p>
+            </div>
+        </div>
+
+        <div class="col-12 mt-4">
+            <div class="form-group">
+                <button class="w-100" type="button" mat-flat-button color="primary" (click)="onContinue()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-wait-list-social-content row m-0 mt-5">
+        <div class="col-12">
+            <div class="col-12 follow-us-txt">
+                <h6>FOLLOW US ON</h6>
+            </div>
+            <div class="col-12">
+                <div class="social-icon-box">
+                    <a [href]="social_media_url.SOCIAL_MEDIA_FACEBOOK" target="_blank">
+                        <img src="assets/images/facebook-black.svg" />
+                    </a>
+                    <a [href]="social_media_url.SOCIAL_MEDIA_TWITTER" target="_blank">
+                        <img src="assets/images/twitter-black.svg" />
+                    </a>
+                    <a [href]="social_media_url.SOCIAL_MEDIA_INSTAGRAM" target="_blank">
+                        <img src="assets/images/instagram-black.svg" />
+                    </a>
+                    <a [href]="social_media_url.SOCIAL_MEDIA_LINKEDIN" target="_blank">
+                        <img src="assets/images/linkedin-black.svg" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="desktop-exclusive-screen-box exclusive-screen-box" *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-lg-5 exclusive-screen-con">
+                    <div class="row m-0 mt-5">
+                        <div class="col-12">
+                            <img src="assets/images/thesecretariat-logo.png" class="logo-img" alt="header-logo" />
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-4">
+                        <div class="col-12">
+                            <img src="assets/images/login-header-img.png" class="logo-img" alt="header-logo" />
+                        </div>
+                    </div>
+
+                    <div class="exclusive-login-content row m-0">
+                        <div class="col-12">
+                            <div class="wait-list-success-mesg">
+                                <p>
+                                    {{ waitListMessage }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-0">
+                            <div class="form-group">
+                                <button class="w-100" type="button" mat-flat-button color="primary" (click)="onContinue()">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="success-wait-list-social-content row m-0 mt-5">
+                        <div class="col-12">
+                            <div class="col-12 follow-us-txt">
+                                <h6>FOLLOW US ON</h6>
+                            </div>
+                            <div class="col-12">
+                                <div class="social-icon-box">
+                                    <a [href]="social_media_url.SOCIAL_MEDIA_FACEBOOK" target="_blank">
+                                        <img src="assets/images/facebook-black.svg" />
+                                    </a>
+                                    <a [href]="social_media_url.SOCIAL_MEDIA_TWITTER" target="_blank">
+                                        <img src="assets/images/twitter-black.svg" />
+                                    </a>
+                                    <a [href]="social_media_url.SOCIAL_MEDIA_INSTAGRAM" target="_blank">
+                                        <img src="assets/images/instagram-black.svg" />
+                                    </a>
+                                    <a [href]="social_media_url.SOCIAL_MEDIA_LINKEDIN" target="_blank">
+                                        <img src="assets/images/linkedin-black.svg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

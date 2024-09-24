@@ -1,0 +1,74 @@
+@import '/src/assets/scss/variables';
+
+// Content Box css start
+.content-box {
+  font-family: $cabinetGrotesk;
+  .registration-con {
+    border: solid 1px $primaryPaleChestnut;
+    padding: 5px;
+    .registration-box {
+      border: solid 1px $primaryPaleChestnut;
+      padding: 20px;
+      p {
+        font-size: 21px;
+        line-height: 26px;
+      }
+      .generate-otp-btn {
+        &.mat-button-disabled {
+          border: none !important;
+        }
+      }
+    }
+  }
+}
+// Content Box css end
+
+// Desktop Site Design Css Start
+.content-box {
+  &.desktop-content-box {
+    padding: 0px;
+    .registration-con {
+      border: none;
+      padding: 0;
+      .privacy-terms-txt {
+        padding: 120px 0px 0px;
+        font-size: 12px !important;
+        line-height: 20px !important;
+        text-align: center;
+        a {
+          font-weight: 700;
+          text-decoration: none !important;
+          color:$blackColor;
+        }
+      }
+      .registration-box {
+        border: none;
+        p {
+          font-size: 24px;
+          line-height: 33px;
+          font-weight: 500;
+          color: $secondaryOuterSpaceCrayola;
+        }
+      }
+      .close-modal-btn {
+        width: 100%;
+        text-align: right;
+        padding-right: 10px;
+        padding-top: 10px;
+        button  {
+          background-color: transparent;
+          box-shadow: none;
+          font-size: 28px;
+          color: $secondaryOuterSpaceCrayola;
+          padding: 0;
+          min-width: 30px;
+        }
+      }
+    }
+    
+  }
+}
+// Desktop Site Design Css End
+::ng-deep .cdk-overlay-container {
+  z-index: 9999;
+}

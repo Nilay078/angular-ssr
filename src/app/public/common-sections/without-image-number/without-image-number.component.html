@@ -1,0 +1,214 @@
+<!-- Without Image Number Section Code Start -->
+<section class="without-image-number-section-box" *ngIf="changeResolutionFlag">
+    <div class="row m-0 section-heading-txt-box">
+        <div [ngClass]="removeBorder ? 'remove-top-border col-12 section-heading-txt' : 'col-12 section-heading-txt'">
+            <h5 class="mb-0" *ngIf="data.articleType.key !== 3">
+                <a class="text-decoration-none" [href]="authorService.generateSlug(data.name, data.referenceId, data.articleType.key)">
+                    {{ data.name }}
+                </a>
+            </h5>
+            <div class="state-drop-down-box" *ngIf="data.articleType.key === 3">
+                <span class="state-title-txt"> STATE WATCH &nbsp;&nbsp; </span>
+                <div class="spacer"></div>
+                <mat-form-field appearance="outline">
+                    <button type="button" class="btn filter-btn p-0" (click)="select1.open(); stateSearch()">
+                        <mat-icon>
+                            <span class="material-symbols-outlined">instant_mix</span>
+                        </mat-icon>
+                    </button>
+                    <mat-select
+                        #select1
+                        [compareWith]="utils.idComparer"
+                        [(ngModel)]="data.stateView"
+                        [ngModelOptions]="{ standalone: true }"
+                        (selectionChange)="onStateChange($event)"
+                        class="state-filter-dropdown"
+                    >
+                        <mat-select-filter
+                            placeholder="Search By State Name"
+                            *ngIf="select1.focused"
+                            [array]="stateList"
+                            displayMember="name"
+                            (filteredReturn)="filteredStateList = $event"
+                        ></mat-select-filter>
+                        <mat-option *ngFor="let data of filteredStateList" [value]="data">
+                            {{ data.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="mt-4 article-with-banner-img-box" *ngIf="!hasData">
+            <div class="default-other-address-txt" *ngFor="let i of [0, 1]">
+                <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+            </div>
+        </div>
+        <div
+            class="without-img-number-txt-con"
+            *ngFor="let article of data.contentViews.slice(0, data.recordToBeDisplayedForMobile); let i = index"
+        >
+            <div class="without-img-number-txt-box">
+                <div class="article-list-number-box">
+                    <div class="article-list-count-box">
+                        <p>{{ i + 1 }}.</p>
+                    </div>
+                    <div class="article-list-text-box">
+                        <div class="row m-0 article-txt-con">
+                            <div class="col-12 p-0 article-category-txt" *ngIf="data.showCategory">
+                                <p *ngIf="article.categoryViews && article.categoryViews.length !== 0">
+                                    {{ article.categoryViews[0].name }}
+                                </p>
+                            </div>
+                            <div class="col-12 p-0 article-txt">
+                                <a class="text-decoration-none article-title-txt" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                    <p class="mb-2">
+                                        {{ article.title }}
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="row slide-article-txt-box m-0 p-0">
+                                <div class="col-9 p-0 article-by-read-time-box">
+                                    <app-article-author
+                                        *ngIf="article.authorViews"
+                                        [authorViews]="article.authorViews"
+                                    ></app-article-author>
+                                    &nbsp;·&nbsp;
+                                    <span>{{ article.readTime | number: '1.0-0' }} min read</span>
+                                </div>
+                                <div class="col-3 article-bookmark-upload-icon p-0 text-right">
+                                    <div class="article-bookmark-upload-icon-box">
+                                        <a (click)="onBookmark(article.id)">
+                                            <mat-icon>
+                                                <span
+                                                    [ngClass]="article.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                    matTooltip="Bookmark"
+                                                    >bookmark</span
+                                                >
+                                            </mat-icon>
+                                        </a>
+                                        <app-article-share [article]="article"></app-article-share>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0 px-2 mb-4" *ngIf="data.hasViewMore">
+        <div class="col-12">
+            <button class="w-100 view-all-btn-box" type="button" mat-flat-button (click)="onViewAll(data)">View All</button>
+        </div>
+    </div>
+</section>
+<!-- Without Image Number Section Code End -->
+
+<!-- Desktop Site Without Image Number Section Code Start -->
+<section class="without-image-number-section-box desktop-site-without-image-section-box" *ngIf="!changeResolutionFlag">
+    <div class="row m-0 section-heading-txt-box" [ngClass]="removeBorder ? 'remove-top-border' : ''">
+        <div class="col-md-10 section-heading-txt">
+            <h5 class="mb-0" *ngIf="data.articleType.key !== 3">
+                <a class="text-decoration-none" [href]="authorService.generateSlug(data.name, data.referenceId, data.articleType.key)">{{
+                    data.name
+                }}</a>
+            </h5>
+            <div class="state-drop-down-box" *ngIf="data.articleType.key === 3">
+                <span class="state-title-txt"> STATE WATCH &nbsp;&nbsp; </span>
+                <mat-form-field appearance="outline">
+                    <button type="button" class="btn filter-btn" (click)="select.open(); stateSearch()">
+                        <mat-icon>
+                            <span class="material-symbols-outlined">instant_mix</span>
+                        </mat-icon>
+                    </button>
+                    <mat-select
+                        #select
+                        [compareWith]="utils.idComparer"
+                        [(ngModel)]="data.stateView"
+                        [ngModelOptions]="{ standalone: true }"
+                        (selectionChange)="onStateChange($event)"
+                        class="state-filter-dropdown"
+                    >
+                        <mat-select-filter
+                            placeholder="Search By State Name"
+                            *ngIf="select.focused"
+                            [array]="stateList"
+                            displayMember="name"
+                            (filteredReturn)="filteredStateList = $event"
+                        ></mat-select-filter>
+                        <mat-option *ngFor="let data of filteredStateList" [value]="data">
+                            {{ data.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-2 view-all-txt-box pe-0" *ngIf="data.hasViewMore">
+            <a (click)="onViewAll(data)">View All</a>
+        </div>
+    </div>
+
+    <div>
+        <div class="without-img-number-txt-con">
+            <div class="without-img-number-txt-box">
+                <div class="row mt-4" *ngIf="!hasData">
+                    <div class="col-md-6 col-lg-4" *ngFor="let i of [0, 1, 2, 3, 4, 5]">
+                        <app-line-skeleton-loader [theme]="thumbnailTheme"></app-line-skeleton-loader>
+                    </div>
+                </div>
+                <div class="row m-0" *ngIf="hasData">
+                    <div
+                        class="col-md-6 col-lg-4 without-img-number-txt p-0"
+                        *ngFor="let article of data.contentViews.slice(0, data.recordToBeDisplayedForDesktop); let i = index"
+                    >
+                        <div class="article-list-number-box">
+                            <div class="article-list-count-box">
+                                <p>{{ i + 1 }}.</p>
+                            </div>
+                            <div class="article-list-text-box">
+                                <div class="row m-0 article-txt-con">
+                                    <div class="col-12 p-0 article-category-txt" *ngIf="data.showCategory">
+                                        <p *ngIf="article.categoryViews && article.categoryViews.length !== 0">
+                                            {{ article.categoryViews[0].name }}
+                                        </p>
+                                    </div>
+                                    <div class="col-12 p-0 article-txt">
+                                        <a class="text-decoration-none article-title-txt" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                            <p class="mb-2">{{ article.title }}</p>
+                                        </a>
+                                    </div>
+                                    <div class="row slide-article-txt-box m-0 p-0">
+                                        <div class="col-9 p-0 article-by-read-time-box">
+                                            <app-article-author
+                                                *ngIf="article.authorViews"
+                                                [authorViews]="article.authorViews"
+                                            ></app-article-author>
+                                        </div>
+                                        <div class="col-3 article-bookmark-upload-icon p-0 text-right">
+                                            <div class="article-bookmark-upload-icon-box">
+                                                <a (click)="onBookmark(article.id)">
+                                                    <mat-icon>
+                                                        <span
+                                                            [ngClass]="article.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                            matTooltip="Bookmark"
+                                                            >bookmark</span
+                                                        >
+                                                    </mat-icon>
+                                                </a>
+                                                <app-article-share [article]="article"></app-article-share>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Site Without Image Number Section Code End -->

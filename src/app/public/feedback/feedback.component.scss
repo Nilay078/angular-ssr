@@ -1,0 +1,61 @@
+@import '/src/assets/scss/variables';
+
+.feedback-us-con {
+    .feedback-box {
+        padding: 0px 10px 20px;
+        .feedback-title {
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 38px;
+            font-family: $cabinetGrotesk;
+            color: $secondaryOuterSpaceCrayola;
+        }
+        .feedback-txt {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            font-family: $literata;
+            letter-spacing: 1px;
+            color: rgba($secondaryOuterSpaceCrayola, 0.7);
+        }
+        .btn {
+            color: $primarySapphireBlue;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: 700;
+            font-family: $cabinetGrotesk;
+            padding: 10px 5px;
+        }
+        .feedback-description {
+            margin-top: 20px;
+            font-family: $cabinetGrotesk;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 400;
+            text-align: center;
+            color: rgba($secondaryOuterSpaceCrayola, 0.7);
+        }
+        .contact-btn {
+            color: $primarySapphireBlue;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 20px;
+            font-family: $cabinetGrotesk;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+    }
+}
+// Desktop Css Start
+.desktop-feedback-con {
+    .feedback-box {
+        max-width: 500px;
+        margin: 0 auto !important;
+        .contact-sub-title {
+            font-size: 22px;
+            line-height: 30px;
+            color: $secondaryOuterSpaceCrayola;
+        }
+    }
+}
+// Desktop Css End

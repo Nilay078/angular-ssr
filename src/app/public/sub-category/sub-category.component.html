@@ -1,0 +1,83 @@
+<div *ngIf="changeResolutionFlag">
+    <section>
+        <div class="row back-arrow-skim-mode-box py-2 m-0">
+            <div class="col-6 p-0">
+                <button type="button" class="back-arrow" mat-button (click)="backPage()">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="sub-category-con">
+        <div class="row m-0 h-100">
+            <div class="col-12 p-0 sub-category-list-box">
+                <h4 class="registration-title-txt">Would you like a custom feed?</h4>
+                <p class="registration-subtitle-txt mb-5">Let's pick some specific topics!</p>
+                <div>
+                    <div class="sub-category-box" *ngFor="let category of selectedCategoryList">
+                        <h6>{{ category.name }}</h6>
+                        <mat-chip-list selectable multiple="true">
+                            <mat-chip
+                                *ngFor="let subCategory of category.subCategories"
+                                [selected]="subCategory.selected"
+                                (click)="onSelectSubCategory(subCategory)"
+                            >
+                                {{ subCategory.name }}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+                <div class="spacer-box"></div>
+                <div class="form-group verify-btn-box mt-4 mb-4">
+                    <button class="w-100" type="button" mat-flat-button color="primary" (click)="onContinue()">Continue</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Desktop Site Sub Category Section Start -->
+<div class="desktop-sub-category-box" *ngIf="!changeResolutionFlag">
+    <section>
+        <div class="row back-arrow-skim-mode-box py-2 m-0">
+            <div class="col-6 p-0">
+                <button type="button" class="back-arrow" mat-button (click)="backPage()">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+            </div>
+            <div class="col-6 text-end" *ngIf="!changeResolutionFlag">
+                <div class="close-modal-btn">
+                    <button mat-flat-button type="button" class="close" aria-label="Close" (click)="onClose()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sub-category-con">
+        <div class="row m-0 h-100">
+            <div class="col-12 p-0 sub-category-list-box">
+                <h4 class="registration-title-txt">Would you like a custom feed?</h4>
+                <p class="registration-subtitle-txt mb-5">Let's pick some specific topics!</p>
+                <div>
+                    <div class="sub-category-box" *ngFor="let category of selectedCategoryList">
+                        <h6>{{ category.name }}</h6>
+                        <mat-chip-list selectable multiple="true">
+                            <mat-chip
+                                *ngFor="let subCategory of category.subCategories"
+                                [selected]="subCategory.selected"
+                                (click)="onSelectSubCategory(subCategory)"
+                            >
+                                {{ subCategory.name }}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+                <div class="form-group verify-btn-box mt-4 mb-4">
+                    <button class="w-100" type="button" mat-flat-button color="primary" (click)="onContinue()">Continue</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Desktop Site Sub Category Section End -->

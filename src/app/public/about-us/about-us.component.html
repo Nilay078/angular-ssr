@@ -1,0 +1,9 @@
+<app-private-header [pageName]="'About us'"></app-private-header>
+<section class="about-us-con">
+    <div class="row about-us-box m-0">
+        <div class="col-12 mt-3">
+            <p class="about-us-txt" *ngFor="let content of contentList" [innerHTML]="content"></p>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

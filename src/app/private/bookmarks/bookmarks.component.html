@@ -1,0 +1,174 @@
+<app-private-header
+    (back)="onBackPage()"
+    [bookmarkFilter]="filteredData"
+    [pageName]="'Bookmarks'"
+    *ngIf="changeResolutionFlag"
+></app-private-header>
+<!-- Common Article List Start -->
+<section *ngIf="changeResolutionFlag">
+    <div class="mt-4 article-with-banner-img-box" *ngIf="!hasData">
+        <div class="default-other-address-txt" *ngFor="let i of [0, 1, 2, 3]">
+            <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+        </div>
+    </div>
+    <div *ngIf="hasData">
+        <app-no-record-found [hasBookmark]="true" *ngIf="bookmarkList.length === 0" (addData)="onAdd()"></app-no-record-found>
+        <div *ngIf="bookmarkList.length !== 0">
+            <div *ngFor="let bookmark of bookmarkArticleList">
+                <div class="date-bar">
+                    <div class="container-width">
+                        {{ bookmark.type.key === 1 ? bookmark.type.value : (bookmark.type.value * 1000 | date: 'dd MMMM, yyyy') }}
+                    </div>
+                </div>
+                <section class="common-article-list">
+                    <div class="container-width">
+                        <div class="common-text-with-pic" *ngFor="let article of bookmark.value">
+                            <div class="row">
+                                <div
+                                    class="col-12 title-point"
+                                    *ngIf="article.contentView.categoryViews && article.contentView.categoryViews.length !== 0"
+                                >
+                                    {{ article.contentView.categoryViews[0].name }}
+                                </div>
+                                <div class="col-8">
+                                    <a [href]="appUrl.ARTICLE_VIEW + '/' + article.contentView?.slug" class="title-article">{{
+                                        article.contentView?.title
+                                    }}</a>
+                                    <div class="by-and-icon article-by-author-bookmark-share-icon">
+                                        <div class="article-by-author-detail-box article-by-read-time-box">
+                                            <app-article-author [authorViews]="article.contentView?.authorViews"> </app-article-author>
+                                        </div>
+                                        <div class="bookmark-and-upload">
+                                            <button type="button" class="btn btn-link" (click)="onBookmark(article.contentView.id)">
+                                                <mat-icon>
+                                                    <span class="material-symbols" matTooltip="Bookmark">bookmark</span>
+                                                </mat-icon>
+                                            </button>
+                                            <app-article-share [article]="article.contentView" [hasButton]="true"></app-article-share>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 object-fit-img-box">
+                                    <a [href]="appUrl.ARTICLE_VIEW + '/' + article.contentView?.slug" class="object-fit-img">
+                                        <img [src]="apiUrl.DOWNLOAD_IMAGE + article.contentView.thumbnailImageView.fileId" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Common Article List End -->
+
+<!-- Desktop Bookmark Section Start -->
+<section *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-3 menu-border-right">
+                    <app-my-account-menu></app-my-account-menu>
+                </div>
+                <div class="col-md-9">
+                    <div class="bookmark-title-filter-box">
+                        <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-md-8">
+                                <h6>Bookmarks</h6>
+                            </div>
+                            <div class="col-md-4 text-end" *ngIf="filteredData">
+                                <button type="button" class="btn filter-btn" (click)="onOpen()">
+                                    <mat-icon matPrefix>
+                                        <span class="material-symbols-outlined">tune</span>
+                                    </mat-icon>
+                                    <span class="ms-3">Filters</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 article-with-banner-img-box" *ngIf="!hasData">
+                        <div class="default-other-address-txt" *ngFor="let i of [0, 1, 2, 3]">
+                            <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+                        </div>
+                    </div>
+                    <div *ngIf="hasData">
+                        <app-no-record-found
+                            [hasBookmark]="true"
+                            *ngIf="bookmarkList.length === 0"
+                            (addData)="onAdd()"
+                        ></app-no-record-found>
+                        <div *ngIf="bookmarkList.length !== 0">
+                            <div *ngFor="let bookmark of bookmarkArticleList">
+                                <div class="date-bar">
+                                    <div class="container-width">
+                                        {{
+                                            bookmark.type.key === 1
+                                                ? bookmark.type.value
+                                                : (bookmark.type.value * 1000 | date: 'dd MMMM, yyyy')
+                                        }}
+                                    </div>
+                                </div>
+                                <section class="common-article-list">
+                                    <div class="container-width">
+                                        <div class="common-text-with-pic" *ngFor="let article of bookmark.value">
+                                            <div class="row">
+                                                <div
+                                                    class="col-12 title-point"
+                                                    *ngIf="
+                                                        article.contentView.categoryViews && article.contentView.categoryViews.length !== 0
+                                                    "
+                                                >
+                                                    {{ article.contentView.categoryViews[0].name }}
+                                                </div>
+                                                <div class="col-md-8 col-lg-9 col-xl-10">
+                                                    <a [href]="appUrl.ARTICLE_VIEW + '/' + article.contentView?.slug" class="title-article">
+                                                        {{ article.contentView.title }}
+                                                    </a>
+                                                    <div class="by-and-icon article-by-author-bookmark-share-icon">
+                                                        <div class="article-by-author-detail-box article-by-read-time-box">
+                                                            <app-article-author
+                                                                [authorViews]="article.contentView?.authorViews"
+                                                            ></app-article-author>
+                                                        </div>
+                                                        <div class="bookmark-and-upload">
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-link"
+                                                                (click)="onBookmark(article.contentView.id)"
+                                                            >
+                                                                <mat-icon>
+                                                                    <span class="material-symbols" matTooltip="Bookmark">bookmark</span>
+                                                                </mat-icon>
+                                                            </button>
+                                                            <app-article-share
+                                                                [article]="article.contentView"
+                                                                [hasButton]="true"
+                                                            ></app-article-share>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-lg-3 col-xl-2 object-fit-img-box">
+                                                    <a
+                                                        [href]="appUrl.ARTICLE_VIEW + '/' + article.contentView?.slug"
+                                                        class="object-fit-img"
+                                                    >
+                                                        <img
+                                                            [src]="apiUrl.DOWNLOAD_IMAGE + article.contentView.thumbnailImageView.fileId"
+                                                        />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Bookmark Section End -->

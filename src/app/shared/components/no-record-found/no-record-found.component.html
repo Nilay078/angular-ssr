@@ -1,0 +1,17 @@
+<div class="col-12 no-record-con">
+    <div class="no-record-box" *ngIf="hasBookmark">
+        <div class="no-records-detail">
+            <img src="assets/images/bookmark-no-data.png" />
+            <h5 class="my-4">Nothing seems to be bookmarked as yet. Discover some Deep Dives, you might want to read at peace.</h5>
+            <button mat-flat-button class="no-record-btn" color="primary" (click)="onAdd()">READ LATEST STORIES</button>
+        </div>
+    </div>
+
+    <div class="no-record-box" *ngIf="hasRecentlyViewed">
+        <div class="no-records-detail">
+            <img src="assets/images/recently-viewed-no-data.png" />
+            <h5 class="my-4">In case you missed bookmarking an article, find your viewing history of stories over the past week.</h5>
+            <button mat-flat-button class="no-record-btn" color="primary" (click)="onAdd()">READ LATEST STORIES</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+{
+  "applinks": {
+      "details": [
+      {
+        "appIDs": ["2Y4FRPS67P.in.the.secretariat.news"],
+        "components": [
+          {
+            "/": "/article/*",
+            "comment": "Matches any URL with a path that starts with /article/."
+          }
+        ]
+      }
+    ]
+  }
+}

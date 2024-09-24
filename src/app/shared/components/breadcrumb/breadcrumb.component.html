@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-lg-12 col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb m-0" *ngIf="breadcrumbs.length >= 2">
+                <li class="breadcrumb-item" [ngClass]="{ active: last }" *ngFor="let breadcrumb of breadcrumbs; let last = last">
+                    <a *ngIf="!last" [href]="breadcrumb.value">{{ breadcrumb.key }}</a>
+                    <span *ngIf="last">{{ breadcrumb.key }}</span>
+                </li>
+            </ol>
+            <ol class="breadcrumb m-0" *ngIf="breadcrumbs.length < 2">
+                <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
+                    <span>{{ breadcrumb.key }}</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>

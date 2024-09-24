@@ -1,0 +1,215 @@
+<!-- Slider Section Code Start -->
+<section class="slider-article-box" *ngIf="changeResolutionFlag">
+    <div class="row m-0 section-heading-txt-box align-items-center">
+        <div [ngClass]="removeBorder ? 'remove-top-border col-12 section-heading-txt' : 'col-12 section-heading-txt'">
+            <h5 class="mb-0">
+                <a class="text-decoration-none" [href]="authorService.generateSlug(data.name, data.referenceId, data.articleType.key)">
+                    {{ data.name }}
+                </a>
+            </h5>
+        </div>
+    </div>
+    <div class="row m-0 slider-article-con" *ngIf="hasData">
+        <div class="col-12 p-0">
+            <swiper [config]="config">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" *ngFor="let article of data.contentViews.slice(0, data.recordToBeDisplayedForMobile)">
+                        <a class="text-decoration-none" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                            <img [src]="apiUrl.DOWNLOAD_IMAGE + article.bannerFileView.fileId" width="100%" />
+                        </a>
+                        <div class="row m-0 article-txt-con">
+                            <div class="col-12 p-0 article-category-txt" *ngIf="data.showCategory">
+                                <p *ngIf="article.categoryViews && article.categoryViews.length !== 0">
+                                    {{ article.categoryViews[0]?.name }}
+                                </p>
+                            </div>
+                            <div class="col-12 p-0 article-txt">
+                                <a class="text-decoration-none article-title-txt" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                    <p>
+                                        {{ article.title }}
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="row m-0 slide-article-txt-box">
+                                <div class="col-8 col-sm-9 p-0 article-by-read-time-box">
+                                    <app-article-author
+                                        *ngIf="article.authorViews"
+                                        [authorViews]="article.authorViews"
+                                    ></app-article-author>
+                                </div>
+                                <div class="col-4 col-sm-3 article-bookmark-upload-icon p-0 text-right">
+                                    <div class="article-bookmark-upload-icon-box">
+                                        <a (click)="onBookmark(article.id)">
+                                            <mat-icon>
+                                                <span
+                                                    [ngClass]="article.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                    matTooltip="Bookmark"
+                                                    >bookmark</span
+                                                >
+                                            </mat-icon>
+                                        </a>
+                                        <a [matMenuTriggerFor]="shareMenu">
+                                            <mat-icon>
+                                                <span class="material-symbols-outlined" matTooltip="Share">file_upload</span>
+                                            </mat-icon>
+                                        </a>
+                                    </div>
+                                    <mat-menu class="share-menu" #shareMenu="matMenu" xPosition="before">
+                                        <a mat-menu-item (click)="copyLink(article)">
+                                            <span>
+                                                <img src="/assets/images/copylink.png" />
+                                                Copy Link
+                                            </span>
+                                        </a>
+                                        <a mat-menu-item (click)="socialMediaShare(article, 1)">
+                                            <span>
+                                                <img src="/assets/images/twitter-black.svg" />
+                                                Twitter
+                                            </span>
+                                        </a>
+                                        <a mat-menu-item (click)="socialMediaShare(article, 2)">
+                                            <span>
+                                                <img src="/assets/images/facebook-black.svg" />
+                                                Facebook
+                                            </span>
+                                        </a>
+                                        <a mat-menu-item (click)="socialMediaShare(article, 3)">
+                                            <span>
+                                                <img src="/assets/images/linkedin-black.svg" />
+                                                Linkedin
+                                            </span>
+                                        </a>
+                                        <a mat-menu-item (click)="socialMediaShare(article, 4)">
+                                            <span>
+                                                <img src="/assets/images/whatsapp.png" />
+                                                Whatsapp
+                                            </span>
+                                        </a>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide view-all-txt-btn-box" *ngIf="data.hasViewMore">
+                        <a class="view-all-txt-box" (click)="onViewAll(data)">View All</a>
+                    </div>
+                </div>
+            </swiper>
+        </div>
+    </div>
+</section>
+<!-- Slider Section Code End -->
+
+<!-- Desktop Site Slider Section Code Start -->
+<section class="slider-article-box desktop-slider-article-box" *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container slider-article-con">
+            <div class="row m-0 section-heading-txt-box mb-3" [ngClass]="removeBorder ? 'remove-top-border' : ''">
+                <div class="col-md-12 section-heading-txt">
+                    <h5 class="mb-0">
+                        <a
+                            class="text-decoration-none"
+                            [href]="authorService.generateSlug(data.name, data.referenceId, data.articleType.key)"
+                        >
+                            {{ data.name }}
+                        </a>
+                    </h5>
+                </div>
+            </div>
+            <div class="row p-0 m-0 slider-article-con" *ngIf="hasData">
+                <div class="col-12 p-0">
+                    <swiper [config]="desktopConfig">
+                        <div class="swiper-wrapper">
+                            <div
+                                class="swiper-slide"
+                                *ngFor="let article of data.contentViews.slice(0, data.recordToBeDisplayedForDesktop)"
+                            >
+                                <a class="text-decoration-none" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                    <img [src]="apiUrl.DOWNLOAD_IMAGE + article.bannerFileView.fileId" width="100%" />
+                                </a>
+                                <div class="row m-0 article-txt-con">
+                                    <div class="col-12 p-0 article-category-txt" *ngIf="data.showCategory">
+                                        <p *ngIf="article.categoryViews && article.categoryViews.length !== 0">
+                                            {{ article.categoryViews[0]?.name }}
+                                        </p>
+                                    </div>
+                                    <div class="col-12 p-0 article-txt">
+                                        <a class="text-decoration-none article-title-txt" [href]="appUrl.ARTICLE_VIEW + '/' + article.slug">
+                                            <p>
+                                                {{ article.title }}
+                                            </p>
+                                        </a>
+                                    </div>
+                                    <div class="row m-0 slide-article-txt-box">
+                                        <div class="col-9 p-0 article-by-read-time-box">
+                                            <app-article-author
+                                                *ngIf="article.authorViews"
+                                                [authorViews]="article.authorViews"
+                                            ></app-article-author>
+                                        </div>
+                                        <div class="col-3 article-bookmark-upload-icon p-0 text-right">
+                                            <div class="article-bookmark-upload-icon-box">
+                                                <a (click)="onBookmark(article.id)">
+                                                    <mat-icon>
+                                                        <span
+                                                            [ngClass]="article.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                            matTooltip="Bookmark"
+                                                            >bookmark</span
+                                                        >
+                                                    </mat-icon>
+                                                </a>
+                                                <a [matMenuTriggerFor]="shareMenu">
+                                                    <mat-icon>
+                                                        <span class="material-symbols-outlined" matTooltip="Share">file_upload</span>
+                                                    </mat-icon>
+                                                </a>
+                                            </div>
+                                            <mat-menu class="share-menu" #shareMenu="matMenu" xPosition="before">
+                                                <a mat-menu-item (click)="copyLink(article)">
+                                                    <span>
+                                                        <img src="/assets/images/copylink.png" />
+                                                        Copy Link
+                                                    </span>
+                                                </a>
+                                                <a mat-menu-item (click)="socialMediaShare(article, 1)">
+                                                    <span>
+                                                        <img src="/assets/images/twitter-black.svg" />
+                                                        Twitter
+                                                    </span>
+                                                </a>
+                                                <a mat-menu-item (click)="socialMediaShare(article, 2)">
+                                                    <span>
+                                                        <img src="/assets/images/facebook-black.svg" />
+                                                        Facebook
+                                                    </span>
+                                                </a>
+                                                <a mat-menu-item (click)="socialMediaShare(article, 3)">
+                                                    <span>
+                                                        <img src="/assets/images/linkedin-black.svg" />
+                                                        Linkedin
+                                                    </span>
+                                                </a>
+                                                <a mat-menu-item (click)="socialMediaShare(article, 4)">
+                                                    <span>
+                                                        <img src="/assets/images/whatsapp.png" />
+                                                        Whatsapp
+                                                    </span>
+                                                </a>
+                                            </mat-menu>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide view-all-txt-btn-box" *ngIf="data.hasViewMore">
+                                <a class="view-all-txt-box" (click)="onViewAll(data)">View All</a>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </swiper>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Site Slider Section Code End -->

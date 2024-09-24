@@ -1,0 +1,101 @@
+<section class="verification-box" *ngIf="changeResolutionFlag">
+    <div class="row m-0 h-100">
+        <div class="col-12 p-0 verification-detail-box">
+            <h4 class="registration-title-txt">Enter your verification code</h4>
+            <p class="registration-subtitle-txt">
+                To verify your {{ hasMobile ? 'phone number' : 'email address' }}, we've sent you 6 digit OTP at:
+            </p>
+            <div class="register-mobile-txt-box">
+                <span>{{ userRegisteredData }}</span>
+                <a [href]="appUrl.HOME">Edit {{ hasMobile ? 'Number' : 'Email' }}</a>
+            </div>
+            <form class="mt-5" [formGroup]="verificationForm">
+                <div class="form-group mat-form-field-width text-center mb-4">
+                    <ng-otp-input
+                        autofocus
+                        #ngOtpInput
+                        [config]="{ length: 6, isPasswordInput: false, allowNumbersOnly: true, disableAutoFocus: true }"
+                        (onInputChange)="onOtpChange($event)"
+                    ></ng-otp-input>
+                </div>
+            </form>
+
+            <div class="row pb-3 resend-btn-time">
+                <div class="col-8">
+                    <p>Didn't get the OTP ? <a [ngClass]="timeLeft !== 0 ? 'disabled' : ''" (click)="resendOtp()">RESEND</a></p>
+                </div>
+                <div class="col-4 text-right" *ngIf="timeLeft !== 0">{{ timeLeft }} Sec</div>
+            </div>
+            <div class="spacer-box"></div>
+            <div class="form-group verify-btn-box mb-4">
+                <span class="small-loading">
+                    <button
+                        class="w-100"
+                        type="submit"
+                        mat-flat-button
+                        color="primary"
+                        [disabled]="clicked || isDisabled"
+                        (click)="gotoUserRegistration()"
+                    >
+                        {{ clicked ? '' : 'Verify' }}
+                        <app-loader [count]="3" *ngIf="clicked"></app-loader>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Desktop Site Verification Section Start -->
+<section class="verification-box desktop-verification-box" *ngIf="!changeResolutionFlag">
+    <div class="row m-0 h-100">
+        <div class="col-12 p-0 verification-detail-box">
+            <div class="close-modal-btn">
+                <button mat-flat-button type="button" class="close" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h4 class="registration-title-txt">Enter your verification code</h4>
+            <p class="registration-subtitle-txt">
+                To verify your {{ hasMobile ? 'phone number' : 'email address' }}, we've sent you 6 digit OTP at:
+            </p>
+            <div class="register-mobile-txt-box">
+                <span>{{ userRegisteredData }}</span>
+                <a (click)="openRegisterModal()">Edit {{ hasMobile ? 'Number' : 'Email' }}</a>
+            </div>
+            <form class="mt-5" [formGroup]="verificationForm">
+                <div class="form-group mat-form-field-width text-center mb-4">
+                    <ng-otp-input
+                        autofocus
+                        #ngOtpInput
+                        [config]="{ length: 6, isPasswordInput: false, allowNumbersOnly: true, disableAutoFocus: true }"
+                        (onInputChange)="onOtpChange($event)"
+                    ></ng-otp-input>
+                </div>
+            </form>
+
+            <div class="row pb-3 d-flex resend-btn-time">
+                <div class="col-8">
+                    <p>Didn't get the OTP ? <a [ngClass]="timeLeft !== 0 ? 'disabled' : ''" (click)="resendOtp()">RESEND</a></p>
+                </div>
+                <div class="col-4 text-end" *ngIf="timeLeft !== 0">{{ timeLeft }} Sec</div>
+            </div>
+            <div class="form-group verify-btn-box mb-4">
+                <span class="small-loading">
+                    <button
+                        class="w-100"
+                        type="submit"
+                        mat-flat-button
+                        color="primary"
+                        [disabled]="clicked || isDisabled"
+                        (click)="gotoUserRegistration()"
+                    >
+                        {{ clicked ? '' : 'Verify' }}
+                        <app-loader [count]="3" *ngIf="clicked"></app-loader>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Site Verification Section End -->

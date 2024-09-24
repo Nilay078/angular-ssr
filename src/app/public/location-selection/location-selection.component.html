@@ -1,0 +1,51 @@
+<div class="login-waitlist-screen-box desktop-login-waitlist-screen-box">
+    <section class="registration-con" ngbAutoFocus>
+        <div class="close-modal-btn">
+            <button mat-flat-button type="button" class="close" [disabled]="!hasResponse" aria-label="Close" (click)="onClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="row container registration-box m-0">
+            <div class="col-12">
+                <div class="row m-0 mt-2">
+                    <div class="col-12 mb-5">
+                        <img src="assets/images/location-icon.png" class="logo-img" alt="header-logo" />
+                    </div>
+                    <div class="col-12">
+                        <h5 class="location-title-box">We are thrilled to introduce you to TS Gujarat</h5>
+                        <p>
+                            Unlock the stories from Gujarat on policy and bureaucracy. Be informed as we notify you for your states stories.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 m-0 mb-3">
+                <form [formGroup]="stateForm" #form="ngForm">
+                    <div class="form-group mat-form-field-width location-form-box">
+                        <mat-form-field appearance="outline">
+                            <mat-select
+                                [compareWith]="utils.idComparer"
+                                #select
+                                formControlName="stateView"
+                                placeholder="SELECT YOUR STATE"
+                                (selectionChange)="onSubmit()"
+                                [disabled]="!hasResponse"
+                            >
+                                <mat-select-filter
+                                    placeholder="Search By State Name"
+                                    *ngIf="select.focused"
+                                    [array]="stateList"
+                                    displayMember="name"
+                                    (filteredReturn)="filteredStateList = $event"
+                                ></mat-select-filter>
+                                <mat-option *ngFor="let data of filteredStateList" [value]="data">
+                                    {{ data.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

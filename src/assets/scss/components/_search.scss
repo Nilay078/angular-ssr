@@ -1,0 +1,68 @@
+.search-article-input-box {
+    padding: 20px 20px 0px 20px;
+    .mat-form-field {
+        width: 100%;
+    }
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+    .mat-form-field-prefix .mat-icon-button .mat-icon, .mat-form-field-suffix .mat-icon-button .mat-icon {
+        height: 40px;
+        line-height: 26px;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        background-color: $whiteColor;
+        @include border-radius(25px);
+    }
+    .mat-icon {
+        color: $primarySapphireBlue;
+    }
+    .mat-input-element::placeholder {
+        color: $secondaryOuterSpaceCrayola;
+    }
+    .mat-input-element, .mat-select-trigger, .mat-select-panel .mat-option {
+        color: $secondaryOuterSpaceCrayola;
+        caret-color: $secondaryOuterSpaceCrayola !important;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-outline-start, .mat-form-field-appearance-outline .mat-form-field-outline-end,
+    .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+        border: none !important;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-prefix, .mat-form-field-appearance-outline .mat-form-field-suffix {
+        top: 0.05em;
+    }    
+    .result-title-detail-txt-box {
+        word-break: break-all;
+    }
+    h6 {
+        color: $primarySapphireBlue;
+        font-weight: 700;
+    }
+    .results-title {
+        color: $secondaryOuterSpaceCrayola;
+    }
+}
+.recent-search-txt {
+  font-size: 20px;
+  border-bottom: solid 1px $secondaryOuterSpaceCrayola;
+  color: rgba($secondaryOuterSpaceCrayola, 0.7);
+  margin: 10px 15px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  align-items: center;
+  .close-modal-btn {
+    text-align: right;
+    button  {
+        background-color: transparent;
+        box-shadow: none;
+        font-size: 28px;
+        color: $secondaryOuterSpaceCrayola;
+        padding: 0;
+        min-width: 30px;
+    }
+  }
+}
+.mat-autocomplete-panel {
+  max-height: 500px !important;
+  @include border-radius(10px);
+}

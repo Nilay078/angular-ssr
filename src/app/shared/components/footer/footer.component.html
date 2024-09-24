@@ -1,0 +1,140 @@
+<footer class="footer mt-2" *ngIf="changeResolutionFlag && !isHidden">
+    <div class="row m-0">
+        <div class="col-12 text-center">
+            <a (click)="gotoHome()">
+                <img src="assets/images/thesecretariat-logo.png" class="footer-logo" />
+            </a>
+        </div>
+        <div class="col-12 mt-4">
+            <div class="download-app-txt text-center">
+                <p class="mb-2">Download The Secretariat App</p>
+                <a href="https://play.google.com/store/apps/details?id=in.the.secretariat.news&pcampaignid=web_share" target="_blank">
+                    <img src="assets/images/google-play.png" />
+                </a>
+                <a href="https://apps.apple.com/in/app/the-secretariat-news/id6447047233" target="_blank" class="ms-3">
+                    <img src="assets/images/app-store.png" />
+                </a>
+            </div>
+        </div>
+        <div class="col-12 social-icon-txt mt-5">
+            <p>FOLLOW US ON</p>
+        </div>
+        <div class="col-12">
+            <div class="social-icon-box">
+                <a [href]="social_media_url.SOCIAL_MEDIA_FACEBOOK" target="_blank">
+                    <img src="assets/images/facebook-black.svg" />
+                </a>
+                <a [href]="social_media_url.SOCIAL_MEDIA_TWITTER" target="_blank">
+                    <img src="assets/images/twitter-black.svg" />
+                </a>
+                <a [href]="social_media_url.SOCIAL_MEDIA_INSTAGRAM" target="_blank">
+                    <img src="assets/images/instagram-black.svg" />
+                </a>
+                <a [href]="social_media_url.SOCIAL_MEDIA_LINKEDIN" target="_blank">
+                    <img src="assets/images/linkedin-black.svg" />
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="footer-menu-box">
+                <ul>
+                    <li>
+                        <a [href]="[appUrl.ABOUT_US]">About Us</a>
+                    </li>
+                    <li class="ms-4">
+                        <a [href]="appUrl.CONTACT">Contact Us</a>
+                    </li>
+                    <li class="ms-4">
+                        <a [href]="appUrl.WRITE_FOR_US">Write For Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 copyright-txt text-center">
+            <p class="privacy-terms-payment-box">
+                <a [href]="appUrl.PRIVACY_POLICY">Privacy Policy</a>&nbsp;&nbsp;·&nbsp;
+                <a [href]="appUrl.TERMS_CONDITIONS">Terms & Conditions</a>&nbsp;&nbsp;·&nbsp;
+                <a [href]="appUrl.PAYMENT_POLICY">Payment Policy</a>
+            </p>
+        </div>
+        <div class="col-12 copyright-txt text-center">
+            <p>Copyright © {{ currentYear }} SML Digital. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Desktop Site Footer Section Start -->
+<footer class="footer desktop-footer-box" *ngIf="!headerShow && !changeResolutionFlag">
+    <section>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row m-0 footer-menu-con">
+                    <div class="col-md-4">
+                        <a (click)="gotoHome()">
+                            <img src="assets/images/thesecretariat-logo.png" class="footer-logo" />
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="download-app-txt text-center">
+                            <p class="mb-2">Download The Secretariat App</p>
+                            <a
+                                href="https://play.google.com/store/apps/details?id=in.the.secretariat.news&pcampaignid=web_share"
+                                target="_blank"
+                            >
+                                <img src="assets/images/google-play.png" />
+                            </a>
+                            <a href="https://apps.apple.com/in/app/the-secretariat-news/id6447047233" target="_blank" class="ms-3">
+                                <img src="assets/images/app-store.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="social-icon-box">
+                            <p class="mb-2">Follow Us On</p>
+                            <a [href]="social_media_url.SOCIAL_MEDIA_FACEBOOK" target="_blank">
+                                <img src="assets/images/facebook-black.svg" />
+                            </a>
+                            <a [href]="social_media_url.SOCIAL_MEDIA_TWITTER" target="_blank">
+                                <img src="assets/images/twitter-black.svg" />
+                            </a>
+                            <a [href]="social_media_url.SOCIAL_MEDIA_INSTAGRAM" target="_blank">
+                                <img src="assets/images/instagram-black.svg" />
+                            </a>
+                            <a [href]="social_media_url.SOCIAL_MEDIA_LINKEDIN" target="_blank">
+                                <img src="assets/images/linkedin-black.svg" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 copyright-txt">
+                        <div class="footer-menu-box">
+                            <ul>
+                                <li>
+                                    <a [href]="[appUrl.ABOUT_US]">About Us</a>
+                                </li>
+                                <li>
+                                    <a [href]="appUrl.CONTACT">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a [href]="[appUrl.WRITE_FOR_US]">Write For Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 copyright-txt text-center">
+                        <p>
+                            <a [href]="appUrl.PRIVACY_POLICY">Privacy Policy</a>&nbsp;&nbsp;·&nbsp;
+                            <a [href]="appUrl.TERMS_CONDITIONS">Terms & Conditions</a>&nbsp;&nbsp;·&nbsp;
+                            <a [href]="appUrl.PAYMENT_POLICY">Payment Policy</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4 copyright-txt text-right">
+                        <p>Copyright © {{ currentYear }} SML Digital. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<!-- Desktop Site Footer Section End -->

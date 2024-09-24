@@ -1,0 +1,57 @@
+<section class="category-box" *ngIf="changeResolutionFlag">
+    <div class="row m-0 h-100">
+        <div class="col-12 p-0 category-list-box">
+            <h4 class="registration-title-txt">What are you interested in?</h4>
+            <p class="registration-subtitle-txt mb-5">Pick minimum 3 topics. It will help us curate your feed.</p>
+            <div class="row chip-skeleton-loader" *ngIf="!hasData">
+                <div class="col-4" *ngFor="let i of skeletonRange">
+                    <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+                </div>
+            </div>
+            <mat-chip-list selectable multiple="true" *ngIf="hasData">
+                <mat-chip *ngFor="let category of categoryList" [selected]="category.selected" (click)="selectionChange(category)">
+                    {{ category.name }}
+                </mat-chip>
+            </mat-chip-list>
+            <div class="spacer-box"></div>
+            <div class="form-group verify-btn-box mt-5 mb-4">
+                <button class="w-100" type="submit" mat-flat-button color="primary" (click)="gotoSubCategory()" [disabled]="clicked">
+                    {{ clicked ? '' : 'Continue' }}
+                    <app-loader [count]="3" *ngIf="clicked"></app-loader>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Desktop Site Category Section Start -->
+<section class="category-box desktop-category-box" *ngIf="!changeResolutionFlag">
+    <div class="row m-0 h-100">
+        <div class="col-12 p-0 category-list-box">
+            <div class="close-modal-btn" *ngIf="!changeResolutionFlag">
+                <button mat-flat-button type="button" class="close" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h4 class="registration-title-txt">What are you interested in?</h4>
+            <p class="registration-subtitle-txt mb-5">Pick minimum 3 topics. It will help us curate your feed.</p>
+            <div class="row chip-skeleton-loader" *ngIf="!hasData">
+                <div class="col-4" *ngFor="let i of skeletonRange">
+                    <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+                </div>
+            </div>
+            <mat-chip-list selectable multiple="true" *ngIf="hasData">
+                <mat-chip *ngFor="let category of categoryList" [selected]="category.selected" (click)="selectionChange(category)">
+                    {{ category.name }}
+                </mat-chip>
+            </mat-chip-list>
+            <div class="form-group verify-btn-box mt-5 mb-4">
+                <button class="w-100" type="submit" mat-flat-button color="primary" (click)="gotoSubCategory()" [disabled]="clicked">
+                    {{ clicked ? '' : 'Continue' }}
+                    <app-loader [count]="3" *ngIf="clicked"></app-loader>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Site Category Section End -->

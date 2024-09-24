@@ -1,0 +1,210 @@
+<!-- Mobile Site Login Section Start -->
+<section class="login-waitlist-screen-box" *ngIf="changeResolutionFlag">
+    <section>
+        <div class="row back-arrow-skim-mode-box py-2 m-0 align-items-center">
+            <div class="col-3 p-0 text-start">
+                <button type="button" class="back-arrow" mat-button (click)="onBackPage()">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+            </div>
+            <div class="col-6 p-0 text-center">
+                <p class="mb-0 header-title-txt">Login</p>
+            </div>
+        </div>
+    </section>
+    <div class="row m-0 mt-4">
+        <div class="col-12">
+            <img src="assets/images/login.png" class="logo-img" alt="header-logo" />
+        </div>
+    </div>
+
+    <div class="exclusive-login-content row m-0">
+        <section class="registration-con">
+            <div class="row registration-box m-0">
+                <div class="col-12">
+                    <div class="scan-txt-box">
+                        <p>
+                            <span>Hello!</span>
+                        </p>
+                        <p class="mt-2">Log into your account and access news from the corridors and more.</p>
+                    </div>
+                </div>
+                <div class="col-12 email-mobile-login-form mt-3">
+                    <form [formGroup]="registrationForm" #form="ngForm" (submit)="onSubmit()">
+                        <div class="mb-3">
+                            <mat-radio-group (change)="onTypeSelect($event)" formControlName="registerType">
+                                <mat-radio-button
+                                    [checked]="type.key === selectedType"
+                                    [value]="type"
+                                    *ngFor="let type of registerTypeList"
+                                    >{{ type.value }}</mat-radio-button
+                                >
+                            </mat-radio-group>
+                        </div>
+                        <div *ngIf="selectedType === registerType.MOBILE">
+                            <div class="form-group mat-form-field-width login-mobile-input-box login-with-country-code-input">
+                                <mat-form-field appearance="outline" floatLabel="always">
+                                    <span matPrefix readonly>+91&nbsp;</span>
+                                    <input
+                                        id="registerMobileNumber"
+                                        matInput
+                                        type="tel"
+                                        formControlName="registerMobileNumber"
+                                        placeholder="Mobile Number*"
+                                    />
+                                </mat-form-field>
+                            </div>
+                            <div
+                                class="error-msg-outer"
+                                *ngIf="registrationForm.controls['registerMobileNumber'].touched || form.submitted"
+                            >
+                                <app-error-message
+                                    class="error-message"
+                                    [errors]="registrationForm.controls['registerMobileNumber'].errors"
+                                >
+                                </app-error-message>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedType === registerType.EMAIL">
+                            <div class="form-group mat-form-field-width">
+                                <mat-form-field appearance="outline">
+                                    <input id="email" matInput type="email" formControlName="email" placeholder="Email Address*" />
+                                </mat-form-field>
+                            </div>
+                            <div class="error-msg-outer" *ngIf="registrationForm.controls['email'].touched || form.submitted">
+                                <app-error-message class="error-message" [errors]="registrationForm.controls['email'].errors">
+                                </app-error-message>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button
+                                class="w-100 generate-otp-btn"
+                                type="submit"
+                                mat-flat-button
+                                color="primary"
+                                [disabled]="clicked || registrationForm.invalid"
+                            >
+                                {{ clicked ? '' : 'Generate OTP' }}
+                                <app-loader [count]="3" *ngIf="clicked"></app-loader>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 mt-5 mb-3">
+                    <div class="privacy-terms-txt mx-5">
+                        By Signing up, I agree to the <a [href]="appUrl.TERMS_CONDITIONS">Terms & Conditions</a> and
+                        <a [href]="appUrl.PRIVACY_POLICY">Privacy Policy</a> of The Secretariat.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+<!-- Mobile Site Login Section End -->
+
+<!-- Desktop Site Login Section Start -->
+<div class="login-waitlist-screen-box desktop-login-waitlist-screen-box" *ngIf="!changeResolutionFlag">
+    <section class="registration-con" ngbAutoFocus>
+        <div class="row m-0 py-2 login-modal-header-box align-items-center">
+            <div class="col-3 p-0"></div>
+            <div class="col-6 p-0 text-center">
+                <p class="mb-0 header-title-txt">Login</p>
+            </div>
+            <div class="col-3 p-0 text-end">
+                <div class="close-modal-btn">
+                    <button mat-flat-button type="button" class="close" aria-label="Close" (click)="onClose()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row registration-box m-0">
+            <div class="col-12">
+                <div class="row m-0 mt-2">
+                    <div class="col-12">
+                        <img src="assets/images/login.png" class="logo-img" alt="header-logo" />
+                    </div>
+                </div>
+
+                <div class="exclusive-login-content row m-0">
+                    <div class="col-12">
+                        <div class="scan-txt-box">
+                            <p>
+                                <span>Hello!</span>
+                            </p>
+                            <p class="mt-2">Log into your account and access news from the corridors and more.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 email-mobile-login-form mt-4">
+                        <form [formGroup]="registrationForm" #form="ngForm" (submit)="onSubmit()">
+                            <div class="mb-2">
+                                <mat-radio-group (change)="onTypeSelect($event)" formControlName="registerType">
+                                    <mat-radio-button
+                                        [checked]="type.key === selectedType"
+                                        [value]="type"
+                                        *ngFor="let type of registerTypeList"
+                                        >{{ type.value }}</mat-radio-button
+                                    >
+                                </mat-radio-group>
+                            </div>
+                            <div *ngIf="selectedType === registerType.MOBILE">
+                                <div class="form-group mat-form-field-width login-with-country-code-input">
+                                    <mat-form-field appearance="outline" floatLabel="always">
+                                        <span matPrefix readonly>+91&nbsp;</span>
+                                        <input
+                                            id="registerMobileNumber"
+                                            matInput
+                                            type="tel"
+                                            formControlName="registerMobileNumber"
+                                            placeholder="Mobile Number*"
+                                        />
+                                    </mat-form-field>
+                                </div>
+                                <div
+                                    class="error-msg-outer"
+                                    *ngIf="registrationForm.controls['registerMobileNumber'].touched || form.submitted"
+                                >
+                                    <app-error-message
+                                        class="error-message"
+                                        [errors]="registrationForm.controls['registerMobileNumber'].errors"
+                                    >
+                                    </app-error-message>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedType === registerType.EMAIL">
+                                <div class="form-group mat-form-field-width">
+                                    <mat-form-field appearance="outline">
+                                        <input id="email" matInput type="email" formControlName="email" placeholder="Email Address*" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="error-msg-outer" *ngIf="registrationForm.controls['email'].touched || form.submitted">
+                                    <app-error-message class="error-message" [errors]="registrationForm.controls['email'].errors">
+                                    </app-error-message>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button
+                                    class="w-100 generate-otp-btn"
+                                    type="submit"
+                                    mat-flat-button
+                                    color="primary"
+                                    [disabled]="clicked || registrationForm.invalid"
+                                >
+                                    {{ clicked ? '' : 'Generate OTP' }}
+                                    <app-loader [count]="3" *ngIf="clicked"></app-loader>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="privacy-terms-txt mx-5">
+                            By Signing up, I agree to the <a [href]="appUrl.TERMS_CONDITIONS">Terms & Conditions</a> and
+                            <a [href]="appUrl.PRIVACY_POLICY">Privacy Policy</a> of The Secretariat.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Desktop Site Login Section End -->

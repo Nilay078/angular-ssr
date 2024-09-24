@@ -1,0 +1,37 @@
+<a
+    [ngClass]="{ 'article-write-name-txt': hasImage, 'author-name-display-txt': !hasImage, 'cursor-none': !hasClickable }"
+    (click)="onAuthorView(authorViews[0])"
+>
+    {{ !hasImage ? 'By ' : '' }}{{ authorViews[0].displayName }}
+</a>
+<div class="more-author-text-box">
+    <a *ngIf="authorViews.length > 1" class="more-author-txt ms-1" (click)="onClick()" #toggleButton>
+        +{{ authorViews.length - 1 }} More
+        <mat-icon class="author-expand-icon">{{ isMoreAuthor ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </a>
+    <div [ngClass]="isMoreAuthor ? 'more-author-section-view' : 'more-author-section'">
+        <ul>
+            <li>
+                <div
+                    class="author-without-img-box-sec"
+                    [ngClass]="{ 'author-img-box-sec': hasImage }"
+                    *ngFor="let author of authorViews.slice(1)"
+                >
+                    <div *ngIf="hasImage" class="author-img-sec" (click)="onAuthorView(author)">
+                        <img
+                            [ngClass]="hasClickable ? '' : 'cursor-none'"
+                            [src]="
+                                author.imageFileView
+                                    ? apiUrl.DOWNLOAD_IMAGE + author.imageFileView.fileId
+                                    : 'assets/images/default-profile-picture.jpg'
+                            "
+                        />
+                    </div>
+                    <a class="author-menu-txt" [ngClass]="hasClickable ? '' : 'cursor-none'" (click)="onAuthorView(author)">
+                        {{ author.displayName }}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

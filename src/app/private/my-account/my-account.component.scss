@@ -1,0 +1,28 @@
+@import '/src/assets/scss/variables';
+
+// My Account Start
+.arrow-menu-list {
+  li {
+    &:not(:last-child) {
+      border-bottom:1px solid rgba($primaryPaleChestnut, 0.5);
+    }
+    a {
+      position: relative;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      display: block;
+      padding: 15px 0;
+      color: $blackColor;
+      text-decoration: none;
+      .mat-icon {
+        position: absolute;
+        top: 50%;
+        right: -8px;
+        transform: translateY(-50%);
+        color: rgba($blackColor, 0.5);
+      }
+    }
+  }
+}
+// My Account End

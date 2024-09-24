@@ -1,0 +1,58 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+// Hero Banner Section Css Start
+.hero-banner-box {
+    .hero-banner-content-box {
+        &:not(:last-child) {
+            .hero-banner-title-box {
+                .article-txt-con {
+                    border-bottom: solid 1px rgba($primaryPaleChestnut, 0.3);
+                }
+            }
+        }
+    }
+}
+// Hero Banner Section Css End
+
+// Desktop Site Hero Banner Section Css Start
+.desktop-site-hero-banner-box {
+    &.hero-banner-box {
+        border-top: solid 2px $secondaryTxtColor;
+        padding-top: 20px;
+    }
+    .hero-banner-with-img-title-box {
+        .article-txt-con {
+            .article-txt {
+                .article-title-txt {
+                    p {
+                        @include text(36px, 46px, $blackColor, $cabinetGrotesk, $medium);
+                        @include lineClamp(7);
+                    }
+                }
+            }
+        }
+    }
+    .hero-banner-without-img-box {
+        border-top: solid 2px rgba($primaryPaleChestnut, 0.3);
+        margin-top: 25px !important;
+        margin-bottom: 25px !important;
+        padding-top: 5px !important;
+        .hero-banner-without-img-title-box {
+            .article-txt-con {
+                position: relative;
+                height: 100%;
+                .hero-banner-author-box {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    padding: 0 8px;
+                    .article-bookmark-upload-icon-box {
+                        height: 21px;
+                    }
+                }
+            }
+        }
+    }
+}
+// Desktop Site Hero Banner Section Css End

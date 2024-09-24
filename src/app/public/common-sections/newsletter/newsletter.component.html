@@ -1,0 +1,75 @@
+<!-- Advertisement section Code Start -->
+<section class="advertisement-con" *ngIf="changeResolutionFlag && data">
+    <div class="newsletter-border-top">
+        <div class="row m-0 news-advertisement-box" [style.background-color]="data.backgroundColor" *ngIf="!layout">
+            <div class="col-12 advertisement-title-txt">
+                <h6>Newsletter</h6>
+                <h2 [style.color]="data.titleColor">{{ data.name }}</h2>
+                <p [style.color]="data.descriptionColor">{{ data.shortDescription }}</p>
+                <button
+                    [style.color]="data.buttonTextColor"
+                    [style.background-color]="data.buttonColor"
+                    class="w-100 black-bg-btn-box"
+                    type="button"
+                    mat-flat-button
+                    (click)="onSubscribe(data.id)"
+                    [disabled]="isNewsletterSubscribe"
+                >
+                    {{ isNewsletterSubscribe ? '' : 'Subscribe' }}
+                    <app-loader [count]="3" *ngIf="isNewsletterSubscribe"></app-loader>
+                </button>
+            </div>
+        </div>
+        <div class="row m-0 news-advertisement-box black-theme-advertisement-box" *ngIf="layout === 4">
+            <div class="col-12 advertisement-title-txt">
+                <h2>Make that strategic Move First with The Secretariat.</h2>
+                <p>Get full access to more than ____ deep dives plus analytical stories on bureaucracy and business.</p>
+                <button class="w-100 black-bg-btn-box blue-bg-button-box" type="button" mat-flat-button>SUBSCRIBE</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Advertisement section Code End -->
+
+<!-- Desktop Site Advertisement section Code Start -->
+<section class="advertisement-con desktop-advertisement-con" *ngIf="!changeResolutionFlag && data">
+    <div class="newsletter-border-top">
+        <div class="row m-0 news-advertisement-box" [style.background-color]="data.backgroundColor" *ngIf="!layout">
+            <div class="col-md-6 col-lg-3 col-xl-3 advertisement-title-txt">
+                <h6>Newsletter</h6>
+                <h2 [style.color]="data.titleColor">{{ data.name }}</h2>
+            </div>
+            <div class="col-md-6 col-lg-5 col-xl-6 advertisement-title-txt">
+                <p [style.color]="data.descriptionColor">{{ data.shortDescription }}</p>
+            </div>
+            <div class="col-md-12 col-lg-4 col-xl-3 subscribe-btn-box advertisement-title-txt">
+                <span class="small-loading">
+                    <button
+                        [style.color]="data.buttonTextColor"
+                        [style.background-color]="data.buttonColor"
+                        class="w-100 black-bg-btn-box"
+                        type="button"
+                        mat-flat-button
+                        (click)="onSubscribe(data.id)"
+                        [disabled]="isNewsletterSubscribe"
+                    >
+                        {{ isNewsletterSubscribe ? '' : 'Subscribe' }}
+                        <app-loader [count]="3" *ngIf="isNewsletterSubscribe"></app-loader>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="row m-0 news-advertisement-box black-theme-advertisement-box" *ngIf="layout === 4">
+            <div class="col-md-6 col-lg-3 col-xl-3 advertisement-title-txt">
+                <h2>Make that strategic Move First with The Secretariat.</h2>
+            </div>
+            <div class="col-md-6 col-lg-5 col-xl-6 advertisement-title-txt">
+                <p>Get full access to more than ____ deep dives plus analytical stories on bureaucracy and business.</p>
+            </div>
+            <div class="col-md-12 col-lg-4 col-xl-3 subscribe-btn-box advertisement-title-txt">
+                <button class="w-100 black-bg-btn-box blue-bg-button-box" type="button" mat-flat-button>SUBSCRIBE</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Site Advertisement section Code End -->

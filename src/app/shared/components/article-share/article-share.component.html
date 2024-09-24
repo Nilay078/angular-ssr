@@ -1,0 +1,28 @@
+<button type="button" [matMenuTriggerFor]="shareMenu" class="btn btn-link" *ngIf="hasButton">
+    <mat-icon>
+        <span class="material-symbols-outlined" matTooltip="Share">file_upload</span>
+    </mat-icon>
+</button>
+<a class="me-0" [ngClass]="hasDisabled ? 'cursor-none' : ''" [matMenuTriggerFor]="hasDisabled ? null : shareMenu" *ngIf="!hasButton">
+    <mat-icon>
+        <span class="material-symbols-outlined" matTooltip="Share">file_upload</span>
+    </mat-icon>
+</a>
+<mat-menu class="share-menu" #shareMenu="matMenu" xPosition="before">
+    <a mat-menu-item (click)="copyLink(article)">
+        <span>
+            <img src="/assets/images/copylink.png" alt="Copy Link" />
+            Copy Link
+        </span>
+    </a>
+    <a
+        mat-menu-item
+        *ngFor="let socialSharePlatform of socialSharePlatforms"
+        (click)="socialMediaShare(article, socialSharePlatform.shareUrl)"
+    >
+        <span>
+            <img [src]="socialSharePlatform.imageUrl" [alt]="socialSharePlatform.title" />
+            {{ socialSharePlatform.title }}
+        </span>
+    </a>
+</mat-menu>

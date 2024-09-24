@@ -1,0 +1,49 @@
+@import '/src/assets/scss/variables';
+
+.filter-box {
+    padding: 20px;
+    .filter-title-txt-box {
+        border-bottom: solid 1px rgba($secondaryOuterSpaceCrayola, 0.2);
+        padding-bottom: 10px;
+        align-items: center;
+        .filter-title-txt {
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: 700;
+            margin-bottom: 0;
+            font-family: $cabinetGrotesk;
+            color: $secondaryOuterSpaceCrayola;
+            text-transform: uppercase;
+        }
+        .close-modal-btn {
+            width: 100%;
+            text-align: right;
+            button  {
+                background-color: transparent;
+                box-shadow: none;
+                font-size: 28px;
+                color: $secondaryOuterSpaceCrayola;
+                padding: 0;
+                min-width: 30px;
+            }
+        }
+    }
+    .filter-heading-txt {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 700;
+        margin-bottom: 0;
+        font-family: $cabinetGrotesk;
+        color: $secondaryOuterSpaceCrayola;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    .newsletter-subscribe-btn {
+        &.mat-button-disabled {
+          border: none !important;
+        }
+    }
+}
+::ng-deep .cdk-overlay-container {
+    z-index: 1060;
+}

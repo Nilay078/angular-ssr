@@ -1,0 +1,142 @@
+<app-private-header (back)="onBackPage()" [pageName]="'Contact Us'" *ngIf="changeResolutionFlag"></app-private-header>
+
+<section class="contact-us-con" *ngIf="changeResolutionFlag">
+    <form [formGroup]="contactForm" (submit)="onSubmit()" #form="ngForm">
+        <div class="row contact-box m-0">
+            <div class="col-12">
+                <div class="contact-txt p-0">
+                    You can reach us at <br />
+                    <a href="mailto:connect@thesecretariat.in">connect@thesecretariat.in</a>
+                </div>
+            </div>
+            <div class="col-12 mt-4 contact-txt">
+                <p class="contact-us-office-address-title m-0">Corporate Office</p>
+                <p>
+                    7th Floor, Left Wing, <br />
+                    Sambhaav House, <br />
+                    Nr Judges Bunglow Cross Road, <br />
+                    Bodakdev, Ahmedabad, <br />
+                    Gujarat - 380054
+                </p>
+                <p class="contact-us-office-address-title m-0">Editorial Headquarters</p>
+                <p>
+                    2608 - Astralis, Supertech Supernova, <br />
+                    Sector 94, Noida, Uttar Pradesh - 201301 <br />
+                </p>
+                <p class="contact-us-office-address-title m-0">Grievance Redressal</p>
+                <p>
+                    Any person residing in India can register a complaint related to the content of the website within 30 days of the
+                    publication of the content. Kindly get in touch with our Grievance Officer, Neeraj Attri, COO at
+                    <a href="mailto:grievance@thesecretariat.in">grievance@thesecretariat.in</a>
+                </p>
+            </div>
+            <div class="col-12 mt-4">
+                <div class="form-group mat-form-field-width">
+                    <mat-form-field appearance="outline">
+                        <mat-label for="contactEmailId">Email Id</mat-label>
+                        <input id="contactEmailId" matInput type="tel" formControlName="email" />
+                    </mat-form-field>
+                </div>
+                <div class="error-msg-outer" *ngIf="contactForm.controls['email'].touched || form.submitted">
+                    <app-error-message class="error-message" [errors]="contactForm.controls['email'].errors"> </app-error-message>
+                </div>
+                <div class="msg-box">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <textarea
+                            autosize
+                            matInput
+                            cdkTextareaAutosize
+                            cdkAutosizeMinRows="4"
+                            placeholder="Drop us a message*"
+                            id="contactMeassage"
+                            formControlName="message"
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="error-msg-outer" *ngIf="contactForm.controls['message'].touched || form.submitted">
+                    <app-error-message class="error-message contact-write-drop-message" [errors]="contactForm.controls['message'].errors">
+                    </app-error-message>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+                <button class="w-100" type="submit" mat-flat-button color="primary">GET IN TOUCH</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<!-- Desktop Contact Us Section Start -->
+<section class="contact-us-con desktop-contact-us-con" *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container">
+            <form [formGroup]="contactForm" (submit)="onSubmit()" #form="ngForm">
+                <div class="row contact-box m-0">
+                    <div class="col-12">
+                        <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+                        <h2 class="contact-title mb-3">Contact Us</h2>
+                        <div class="contact-txt p-0">
+                            You can reach us at <br />
+                            <a href="mailto:connect@thesecretariat.in">connect@thesecretariat.in</a>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4 contact-txt">
+                        <p class="contact-us-office-address-title m-0">Corporate Office</p>
+                        <p>
+                            7th Floor, Left Wing, <br />
+                            Sambhaav House, <br />
+                            Nr Judges Bunglow Cross Road, <br />
+                            Bodakdev, Ahmedabad, <br />
+                            Gujarat - 380054
+                        </p>
+                        <p class="contact-us-office-address-title m-0">Editorial Headquarters</p>
+                        <p>
+                            2608 - Astralis, Supertech Supernova, <br />
+                            Sector 94, Noida, Uttar Pradesh - 201301 <br />
+                        </p>
+                        <p class="contact-us-office-address-title m-0">Grievance Redressal</p>
+                        <p>
+                            Any person residing in India can register a complaint related to the content of the website within 30 days of
+                            the publication of the content. Kindly get in touch with our Grievance Officer, Neeraj Attri, COO at
+                            <a href="mailto:grievance@thesecretariat.in">grievance@thesecretariat.in</a>
+                        </p>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="form-group mat-form-field-width">
+                            <mat-form-field appearance="outline">
+                                <mat-label for="contactEmailId">Email Id</mat-label>
+                                <input id="contactEmailId" matInput type="tel" formControlName="email" />
+                            </mat-form-field>
+                        </div>
+                        <div class="error-msg-outer" *ngIf="contactForm.controls['email'].touched || form.submitted">
+                            <app-error-message class="error-message" [errors]="contactForm.controls['email'].errors"> </app-error-message>
+                        </div>
+                        <div class="msg-box">
+                            <mat-form-field class="w-100" appearance="outline">
+                                <textarea
+                                    autosize
+                                    matInput
+                                    cdkTextareaAutosize
+                                    cdkAutosizeMinRows="4"
+                                    placeholder="Drop us a message*"
+                                    id="contactEmailId"
+                                    formControlName="message"
+                                ></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="error-msg-outer" *ngIf="contactForm.controls['message'].touched || form.submitted">
+                            <app-error-message
+                                class="error-message contact-write-drop-message"
+                                [errors]="contactForm.controls['message'].errors"
+                            >
+                            </app-error-message>
+                        </div>
+                    </div>
+                    <div class="col-12 my-4">
+                        <button class="w-100" type="submit" mat-flat-button color="primary">GET IN TOUCH</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Desktop Contact Us Section End -->

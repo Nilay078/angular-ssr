@@ -1,0 +1,23 @@
+.ng-otp-input-wrapper .otp-input:not(:last-child) {
+    margin-right: 20px !important;
+}
+.otp-input {
+    width: 40px !important;
+    border: 0 !important;
+    border-bottom: solid 1px $secondaryOuterSpaceCrayola !important;
+    @include border-radius(0 !important);
+    background-color: transparent;
+    &:focus-visible {
+        outline: none;
+    }
+}
+@media (max-width: 575px) {
+    .ng-otp-input-wrapper .otp-input:not(:last-child) {
+        margin-right: 10px !important;
+    }
+}
+@media (max-width: 480px) {
+    .otp-input {
+        width: 30px !important;
+    }
+}

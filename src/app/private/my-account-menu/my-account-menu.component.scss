@@ -1,0 +1,45 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+::ng-deep .sidebar {
+    width: 100%;
+    .watch-list-ul {
+        margin: 0;
+        padding-left: 0;
+        list-style: none;
+        .filter-item-inner {
+            padding: 5px 0;
+            .slider-menu-name {
+                width: 100%;
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 15px;
+                text-decoration: none;
+                .menu-title {
+                    font-size: 16px;
+                    font-family: $cabinetGrotesk;
+                    font-weight: 700;
+                    line-height: 20px;
+                    color: $secondaryOuterSpaceCrayola;
+                }
+                &:hover {
+                    .menu-title {
+                        color: $primarySapphireBlue;
+                    }
+                }
+                &.active {
+                    background-color: rgba($primaryPaleChestnut, 0.5);
+                    @include border-radius(20px);
+                    .menu-title {
+                        color: $primarySapphireBlue;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+}

@@ -1,0 +1,118 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+// Thumbnail Section Css Start
+.thumbnail-section-box {
+    .section-heading-txt-box {
+      .section-heading-txt {
+        h6 {
+          color: $primarySapphireBlue;
+        }
+        &.category-border-bottom-box {
+          border-bottom: solid 2px $secondaryTxtColor;
+          border-top: 0;
+        }
+      }
+    }
+    .category-txt-box {
+      padding-bottom: 20px;
+      padding-right: 20px;
+    }
+    .thumbnail-img-txt-con {
+        .thumbnail-img-con {
+            &.all-thumbnail-data-box {
+                &:not(:last-child) {
+                    border-bottom: solid 1px $secondaryBgColor;
+                    margin-bottom: 20px !important;
+                }
+            }
+            .thumbnail-txt-box {
+                position: relative;
+                .article-txt-con {
+                    .article-txt {
+                        padding-bottom: 55px !important;
+                    }
+                }
+                .slide-article-txt-box {
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0;
+                    padding: 0 10px;
+                }
+            }
+        }
+    }
+    // Thumbnail with Dark Background Css Start
+    .dark-bg-thumbnail-section-box {
+        background-color: $primaryPaleChestnut;
+        padding: 25px 0 0;
+        margin-bottom: 20px;
+    }
+    // Thumbnail with Dark Background Css End
+    // Thumbnail with Light Background Css Start
+    .remove-bg-thumbnail-section-box {
+        background-color: transparent !important;
+    }
+    // Thumbnail with Light Background Css End
+}
+// Thumbnail Section Css End
+
+::ng-deep .tag-filter-chip-box {
+    .mat-chip-list-wrapper {
+        flex-wrap: initial;
+        overflow-x: auto;
+        .mat-standard-chip {
+            flex: 0 0 auto;
+        }
+    }
+}
+
+// Banner Section Css Start
+.banner-section-box {
+    .article-img-box {
+        img {
+            width: 100%;
+        }
+    }
+}
+// Banner Section Css End
+
+// Desktop Site Banner Section Css Start
+.desktop-banner-section-box {
+    &.banner-section-box {
+        .banner-article-click-box {
+            position: relative;
+            margin-top: 20px;
+            .banner-article-by-btn-box {
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+            }
+        }
+        .article-txt-con {
+            .banner-article-txt {
+                height: 100px;
+            }
+        }
+        // Banner with Dark Background Css Start
+        .banner-bg-box {
+            background-color: $primaryPaleChestnut;
+            padding: 20px 0 30px;
+            .section-heading-txt-box {
+                border-top: 0;
+            }
+        }
+        // Banner with Dark Background Css End
+    }
+}
+// Desktop Site Banner Section Css End
+
+::ng-deep .daily-skim-box {
+    .each-article-img-box {
+        .section-heading-txt-box {
+        .section-heading-txt.recent-stories-txt {
+            border-top: none !important;
+        }
+        }
+    }
+}

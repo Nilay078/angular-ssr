@@ -1,0 +1,43 @@
+.contact-us-con {
+    .contact-box {
+        padding: 0 10px 20px;
+        .contact-txt {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 23px;
+            font-family: $literata;
+            letter-spacing: 0;
+            color: $secondaryOuterSpaceCrayola;
+            a {
+                text-decoration: none;
+                color: $primarySapphireBlue;
+            }
+            .contact-us-office-address-title {
+                color: $primarySapphireBlue;
+                font-weight: 700;
+            }
+        }
+        .msg-box {
+            .mat-form-field {
+                background-color: $whiteColor;
+            }
+            .mat-form-field-appearance-outline .mat-form-field-outline-start, .mat-form-field-appearance-outline .mat-form-field-outline-end,
+            .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+                border-bottom: 0 !important;
+            }
+        }
+    }
+}
+// Desktop Css Start
+.desktop-contact-us-con {
+    .contact-box {
+        max-width: 500px;
+        margin: 0 auto !important;
+        .contact-sub-title {
+            font-size: 22px;
+            line-height: 30px;
+            color: $secondaryOuterSpaceCrayola;
+        }
+    }
+}
+// Desktop Css End

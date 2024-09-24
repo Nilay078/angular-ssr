@@ -1,0 +1,103 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+// Advertisement section Css Start
+.advertisement-con {
+    padding: 0px 20px 30px;
+    .newsletter-border-top {
+        border-top: solid 2px $secondaryTxtColor;
+        padding-top: 25px;
+    }
+    .news-advertisement-box {
+        padding: 30px 20px;
+        .advertisement-title-txt {
+            h6 {
+                @include textWithoutColor(14px, 20px, $cabinetGrotesk, $bold);
+                text-align: center;
+                margin-bottom: 20px;
+                letter-spacing: 5px;
+                text-transform: uppercase;
+            }
+            h2 {
+                @include textWithoutColor(50px, 55px, $literata, $medium);
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            p {
+                @include textWithoutColor(20px, 25px, $cabinetGrotesk, $medium);
+                text-align: center;
+                margin-bottom: 30px;
+            }
+        }
+        &.black-theme-advertisement-box {
+            background-color: $secondaryOuterSpaceCrayola;
+            .advertisement-title-txt {
+                h6 {
+                    color: $secondaryAzureTwo;
+                }
+                h2 {
+                    @include text(30px, 35px, $secondaryAzureTwo, $cabinetGrotesk, $medium);
+                }
+                p {
+                    @include text(18px, 26px, $secondaryAzureTwo, $literata, $normal);
+                    font-style: italic;
+                }
+                .blue-bg-button-box {
+                    background-color: $primarySapphireBlue;
+                }
+            }
+        }
+    }
+}
+// Advertisement section Css Start
+
+// Desktop site Advertisement section Css Start
+.desktop-advertisement-con {
+    &.advertisement-con {
+        padding: 0 0 10px;
+        .news-advertisement-box {
+            align-items: center;
+            .advertisement-title-txt {
+                h2 {
+                    @include textWithoutColor(36px, 40px, $literata, $medium);
+                    margin-bottom: 0px;
+                }
+                p {
+                    @include textWithoutColor(22px, 28px, $cabinetGrotesk, $medium);
+                    text-align: left;
+                    margin-bottom: 0px;
+                }
+            }
+            &.black-theme-advertisement-box {
+                .advertisement-title-txt {
+                    h2 {
+                        @include text(26px, 32px, $secondaryAzureTwo, $cabinetGrotesk, $medium);
+                        text-align: left;
+                    }
+                    p {
+                        @include text(20px, 26px, $secondaryAzureTwo, $literata, $normal);
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 992px) {
+    .desktop-advertisement-con {
+        &.advertisement-con {
+            .news-advertisement-box {
+                .advertisement-title-txt {
+                    &.subscribe-btn-box {
+                        text-align: center;
+                        margin-top: 20px;
+                        .black-bg-btn-box {
+                            width: auto !important;
+                            padding: 0 20px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// Desktop site Advertisement section Css End

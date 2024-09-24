@@ -1,0 +1,43 @@
+.mat-radio-button {
+    margin-right: 16px;
+    .mat-radio-label {
+        margin-bottom: 15px;
+    }
+    .mat-radio-label-content {
+        color: $secondaryOuterSpaceCrayola;
+    }
+    &.mat-accent {
+        .mat-radio-inner-circle {
+            background-color: $primarySapphireBlue;
+        }
+        .mat-radio-ripple {
+            .mat-ripple-element {
+                &:not(.mat-radio-persistent-ripple) {
+                    background-color: $primarySapphireBlue;
+                }
+            }
+        }
+        &.mat-radio-checked {
+            .mat-radio-outer-circle {
+                border-color: $primarySapphireBlue;
+            }
+            .mat-radio-inner-circle, .mat-radio-persistent-ripple, .mat-ripple-element {
+                background-color: $primarySapphireBlue;
+            }
+        }
+        &:active {
+            .mat-radio-persistent-ripple {
+                background-color: $primarySapphireBlue;
+            }
+        }
+    }
+}
+.mat-radio-label-txt {
+    font-size: 22px;
+}
+  
+@media only screen and (max-width: 767px) {
+    .mat-radio-label-txt {
+        font-size: 16px;
+    }
+}

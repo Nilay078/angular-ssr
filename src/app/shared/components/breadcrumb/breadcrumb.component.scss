@@ -1,0 +1,30 @@
+@import '/src/assets/scss/variables';
+
+.breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .3rem;
+    padding-left: .3rem;
+    color: $primarySapphireBlue;
+    content: "/";
+    font-size: 20px;
+    line-height: 30px;
+}
+.breadcrumb-item + .breadcrumb-item {
+    padding-left: 0;
+}
+.breadcrumb-item {
+    line-height: 30px;
+    a {
+        color: $primarySapphireBlue;
+        text-decoration: none;
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    &.active {
+        color: $blackColor;
+        font-weight: 700;
+        font-size: 16px;
+        text-transform: capitalize;
+    }
+}

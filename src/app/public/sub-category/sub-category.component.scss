@@ -1,0 +1,61 @@
+@import '/src/assets/scss/variables';
+
+::ng-deep html, ::ng-deep body {
+    height: 100%;
+}
+.sub-category-con {
+    padding: 30px 20px 0;
+    height: calc(100% - 53px);
+    .sub-category-list-box {
+        display: inline-flex;
+        flex-direction: column;
+        .spacer-box {
+            flex: 2;
+        }
+    }
+    .sub-category-box {
+        &:not(:last-child) {
+            border-bottom: solid 1px rgba($blackColor, 0.2);
+            padding-bottom: 30px;
+            margin-bottom: 35px;
+        }
+        h6 {
+            font-size: 20px;
+            line-height: 25px;
+            font-family: $cabinetGrotesk;
+            font-weight: 700;
+            color: $secondaryOuterSpaceCrayola;
+        }
+    }
+}
+
+// Desktop Site Design Css Start
+.desktop-sub-category-box {
+    .sub-category-con {
+        .sub-category-box {
+            h6 {
+                font-size: 18px;
+                line-height: 22px;
+            }
+        }
+    }
+    .back-arrow-skim-mode-box {
+        padding-left: 10px;
+    }
+    .close-modal-btn {
+        width: 100%;
+        text-align: right;
+        button  {
+            background-color: transparent;
+            box-shadow: none;
+            font-size: 28px;
+            color: $secondaryOuterSpaceCrayola;
+            padding: 0;
+            min-width: 30px;
+        }
+    }
+}
+// Desktop Site Design Css End
+::ng-deep .cdk-overlay-container {
+    z-index: 9999;
+}

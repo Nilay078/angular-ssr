@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "in.the.secretariat.news",
+      "sha256_cert_fingerprints":
+        ["32:BF:BD:ED:6A:5B:82:46:7D:7D:DF:A5:84:01:25:3A:DF:62:BE:D5:3C:63:B8:05:7E:B0:CD:40:51:7D:1B:11"]
+    }
+  }
+]

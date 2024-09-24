@@ -1,0 +1,35 @@
+<app-private-header (back)="onBackPage()" [pageName]="'Edit Preferences'" *ngIf="changeResolutionFlag"></app-private-header>
+<section class="user-registration-box desktop-user-registration-box">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row" [ngClass]="changeResolutionFlag ? 'pb-4' : 'py-4'">
+                <div class="col-md-3 menu-border-right">
+                    <app-my-account-menu></app-my-account-menu>
+                </div>
+                <div class="col-md-9">
+                    <div class="row m-0 h-100">
+                        <div class="col-12 p-0 category-list-box">
+                            <app-breadcrumb [breadcrumbs]="breadcrumbs" *ngIf="!changeResolutionFlag"></app-breadcrumb>
+                            <h4 class="registration-title-txt update-interest-txt mt-2">Update Your Interests</h4>
+                            <p class="registration-subtitle-txt mb-5">Pick minimum 3 topics. It will help us curate your feed.</p>
+                            <mat-chip-list selectable multiple="true">
+                                <mat-chip
+                                    *ngFor="let category of categoryList"
+                                    [selected]="category.selected"
+                                    (click)="selectionChange(category)"
+                                >
+                                    {{ category.name }}
+                                </mat-chip>
+                            </mat-chip-list>
+                            <div class="form-group mt-5">
+                                <button class="update-btn" type="button" mat-flat-button color="primary" (click)="onUpdate()">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

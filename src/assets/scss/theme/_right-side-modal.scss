@@ -1,0 +1,57 @@
+.right-side-modal {
+  &.modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: auto;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+    .modal-content {
+      height: 100%;
+      box-shadow: 0 24px 48px 0 rgba($blackColor, 0.3);
+      border: 0;
+      @include border-radius(0);
+      .modal-body {
+        // height: calc(100vh - 142px);
+        font-family: $cabinetGrotesk;
+        h6{
+          color: $secondaryOuterSpaceCrayola;
+        }
+        .close{
+          background-color: transparent;
+          border: 0;
+          color: $whiteColor;
+          .mat-icon {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}
+.modal {
+  &.fade {
+    .right-side-modal.modal-dialog {
+      right: -500px;
+      -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+      -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+      -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+      transition: opacity 0.3s linear, right 0.3s ease-out;
+    }
+    &.show {
+      .right-side-modal.modal-dialog {
+        right: 0;
+      }
+    }
+  }
+}
+@media (min-width: 767px) {
+  .right-side-modal {
+    &.modal-dialog {
+      min-width: 350px;
+      max-width: 350px;
+    }
+  }
+}

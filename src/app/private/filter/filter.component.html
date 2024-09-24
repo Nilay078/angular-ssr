@@ -1,0 +1,42 @@
+<section class="filter-box">
+    <div class="row m-0 filter-title-txt-box">
+        <div class="col-9 p-0">
+            <h4 class="filter-title-txt">FILTER</h4>
+        </div>
+        <div class="col-3 p-0">
+            <div class="close-modal-btn">
+                <button mat-flat-button type="button" class="close" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0 mt-3">
+        <div class="col-12 p-0">
+            <h5 class="filter-heading-txt mb-3">BY DATE</h5>
+            <mat-chip-list selectable multiple="true">
+                <mat-chip *ngFor="let date of dateList" [selected]="date.selected" (click)="selectionDateChange(date)">
+                    {{ date.value }}
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+        <div class="col-12 p-0 mt-4">
+            <h5 class="filter-heading-txt mb-3">BY CATEGORIES</h5>
+            <mat-chip-list selectable multiple="true">
+                <mat-chip *ngFor="let category of categoryList" [selected]="category.selected" (click)="selectionChange(category)">
+                    {{ category.name }}
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+        <div class="col-12 p-0 mt-4">
+            <div class="row">
+                <div class="col-6">
+                    <button class="w-100 border-btn" type="button" mat-flat-button (click)="onReset()">RESET</button>
+                </div>
+                <div class="col-6">
+                    <button class="w-100" type="button" mat-flat-button color="primary" (click)="onApply()">APPLY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

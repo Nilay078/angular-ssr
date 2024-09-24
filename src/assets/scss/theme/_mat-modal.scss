@@ -1,0 +1,21 @@
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 450px;
+  .modal-content {
+    @include border-radius(0px);
+    border: 0;
+    width: auto;
+    background-color: $primarySeashell;
+    .modal-header {
+      padding: 0;
+    }
+    .modal-body {
+      padding: 0;
+    }
+    .modal-footer {
+      padding: 0;
+    }
+  }
+}

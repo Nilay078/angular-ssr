@@ -1,0 +1,18 @@
+<div class="snackbar-box" [ngClass]="data.class">
+    <mat-icon>
+        <span class="material-symbols-outlined" [ngClass]="data.titleClass">
+            {{ data.type === 'Success' ? 'check_circle' : 'cancel' }}
+        </span>
+    </mat-icon>
+    <div class="snackbar-description-txt">
+        <p class="snackbar-title-message mb-0" [ngClass]="data.titleClass">
+            {{ data.type }}
+        </p>
+        <p class="snackbar-sub-txt mb-0">
+            {{ data.text }}
+        </p>
+    </div>
+    <mat-icon class="cancel-icon" (click)="snackbar.dismiss()">
+        <span class="material-symbols-outlined">close</span>
+    </mat-icon>
+</div>

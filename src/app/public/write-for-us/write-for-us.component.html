@@ -1,0 +1,129 @@
+<app-private-header (back)="onBackPage()" [pageName]="'Write For Us'" *ngIf="changeResolutionFlag"></app-private-header>
+
+<section class="contact-us-con" *ngIf="changeResolutionFlag">
+    <form [formGroup]="writeUsForm" (submit)="onSubmit()" #form="ngForm">
+        <div class="row contact-box m-0">
+            <div class="col-12">
+                <div class="contact-txt p-0">
+                    You can reach us at <br />
+                    <a href="mailto:editor@thesecretariat.in">editor@thesecretariat.in</a>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+                <div class="form-group mat-form-field-width">
+                    <mat-form-field appearance="outline">
+                        <mat-label for="emailId">Email Id</mat-label>
+                        <input id="emailId" matInput type="tel" formControlName="emailId" />
+                    </mat-form-field>
+                </div>
+                <div class="error-msg-outer" *ngIf="writeUsForm.controls['emailId'].touched || form.submitted">
+                    <app-error-message class="error-message" [errors]="writeUsForm.controls['emailId'].errors"> </app-error-message>
+                </div>
+                <div class="msg-box">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <textarea
+                            autosize
+                            matInput
+                            cdkTextareaAutosize
+                            cdkAutosizeMinRows="4"
+                            placeholder="Drop us a message*"
+                            id="message"
+                            formControlName="message"
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="error-msg-outer" *ngIf="writeUsForm.controls['message'].touched || form.submitted">
+                    <app-error-message class="error-message contact-write-drop-message" [errors]="writeUsForm.controls['message'].errors">
+                    </app-error-message>
+                </div>
+                <div class="profile-upload mt-3">
+                    <div class="profile-img-name">
+                        <span class="profile-img-title-txt">{{ iconName }}</span>
+                        <span class="placeholder-txt" *ngIf="!iconName">Attach your profile here</span>
+                    </div>
+                    <div class="profile-img-delete-box">
+                        <button type="button" class="cancel-icon" (click)="clearIcon()" *ngIf="iconName">×</button>
+                    </div>
+                    <div class="file-input">
+                        Browse
+                        <input
+                            type="file"
+                            accept=".pdf, .doc, .docx"
+                            (change)="thumbnailFileChangeEvent($event)"
+                            formControlName="thumbnailImage"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+                <button class="w-100" type="submit" mat-flat-button color="primary" [disabled]="!hasData">GET IN TOUCH</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<!-- Desktop Contact Us Section Start -->
+<section class="contact-us-con desktop-contact-us-con" *ngIf="!changeResolutionFlag">
+    <form [formGroup]="writeUsForm" (submit)="onSubmit()" #form="ngForm">
+        <div class="row contact-box m-0">
+            <div class="col-12 mt-4">
+                <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+                <h2 class="contact-title mb-3">Write For Us</h2>
+                <div class="contact-txt p-0">
+                    You can reach us at <br />
+                    <a href="mailto:editor@thesecretariat.in">editor@thesecretariat.in</a>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+                <div class="form-group mat-form-field-width">
+                    <mat-form-field appearance="outline">
+                        <mat-label for="emailId">Email Id</mat-label>
+                        <input id="emailId" matInput type="tel" formControlName="emailId" />
+                    </mat-form-field>
+                </div>
+                <div class="error-msg-outer" *ngIf="writeUsForm.controls['emailId'].touched || form.submitted">
+                    <app-error-message class="error-message" [errors]="writeUsForm.controls['emailId'].errors"> </app-error-message>
+                </div>
+                <div class="msg-box">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <textarea
+                            autosize
+                            matInput
+                            cdkTextareaAutosize
+                            cdkAutosizeMinRows="4"
+                            placeholder="Drop us a message*"
+                            id="message"
+                            formControlName="message"
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="error-msg-outer" *ngIf="writeUsForm.controls['message'].touched || form.submitted">
+                    <app-error-message class="error-message contact-write-drop-message" [errors]="writeUsForm.controls['message'].errors">
+                    </app-error-message>
+                </div>
+                <div class="profile-upload mt-3">
+                    <div class="profile-img-name">
+                        <span class="profile-img-title-txt">{{ iconName }}</span>
+                        <span class="placeholder-txt" *ngIf="!iconName">Attach your profile here</span>
+                    </div>
+                    <div class="profile-img-delete-box">
+                        <button type="button" class="cancel-icon" (click)="clearIcon()" *ngIf="iconName">×</button>
+                    </div>
+                    <div class="file-input">
+                        Browse
+                        <input
+                            type="file"
+                            accept=".pdf, .doc, .docx"
+                            (change)="thumbnailFileChangeEvent($event)"
+                            formControlName="thumbnailImage"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 my-4">
+                <button class="w-100" type="submit" mat-flat-button color="primary" [disabled]="!hasData">GET IN TOUCH</button>
+            </div>
+        </div>
+    </form>
+</section>
+<!-- Desktop Contact Us Section End -->

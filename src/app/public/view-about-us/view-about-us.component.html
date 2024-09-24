@@ -1,0 +1,27 @@
+<app-private-header (back)="onBackPage()" [pageName]="'About us'" *ngIf="changeResolutionFlag"></app-private-header>
+
+<section class="about-us-con" *ngIf="changeResolutionFlag">
+    <div class="row about-us-box m-0">
+        <div class="col-12 mt-3">
+            <p class="about-us-txt" *ngFor="let content of contentList">
+                {{ content }}
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Desktop About Us Section Start -->
+<section class="about-us-con desktop-about-us-con" *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row about-us-box">
+                <div class="col-12 p-0 mt-4 mb-4">
+                    <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+                    <h2 class="about-us-title mb-3">About Us</h2>
+                    <p class="about-us-txt" *ngFor="let content of contentList" [innerHTML]="content"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop About Us Section End -->

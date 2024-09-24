@@ -1,0 +1,50 @@
+<section class="daily-skim-box" *ngIf="changeResolutionFlag">
+    <!-- Section with thumbnail image & article Code Start -->
+    <ng-container *ngIf="hasData">
+        <app-thumbnail
+            [data]="articleList"
+            [removeCategory]="true"
+            [articleType]="true"
+            [typeName]="title"
+            [authorView]="authorView"
+            [stateId]="stateId"
+            [blockUI]="blockUI"
+            (allData)="allData()"
+            (changeBookmark)="onSearch(2)"
+        ></app-thumbnail>
+    </ng-container>
+    <!-- Section with thumbnail image & article Code End -->
+    <div class="mt-4" *ngIf="!hasData">
+        <div *ngFor="let i of [0, 1, 2, 3, 4]">
+            <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+        </div>
+    </div>
+</section>
+
+<!-- Desktop Site Home Section Start -->
+<section *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row m-0" *ngIf="hasData">
+                <div class="col-12">
+                    <app-banner
+                        [blockUI]="blockUI"
+                        (allData)="allData()"
+                        [data]="articleList"
+                        [articleType]="true"
+                        [typeName]="title"
+                        [authorView]="authorView"
+                        [stateId]="stateId"
+                        (changeBookmark)="onSearch(2)"
+                    ></app-banner>
+                </div>
+            </div>
+            <div class="row mt-4" *ngIf="!hasData">
+                <div class="col-md-4" *ngFor="let i of [0, 1, 2, 3, 4, 5]">
+                    <app-line-skeleton-loader [theme]="bannerTheme"></app-line-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Site Home Section End -->

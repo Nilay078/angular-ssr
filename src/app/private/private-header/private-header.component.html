@@ -1,0 +1,16 @@
+<header class="back-header mb-3">
+    <div class="title-border">
+        <ul>
+            <li>
+                <div class="page-name">{{ pageName }}</div>
+            </li>
+            <li class="text-right" *ngIf="bookmarkFilter">
+                <button type="button" class="btn btn-link back-button" (click)="onOpen()">
+                    <mat-icon matPrefix>
+                        <span class="material-symbols-outlined">tune</span>
+                    </mat-icon>
+                </button>
+            </li>
+        </ul>
+    </div>
+</header>

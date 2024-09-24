@@ -1,0 +1,93 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+// Slider Section Css Start
+.slider-article-box {
+    margin-top: 10px;
+}
+.slider-article-con {
+    padding: 0 20px 30px;
+    img {
+        width: 100%;
+        height: auto;
+    }
+    .swiper-slide {
+        background-color: $secondaryBgColor;
+        height: auto;
+        position: relative;
+        .article-txt-con {
+            padding: 10px;
+            .article-txt {
+                padding-bottom: 40px !important;
+                .article-title-txt {
+                    p {
+                        @include text(20px, 26px, $blackColor, $cabinetGrotesk, $medium);
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            .slide-article-txt-box {
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                padding: 0 10px;
+            }
+        }
+    }
+    .article-bookmark-upload-icon {
+        .article-bookmark-upload-icon-box {
+            height: 18px;
+        }
+    }
+    .view-all-txt-btn-box {
+        background-color: transparent;
+        border: dashed 2px $primaryPaleChestnut;
+        .view-all-txt-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            text-decoration: none;
+            text-transform: uppercase;
+            @include text(14px, 20px, $primarySapphireBlue !important, $cabinetGrotesk, $semibold);
+        }
+    }
+}
+
+::ng-deep .slider-article-box {
+    .slider-article-con {
+        .swiper-slide {
+            .article-txt-con {
+                .slide-article-txt-box {
+                    .more-author-text-box{
+                        .more-author-section-view {
+                            bottom: 20px;
+                            right: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// Slider Section Css End
+
+// Desktop Site Slider Section Css Start
+.desktop-slider-article-box {
+    &.slider-article-box {
+        margin-top: 0;
+        .slider-article-con {
+            // margin-top: 20px !important;
+            // margin-bottom: 20px !important;
+            .swiper-slide {
+                .article-txt-con {
+                    .article-txt {
+                        padding-bottom: 15px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+// Desktop Site Slider Section Css End

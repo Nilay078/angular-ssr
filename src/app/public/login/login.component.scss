@@ -1,0 +1,11 @@
+::ng-deep .cdk-overlay-container {
+    z-index: 1060;
+}
+.email-mobile-login-form {
+    text-align: left;
+    .generate-otp-btn {
+        &.mat-button-disabled {
+            border: none !important;
+        }
+    }
+}

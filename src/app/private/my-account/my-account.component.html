@@ -1,0 +1,54 @@
+<app-private-header (back)="onBackPage()" [pageName]="'My Account'" *ngIf="changeResolutionFlag"></app-private-header>
+<!-- My Account Start -->
+<section class="my-account">
+    <div class="container-width">
+        <ul class="arrow-menu-list pt-3">
+            <li>
+                <a [href]="appUrl.RECENT_VIEW"
+                    >Recently Viewed
+                    <mat-icon matPrefix><span class="material-symbols-outlined">keyboard_arrow_right</span></mat-icon>
+                </a>
+            </li>
+            <li>
+                <a [href]="appUrl.BOOKMARKS"
+                    >Bookmarks
+                    <mat-icon matPrefix><span class="material-symbols-outlined">keyboard_arrow_right</span></mat-icon>
+                </a>
+            </li>
+            <!-- <li>
+                <a [href]="appUrl.NEWSLETTER_SUBSCRIPTION"
+                    >News & Newsletter Alerts
+                    <mat-icon matPrefix><span class="material-symbols-outlined">keyboard_arrow_right</span></mat-icon>
+                </a>
+            </li> -->
+            <!-- <li>
+                <a
+                    >Saved Clippings
+                    <mat-icon matPrefix><span class="material-symbols-outlined">keyboard_arrow_right</span></mat-icon>
+                </a>
+            </li> -->
+            <li>
+                <a [href]="appUrl.EDIT_PREFERENCES"
+                    >Edit Preferences
+                    <mat-icon matPrefix><span class="material-symbols-outlined">keyboard_arrow_right</span></mat-icon>
+                </a>
+            </li>
+            <!-- <li>
+                <a
+                    >My Plan
+                    <mat-icon matPrefix><span class="material-symbols-outlined">keyboard_arrow_right</span></mat-icon>
+                </a>
+            </li> -->
+            <li>
+                <a [href]="appUrl.EDIT_PROFILE"
+                    >Edit Profile
+                    <mat-icon matPrefix><span class="material-symbols-outlined">keyboard_arrow_right</span></mat-icon>
+                </a>
+            </li>
+            <!-- <li>
+                <a>Deactivate Account </a>
+            </li> -->
+        </ul>
+    </div>
+</section>
+<!-- My Account End -->

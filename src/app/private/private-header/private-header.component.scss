@@ -1,0 +1,34 @@
+@import '/src/assets/scss/variables';
+// Back Header Start
+.back-header {
+    padding: 0px 20px;
+    .title-border {
+        display: flex;
+        align-items: center;
+        border-bottom: solid 2px $secondaryTxtColor;
+        height: 64px;
+        background-color: $primarySeashell;
+        ul {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            li {
+                flex: 1;
+            }
+        }
+        .back-button {
+            line-height: normal;
+            height: 39px;
+            color: $secondaryOuterSpaceCrayola;
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        .page-name {
+            // text-align: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+    }
+}
+// Back Header End

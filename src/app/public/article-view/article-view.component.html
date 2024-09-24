@@ -1,0 +1,484 @@
+<div *ngIf="changeResolutionFlag">
+    <!-- Back Arrow Section Start -->
+    <section>
+        <div class="row back-arrow-skim-mode-box py-2 m-0">
+            <div class="col-3 p-0">
+                <button type="button" class="back-arrow" mat-button (click)="backPage()">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+            </div>
+            <div class="col-6 p-0 text-center">
+                <a class="logo" (click)="gotoHome()"><img src="assets/images/thesecretariat-logo.png" alt="header-logo" /></a>
+            </div>
+            <!-- <div class="col-3 p-0 skim-mode-section">
+                <span class="skim-mode-label">Skim mode</span>
+                <mat-slide-toggle color="primary" [(ngModel)]="isSkimMode"></mat-slide-toggle>
+            </div> -->
+        </div>
+    </section>
+    <!-- Back Arrow Section End -->
+    <!-- Article View Section Start -->
+    <div class="mt-4 article-with-banner-img-box" *ngIf="!hasData">
+        <div class="default-other-address-txt" *ngFor="let i of [0, 1]">
+            <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+        </div>
+    </div>
+    <section class="article-view-con" *ngIf="hasData">
+        <div class="no-article-box" *ngIf="hasError">
+            <div class="row m-0 mt-5">
+                <div class="col-12">
+                    <img src="assets/images/no-article.png" class="logo-img" alt="header-logo" />
+                </div>
+            </div>
+
+            <div class="no-article-header row m-0">
+                <div class="col-12">
+                    <div class="no-article-msg">
+                        <p>Oops! this link seems to be broken.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-2">
+                    <div class="form-group">
+                        <button class="go-to-home-btn" type="button" mat-flat-button color="primary" (click)="goToHome()">Goto home</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-0 article-view-box" *ngIf="!hasError">
+            <!-- <div class="col-12 p-0 mb-3" *ngIf="articleView.newsType.key === newsType.DAILY_SKIM">
+                <div class="article-preview-banner-img-box">
+                    <img class="article-preview-banner-img" [src]="apiUrl.DOWNLOAD_IMAGE + articleView?.bannerFileView?.fileId" />
+                </div>
+            </div> -->
+            <div class="col-12 mb-3 p-0">
+                <div class="row m-0 mt-3">
+                    <div class="col-12 article-heading-box">
+                        <p class="courts-txt">
+                            <span *ngFor="let category of categoryList; last as isLast">
+                                <a
+                                    *ngIf="!(hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed)"
+                                    [href]="authorService.generateSlug(category.name, category.id, articleType.CATEGORY)"
+                                >
+                                    {{ category.name }}<span *ngIf="!isLast">, </span>
+                                </a>
+                                <a class="cursor-none" *ngIf="hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed">
+                                    {{ category.name }}<span *ngIf="!isLast">, </span>
+                                </a>
+                            </span>
+                        </p>
+                        <h2 class="article-view-heading-txt">{{ articleView?.title }}</h2>
+                        <h3 class="article-view-sub-heading-txt" [ngClass]="fontSizeFlag ? 'change-font-size' : ''">
+                            {{ articleView?.subHeading }}
+                        </h3>
+                    </div>
+                    <div class="row m-0 article-write-by-con my-2">
+                        <div class="p-0">
+                            <div class="row m-0 align-items-center">
+                                <div class="col-9 p-0">
+                                    <div class="article-write-by-box">
+                                        <div class="article-write-img">
+                                            <img
+                                                [src]="
+                                                    articleView.authorView?.imageFileView
+                                                        ? apiUrl.DOWNLOAD_IMAGE + articleView.authorView.imageFileView.fileId
+                                                        : 'assets/images/default-profile-picture.jpg'
+                                                "
+                                            />
+                                        </div>
+                                        <div class="article-write-name-time-box">
+                                            <app-article-author
+                                                *ngIf="articleView.authorViews"
+                                                [authorViews]="articleView.authorViews"
+                                                [hasImage]="true"
+                                                [hasClickable]="
+                                                    !(hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed)
+                                                "
+                                            ></app-article-author>
+                                            <p class="article-time-txt">
+                                                {{ articleView?.publishDate * 1000 | date: 'MMM, dd, yyyy' }} &nbsp;·&nbsp;
+                                                {{ articleView?.readTime | number: '1.0-0' }} min read
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 article-bookmark-upload-icon p-0 text-right">
+                                    <div class="article-bookmark-upload-icon-box">
+                                        <a
+                                            *ngIf="!(hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed)"
+                                            (click)="onBookmark(articleView.id)"
+                                        >
+                                            <mat-icon>
+                                                <span
+                                                    [ngClass]="articleView.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                    matTooltip="Bookmark"
+                                                    >bookmark</span
+                                                >
+                                            </mat-icon>
+                                        </a>
+                                        <a
+                                            class="cursor-none"
+                                            *ngIf="hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed"
+                                        >
+                                            <mat-icon>
+                                                <span [ngClass]="articleView.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                    >bookmark</span
+                                                >
+                                            </mat-icon>
+                                        </a>
+                                        <app-article-share
+                                            [hasDisabled]="
+                                                hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed ? true : false
+                                            "
+                                            [article]="articleView"
+                                        ></app-article-share>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 p-0 my-3">
+                        <div class="article-preview-banner-img-box">
+                            <img class="article-preview-banner-img" [src]="apiUrl.DOWNLOAD_IMAGE + articleView?.bannerFileView?.fileId" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 p-0" [ngClass]="fontSizeFlag ? 'change-font-size' : ''">
+                <div class="row m-0">
+                    <div class="col-12 p-0 article-preview-detail article-short-description-box">
+                        <div class="article-detail-txt-box">
+                            <p>{{ articleView?.shortDescription }}</p>
+                        </div>
+                    </div>
+                    <div class="col-12 p-0 article-preview-detail" *ngFor="let article of articleView?.contentDetailsViews">
+                        <div class="article-preview-img-box mt-4" *ngIf="article?.type?.key === 3 && article?.fileViews">
+                            <div class="article-preview-img-con" *ngFor="let image of article?.fileViews">
+                                <img class="article-preview-img" *ngIf="image" [src]="apiUrl.DOWNLOAD_IMAGE + image.fileId" />
+                                <div class="article-img-caption-txt">{{ image.caption }}</div>
+                            </div>
+                        </div>
+                        <div class="article-detail-txt-box quote-code-box" *ngIf="article?.type?.key === 1 && article.text">
+                            <div [innerHTML]="article.text"></div>
+                        </div>
+                        <div class="article-detail-txt-box embed-code-box" *ngIf="article?.type?.key === 4 && article.embeddedCode">
+                            <div class="twitter-embedded-code-box" [innerHTML]="article.embeddedCode"></div>
+                        </div>
+                        <div class="article-quote-txt-box mt-4" *ngIf="article?.type?.key === 2 && article?.quotes">
+                            <blockquote class="article-quote-txt">
+                                {{ article?.quotes }}
+                            </blockquote>
+                        </div>
+                        <div class="article-pdf-viewer-box" *ngIf="article?.type?.key === 5 && article?.pdfFileViews && isBrowser">
+                            <ngx-doc-viewer
+                                class="article-pdf-viewer"
+                                [url]="apiUrl.DOWNLOAD_IMAGE + article.pdfFileViews[0].fileId"
+                                viewer="google"
+                                disableContent="none"
+                            >
+                                <div>Loading</div>
+                            </ngx-doc-viewer>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3 article-preview-detail article-tag-list-box">
+                        <h5>TAGS:</h5>
+                        <mat-chip-list>
+                            <mat-chip class="courts-txt" *ngFor="let tag of articleView?.tagViews" (click)="selectionChange(tag)">
+                                {{ tag.name }}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </div>
+                    <div class="col-12 p-0 article-end-dot-txt-box text-center mt-4">
+                        <span class="article-end-dot-txt"></span>
+                        <span class="article-end-dot-txt"></span>
+                        <span class="article-end-dot-txt"></span>
+                    </div>
+                    <div class="col-12 p-0 story-share-box text-center">
+                        <p *ngIf="articleView.newsType.key === newsType.DAILY_SKIM">This is a free story, Feel free to share.</p>
+                        <div class="story-share-icon-box">
+                            <ng-container *ngFor="let socialPlatform of socialSharePlatforms">
+                                <a [href]="articleViewUrl + articleView.slug | shareOnSocial : socialPlatform.key" target="_blank">
+                                    <img [src]="socialPlatform.colorImageUrl" [alt]="socialPlatform.key"/>
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-up-btn-box">
+                    <button class="w-100 scroll-up-btn" type="button" mat-flat-button (click)="gotoTop()" *ngIf="isShow">
+                        <mat-icon> expand_less </mat-icon>
+                    </button>
+                    <button class="w-100 scroll-up-btn font-change-btn" type="button" mat-flat-button (click)="changeFontSize()">
+                        <mat-icon> text_fields </mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Article View Section End -->
+    <!-- Short Article List Start -->
+    <!-- <section class="short-article-list" *ngIf="isSkimMode" [ngClass]="{ 'list-show': isAccordionList }">
+        <ng-container *ngFor="let shortArticle of shortArticleList">
+            <div class="short-article-item" id="article{{ shortArticle.id }}">
+                <h4 (click)="clickArticle(shortArticle.id)">{{ shortArticle.title }}</h4>
+                <div class="article-data">
+                    <p>{{ shortArticle.description }}</p>
+                </div>
+            </div>
+        </ng-container>
+    </section> -->
+    <!-- Short Article List End -->
+
+    <!-- Subscribe Now Section Code Start -->
+    <div class="row m-0 subscribe-now-section" *ngIf="hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed">
+        <div class="col-12 subscribe-now-img-box p-0">
+            <img src="/assets/images/deep-dive-subscribe-now.png" />
+            <p class="subscribe-now-section-txt">Hello! This story is behind <br />the exclusive access. For full access</p>
+            <button mat-flat-button color="primary" class="btn w-100" type="button" (click)="subscribeNow()">SUBSCRIBE NOW</button>
+        </div>
+    </div>
+    <!-- Subscribe Now Section Code End -->
+</div>
+
+<!-- Desktop Site Article View Section Start -->
+<div class="desktop-article-view-box" *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row m-0">
+                <div class="col-md-12">
+                    <section>
+                        <div class="row back-arrow-skim-mode-box py-2 m-0">
+                            <div class="col-6 p-0"></div>
+                            <!-- <div class="col-6 p-0 skim-mode-section">
+                                <span class="skim-mode-label">Skim mode</span>
+                                <mat-slide-toggle color="primary" [(ngModel)]="isSkimMode"></mat-slide-toggle>
+                                <mat-icon class="ms-2 skim-info-tooltip-box">
+                                    <span class="material-symbols-outlined" matTooltip="Mobile feature for premium users">info</span>
+                                </mat-icon>
+                            </div> -->
+                        </div>
+                    </section>
+                    <div class="mt-4 article-with-banner-img-box" *ngIf="!hasData">
+                        <div class="default-other-address-txt" *ngFor="let i of [0, 1]">
+                            <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+                        </div>
+                    </div>
+                    <section class="article-view-con" *ngIf="hasData">
+                        <div class="no-article-box" *ngIf="hasError">
+                            <div class="row m-0 mt-4">
+                                <div class="col-12">
+                                    <img src="assets/images/no-article.png" class="logo-img" alt="header-logo" />
+                                </div>
+                            </div>
+
+                            <div class="no-article-header row m-0">
+                                <div class="col-12">
+                                    <div class="no-article-msg">
+                                        <p>Oops! this link seems to be broken.</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-0">
+                                    <div class="form-group">
+                                        <button class="go-to-home-btn" type="button" mat-flat-button color="primary" (click)="goToHome()">
+                                            Goto home
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-0 article-view-box" *ngIf="!hasError">
+                            <!-- <div class="article-preview-banner-img-box mb-3" *ngIf="articleView.newsType.key === newsType.DAILY_SKIM">
+                                <img
+                                    class="article-preview-banner-img"
+                                    [src]="apiUrl.DOWNLOAD_IMAGE + articleView?.bannerFileView?.fileId"
+                                />
+                            </div> -->
+                            <div class="col-12 article-heading-box">
+                                <p class="courts-txt">
+                                    <span *ngFor="let category of categoryList; last as isLast">
+                                        <a
+                                            *ngIf="!(hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed)"
+                                            [href]="authorService.generateSlug(category.name, category.id, articleType.CATEGORY)"
+                                        >
+                                            {{ category.name }}<span *ngIf="!isLast">, </span>
+                                        </a>
+                                        <a
+                                            class="cursor-none"
+                                            *ngIf="hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed"
+                                        >
+                                            {{ category.name }}<span *ngIf="!isLast">, </span>
+                                        </a>
+                                    </span>
+                                </p>
+                                <h2 class="article-view-heading-txt">{{ articleView?.title }}</h2>
+                                <h3 class="article-view-sub-heading-txt">{{ articleView?.subHeading }}</h3>
+                            </div>
+                            <div class="col-12 p-0 my-3 article-author-detail-box">
+                                <div class="row m-0 article-write-by-con">
+                                    <div class="col-9 p-0">
+                                        <div class="article-write-by-box">
+                                            <div class="article-write-img">
+                                                <img
+                                                    [src]="
+                                                        articleView.authorView?.imageFileView
+                                                            ? apiUrl.DOWNLOAD_IMAGE + articleView.authorView.imageFileView.fileId
+                                                            : 'assets/images/default-profile-picture.jpg'
+                                                    "
+                                                />
+                                            </div>
+                                            <div class="article-write-name-time-box">
+                                                <app-article-author
+                                                    *ngIf="articleView.authorViews"
+                                                    [authorViews]="articleView.authorViews"
+                                                    [hasImage]="true"
+                                                    [hasClickable]="
+                                                        !(hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed)
+                                                    "
+                                                ></app-article-author>
+                                                <p class="article-time-txt">
+                                                    {{ articleView?.publishDate * 1000 | date: 'MMM, dd, yyyy' }} &nbsp;·&nbsp;
+                                                    {{ articleView?.readTime | number: '1.0-0' }} min read
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 article-bookmark-upload-icon p-0 text-right">
+                                        <div class="article-bookmark-upload-icon-box">
+                                            <a
+                                                *ngIf="!(hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed)"
+                                                (click)="onBookmark(articleView.id)"
+                                            >
+                                                <mat-icon>
+                                                    <span
+                                                        [ngClass]="articleView.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                        matTooltip="Bookmark"
+                                                        >bookmark</span
+                                                    >
+                                                </mat-icon>
+                                            </a>
+                                            <a
+                                                class="cursor-none"
+                                                *ngIf="hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed"
+                                            >
+                                                <mat-icon>
+                                                    <span
+                                                        [ngClass]="articleView.bookMark ? 'material-symbols' : 'material-symbols-outlined'"
+                                                        >bookmark</span
+                                                    >
+                                                </mat-icon>
+                                            </a>
+                                            <app-article-share
+                                                [hasDisabled]="
+                                                    hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed
+                                                        ? true
+                                                        : false
+                                                "
+                                                [article]="articleView"
+                                            ></app-article-share>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="article-preview-banner-img-box mb-3">
+                                <img
+                                    class="article-preview-banner-img"
+                                    [src]="apiUrl.DOWNLOAD_IMAGE + articleView?.bannerFileView?.fileId"
+                                />
+                            </div>
+                            <div class="col-12 p-0 article-preview-detail article-short-description-box">
+                                <div class="article-detail-txt-box">
+                                    <p>{{ articleView?.shortDescription }}</p>
+                                </div>
+                            </div>
+                            <div class="col-12 p-0 article-preview-detail" *ngFor="let article of articleView?.contentDetailsViews">
+                                <div class="article-preview-img-box mt-4" *ngIf="article?.type?.key === 3 && article?.fileViews">
+                                    <div class="article-preview-img-con" *ngFor="let image of article?.fileViews">
+                                        <img class="article-preview-img" *ngIf="image" [src]="apiUrl.DOWNLOAD_IMAGE + image.fileId" />
+                                        <div class="article-img-caption-txt">{{ image.caption }}</div>
+                                    </div>
+                                </div>
+                                <div class="article-detail-txt-box quote-code-box" *ngIf="article?.type?.key === 1 && article.text">
+                                    <div [innerHTML]="article.text"></div>
+                                </div>
+                                <div class="article-detail-txt-box embed-code-box" *ngIf="article?.type?.key === 4 && article.embeddedCode">
+                                    <div class="twitter-embedded-code-box" [innerHTML]="article.embeddedCode"></div>
+                                </div>
+                                <div class="article-quote-txt-box mt-4" *ngIf="article?.type?.key === 2 && article?.quotes">
+                                    <blockquote class="article-quote-txt">
+                                        {{ article?.quotes }}
+                                    </blockquote>
+                                </div>
+                                <div class="article-pdf-viewer-box" *ngIf="article?.type?.key === 5 && article?.pdfFileViews && isBrowser">
+                                    <ngx-doc-viewer
+                                        class="article-pdf-viewer"
+                                        [url]="apiUrl.DOWNLOAD_IMAGE + article.pdfFileViews[0].fileId"
+                                        viewer="google"
+                                        disableContent="none"
+                                        [googleMaxChecks]="10"
+                                    >
+                                        <div>Loading</div>
+                                    </ngx-doc-viewer>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3 article-preview-detail article-tag-list-box">
+                                <h5>TAGS:</h5>
+                                <mat-chip-list>
+                                    <mat-chip class="courts-txt" *ngFor="let tag of articleView?.tagViews" (click)="selectionChange(tag)">
+                                        {{ tag.name }}
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </div>
+                            <div class="col-12 p-0 article-end-dot-txt-box text-center mt-4">
+                                <span class="article-end-dot-txt"></span>
+                                <span class="article-end-dot-txt"></span>
+                                <span class="article-end-dot-txt"></span>
+                            </div>
+                            <div class="col-12 p-0 story-share-box text-center mt-4">
+                                <p *ngIf="articleView.newsType.key === newsType.DAILY_SKIM">This is a free story, Feel free to share.</p>
+                                <div class="story-share-icon-box">
+                                    <ng-container *ngFor="let socialPlatform of socialSharePlatforms">
+                                        <a [href]="articleViewUrl + articleView.slug | shareOnSocial : socialPlatform.key" target="_blank">
+                                            <img [src]="socialPlatform.colorImageUrl" [alt]="socialPlatform.key"/>
+                                        </a>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scroll-up-btn-box" *ngIf="isShow">
+                            <button class="w-100 scroll-up-btn" type="button" mat-flat-button (click)="gotoTop()">
+                                <mat-icon> expand_less </mat-icon>
+                            </button>
+                        </div>
+                    </section>
+                    <!-- <section class="short-article-list" *ngIf="isSkimMode" [ngClass]="{ 'list-show': isAccordionList }">
+                        <ng-container *ngFor="let shortArticle of shortArticleList">
+                            <div class="short-article-item" id="article{{ shortArticle.id }}">
+                                <h4 (click)="clickArticle(shortArticle.id)">{{ shortArticle.title }}</h4>
+                                <div class="article-data">
+                                    <p>{{ shortArticle.description }}</p>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </section> -->
+
+                    <!-- Subscribe Now Section Code Start -->
+                    <div
+                        class="row m-0 subscribe-now-section"
+                        *ngIf="hasData && articleView.newsType.key === newsType.DEEP_DIVE && !isSubscribed"
+                    >
+                        <div class="col-12 subscribe-now-img-box p-0">
+                            <img src="/assets/images/deep-dive-subscribe-now.png" />
+                            <p class="subscribe-now-section-txt">Hello! This story is behind <br />the exclusive access. For full access</p>
+                            <button mat-flat-button color="primary" class="btn" type="button" (click)="subscribeNow()">
+                                SUBSCRIBE NOW
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Subscribe Now Section Code End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Desktop Site Article View Section Start -->

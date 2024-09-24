@@ -1,0 +1,258 @@
+<header class="header desktop-header-box">
+    <section>
+        <div class="container-fluid update-time-login-btn-con">
+            <div class="container">
+                <div class="row m-0 update-time-login-btn-box">
+                    <div class="col-md-6">
+                        <p class="update-date-time-txt">{{ currentDate | date: 'EEE, MMM dd, YYYY' }}</p>
+                    </div>
+                    <div class="col-md-6 login-subscribe-btn-box">
+                        <!-- <button type="button" class="login-subscribe-btn" (click)="openLogin()" mat-button>Login</button> -->
+                        <button type="button" class="ms-2 login-subscribe-btn subscribe-btn" (click)="openRegister()" mat-button>
+                            Subscribe to TS
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row m-0 logo-menu-box">
+                    <div class="col-md-3 col-lg-3 language-box logo-state-box" (click)="openRegister()">
+                        <a class="logo me-3"><img src="assets/images/thesecretariat-logo.svg" alt="header-logo" /></a>
+                    </div>
+                    <div class="col-md-6 col-lg-6 search-article-input-box">
+                        <form>
+                            <mat-form-field appearance="outline">
+                                <input readonly matInput placeholder="Search" (click)="openRegister()" />
+                                <button matSuffix mat-icon-button type="submit">
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </form>
+                    </div>
+                    <div class="col-md-3 col-lg-3 menu-con">
+                        <div class="menu-box">
+                            <ul>
+                                <li>
+                                    <a (click)="openRegister()" routerLinkActive="active">Daily Skim</a>
+                                </li>
+                                <li>
+                                    <a (click)="openRegister()" routerLinkActive="active">Deep Dives</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="javascript:void(0)">Policy Plunge</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">From the Corridors</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="more-menu-box" (click)="openRegister()">
+                            <button type="button" class="more-menu-btn" mat-button>
+                                <mat-icon>menu</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+<!-- Desktop Site Article View Section Start -->
+<div class="desktop-article-view-box">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row m-0">
+                <div class="col-md-12">
+                    <section class="article-view-con">
+                        <div class="row m-0 article-view-box">
+                            <div class="col-12 article-heading-box">
+                                <p class="courts-txt">
+                                    <span *ngFor="let category of articleView.categoryViews; last as isLast" (click)="openRegister()">
+                                        {{ category.name }}
+                                        <span *ngIf="!isLast">, </span>
+                                    </span>
+                                </p>
+                                <h2 class="article-view-heading-txt">{{ articleView?.title }}</h2>
+                                <h3 class="article-view-sub-heading-txt">{{ articleView?.subHeading }}</h3>
+                            </div>
+                            <div class="col-12 p-0 my-3 article-author-detail-box">
+                                <div class="row m-0 article-write-by-con mb-3">
+                                    <div class="col-9 p-0">
+                                        <div class="article-write-by-box">
+                                            <div class="article-write-img">
+                                                <img src="assets/images/default-profile-picture.jpg" />
+                                            </div>
+                                            <div class="article-write-name-time-box">
+                                                <a class="article-write-name-txt">
+                                                    {{ articleView?.authorView.displayName }}
+                                                </a>
+                                                <p class="article-time-txt">
+                                                    {{ articleView?.publishDate * 1000 | date: 'MMM, dd, yyyy' }} &nbsp;·&nbsp;
+                                                    {{ articleView?.readTime | number: '1.0-0' }} min read
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 article-bookmark-upload-icon p-0 text-right"></div>
+                                </div>
+                            </div>
+                            <div class="article-preview-banner-img-box mb-3">
+                                <img class="article-preview-banner-img" src="assets/images/static-banner-image.jpg" />
+                            </div>
+                            <div class="col-12 p-0 article-preview-detail article-short-description-box">
+                                <div class="article-detail-txt-box">
+                                    <p>{{ articleView?.shortDescription }}</p>
+                                </div>
+                            </div>
+                            <div class="col-12 p-0 article-preview-detail" *ngFor="let article of articleView?.contentDetailsViews">
+                                <div class="article-preview-img-box mt-4" *ngIf="article?.type?.key === 3 && article?.fileViews">
+                                    <div class="article-preview-img-con" *ngFor="let image of article?.fileViews">
+                                        <img class="article-preview-img" *ngIf="image" [src]="apiUrl.DOWNLOAD_IMAGE + image.fileId" />
+                                        <div class="article-img-caption-txt">{{ image.caption }}</div>
+                                    </div>
+                                </div>
+                                <div class="article-detail-txt-box quote-code-box" *ngIf="article?.type?.key === 1 && article.text">
+                                    <div [innerHTML]="article.text"></div>
+                                </div>
+                                <div class="article-detail-txt-box" *ngIf="article?.type?.key === 4 && article.embeddedCode">
+                                    <div [innerHTML]="article.embeddedCode"></div>
+                                </div>
+                                <div class="article-quote-txt-box mt-4" *ngIf="article?.type?.key === 2 && article?.quotes">
+                                    <blockquote class="article-quote-txt">
+                                        {{ article?.quotes }}
+                                    </blockquote>
+                                </div>
+                                <div class="article-pdf-viewer-box" *ngIf="article?.type?.key === 5 && article?.pdfFileViews">
+                                    <ngx-doc-viewer
+                                        class="article-pdf-viewer"
+                                        [url]="apiUrl.DOWNLOAD_IMAGE + article.pdfFileViews[0].fileId"
+                                        viewer="google"
+                                        disableContent="none"
+                                    >
+                                        <div>Loading</div>
+                                    </ngx-doc-viewer>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3 article-preview-detail article-tag-list-box">
+                                <h5>TAGS:</h5>
+                                <mat-chip-list>
+                                    <mat-chip class="courts-txt" *ngFor="let tag of articleView?.tagViews" (click)="openRegister()">
+                                        {{ tag.name }}
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </div>
+                            <div class="col-12 p-0 article-end-dot-txt-box text-center mt-4">
+                                <span class="article-end-dot-txt"></span>
+                                <span class="article-end-dot-txt"></span>
+                                <span class="article-end-dot-txt"></span>
+                            </div>
+                            <div class="col-12 p-0 story-share-box text-center mt-4">
+                                <p>This is a free story, so share away without limits :)</p>
+                                <div class="story-share-icon-box">
+                                    <a
+                                        href="https://www.facebook.com/sharer/sharer.php?u=https://thesecretariat.in/public/article/patnaik-pandian-and-the-intriguing-story-of-odisha-politics-01"
+                                    >
+                                        <img src="assets/images/facebook-color.svg" />
+                                    </a>
+                                    <a
+                                        href="https://twitter.com/intent/tweet?url=https://thesecretariat.in/public/article/patnaik-pandian-and-the-intriguing-story-of-odisha-politics-01"
+                                    >
+                                        <img src="assets/images/twitter-color.svg" />
+                                    </a>
+                                    <a
+                                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://thesecretariat.in//public/article/patnaik-pandian-and-the-intriguing-story-of-odisha-politics-01"
+                                    >
+                                        <img src="assets/images/linkedin-color.svg" />
+                                    </a>
+                                    <a
+                                        href="https://wa.me?text=https://thesecretariat.in/public/article/patnaik-pandian-and-the-intriguing-story-of-odisha-politics-01"
+                                    >
+                                        <img src="assets/images/whatsapp-icon.png" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scroll-up-btn-box" *ngIf="isShow">
+                            <button class="w-100 scroll-up-btn" type="button" mat-flat-button (click)="gotoTop()">
+                                <mat-icon> expand_less </mat-icon>
+                            </button>
+                        </div>
+                    </section>
+                    <!-- <section class="short-article-list" *ngIf="isSkimMode" [ngClass]="{ 'list-show': isAccordionList }">
+                        <ng-container *ngFor="let shortArticle of shortArticleList">
+                            <div class="short-article-item" id="article{{ shortArticle.id }}">
+                                <h4 (click)="clickArticle(shortArticle.id)">{{ shortArticle.title }}</h4>
+                                <div class="article-data">
+                                    <p>{{ shortArticle.description }}</p>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </section> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Desktop Site Article View Section Start -->
+<footer class="footer desktop-footer-box">
+    <section>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row m-0 footer-menu-con">
+                    <div class="col-md-3" *ngIf="!changeResolutionFlag">
+                        <a (click)="openRegister()">
+                            <img src="assets/images/thesecretariat-logo.png" class="footer-logo" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-menu-box">
+                            <ul>
+                                <li>
+                                    <a (click)="openRegister()">About Us</a>
+                                </li>
+                                <li (click)="openRegister()">
+                                    <a>Contact Us</a>
+                                </li>
+                                <li (click)="openRegister()">
+                                    <a>Write For Us</a>
+                                </li>
+                                <li (click)="openRegister()">
+                                    <a target="_blank" href="mailto:{{ social_media_url.REACH_OUT_MAIL_ID }}">Reach Out</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="javascript:void(0)">FAQ's</a>
+                                    <span>FAQ's</span>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="social-icon-box">
+                            <a [href]="social_media_url.SOCIAL_MEDIA_FACEBOOK" target="_blank">
+                                <img src="assets/images/facebook-black.svg" />
+                            </a>
+                            <a [href]="social_media_url.SOCIAL_MEDIA_TWITTER" target="_blank">
+                                <img src="assets/images/twitter-black.svg" />
+                            </a>
+                            <a [href]="social_media_url.SOCIAL_MEDIA_INSTAGRAM" target="_blank">
+                                <img src="assets/images/instagram-black.svg" />
+                            </a>
+                            <a [href]="social_media_url.SOCIAL_MEDIA_LINKEDIN" target="_blank">
+                                <img src="assets/images/linkedin-black.svg" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 copyright-txt text-center">
+                        <p>Copyright © 2023 SML Digital. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>

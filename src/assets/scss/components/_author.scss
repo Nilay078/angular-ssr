@@ -1,0 +1,126 @@
+// Desktop Css Start
+.author-detail-box {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    .author-profile-pic-box {
+        width: 110px;
+        img{
+            width: 90px;
+            height: 90px;
+            @include border-radius(50%);
+        }
+    }
+    .author-title-social-box {
+        width: calc(100% - 110px);
+        h6 {
+            @include text(20px, 24px, $secondaryTxtColor, $cabinetGrotesk, $mediumBold);
+            word-break: break-all;
+        }
+        .author-social-link-box {
+            margin-top: 5px;
+            a {
+                img {
+                    width: 26px;
+                }
+                &:not(:first-child) {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+.author-description-txt-box {
+    margin-top: 10px;
+    position: relative;
+    .author-description-txt {
+        @include text(16px, 22px, $secondaryOuterSpaceCrayola, $cabinetGrotesk, $normal);
+        margin-bottom: 0;
+        &.author-description-read-less-txt {
+            @include lineClamp(3);
+        }
+    }
+    .read-less-txt, .read-more-txt {
+        background: $primarySeashell;
+        @include text(14px, 20px, $primarySapphireBlue, $cabinetGrotesk, $semibold);
+        cursor: pointer;
+    }
+    .read-more-txt {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding-left: 2px;
+        padding-top: 1px;
+        &::before {
+            content: '...';
+            color: $secondaryOuterSpaceCrayola;
+            display: inline;
+            margin: 0;
+        }
+    }
+}
+// Desktop Css End
+// Mobile Css Start
+@media (max-width: 767px) {
+    .author-detail-box {
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+        .author-profile-pic-box {
+            width: 75px;
+            img{
+                width: 60px;
+                height: 60px;
+                @include border-radius(50%);
+            }
+        }
+        .author-title-social-box {
+            width: calc(100% - 75px);
+            h6 {
+                @include text(20px, 24px, $secondaryOuterSpaceCrayola !important, $cabinetGrotesk, $bold);
+                word-break: break-all;
+            }
+            .author-social-link-box {
+                margin-top: 5px;
+                a {
+                    img {
+                        width: 28px;
+                    }
+                    &:not(:first-child) {
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .author-description-txt-box {
+        margin-top: 10px;
+        position: relative;
+        .author-description-txt {
+            @include text(16px, 22px, $secondaryOuterSpaceCrayola, $cabinetGrotesk, $normal);
+            margin-bottom: 0;
+            &.author-description-read-less-txt {
+                @include lineClamp(5);
+            }
+        }
+        .read-less-txt, .read-more-txt {
+            background: $primarySeashell;
+            @include text(14px, 20px, $primarySapphireBlue, $cabinetGrotesk, $semibold);
+            cursor: pointer;
+        }
+        .read-more-txt {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding-left: 2px;
+            padding-top: 1px;
+            &::before {
+                content: '...';
+                color: $secondaryOuterSpaceCrayola;
+                display: inline;
+                margin: 0;
+            }
+        }
+    }
+}
+// Mobile Css End

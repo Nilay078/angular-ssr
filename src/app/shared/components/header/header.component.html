@@ -1,0 +1,87 @@
+<header class="header" *ngIf="changeResolutionFlag && !isHidden">
+    <div class="row m-0">
+        <div class="col-6 header-logo">
+            <a class="logo" [href]="appUrl.HOME"><img src="assets/images/thesecretariat-logo.svg" alt="header-logo" /></a>
+        </div>
+        <div class="col-6 search-btn">
+            <a class="nav-link pb-0" *ngIf="!url" [ngClass]="isSearched ? 'disabled' : ''" (click)="onSearch()">
+                <mat-icon>
+                    <span class="material-symbols-outlined">search</span>
+                </mat-icon>
+            </a>
+            <button mat-flat-button *ngIf="url" type="button" class="close" aria-label="Close" (click)="onClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Desktop Site Header Section Start -->
+<header class="header desktop-header-box" *ngIf="!headerShow && !changeResolutionFlag">
+    <section>
+        <div class="container-fluid update-time-login-btn-con">
+            <div class="container">
+                <div class="row m-0 update-time-login-btn-box">
+                    <div class="col-md-6">
+                        <p class="update-date-time-txt">{{ currentDate | date: 'EEE, MMM dd, YYYY' }}</p>
+                    </div>
+                    <div class="col-md-6 login-subscribe-btn-box" *ngIf="!userView || !userView?.firstName">
+                        <!-- <button type="button" class="login-subscribe-btn" (click)="openLogin()" mat-button>Login</button> -->
+                        <button type="button" class="ms-2 login-subscribe-btn subscribe-btn" (click)="openRegister()" mat-button>
+                            Subscribe to TS
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row m-0 logo-menu-box">
+                    <div class="col-md-3 col-lg-3 language-box logo-state-box">
+                        <a class="logo me-3" [href]="appUrl.HOME"><img src="assets/images/thesecretariat-logo.svg" alt="header-logo" /></a>
+                    </div>
+                    <div class="col-md-6 col-lg-6 search-article-input-box">
+                        <form [formGroup]="articleSearchForm" (submit)="openSearch()">
+                            <mat-form-field appearance="outline">
+                                <input noSpecialCharacters formControlName="articleSearch" matInput placeholder="Search" />
+                                <button matSuffix mat-icon-button type="submit">
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </form>
+                    </div>
+                    <div class="col-md-3 col-lg-3 menu-con">
+                        <div class="menu-box">
+                            <ul>
+                                <li>
+                                    <a [ngClass]="router.url === '/' + appUrl.DAILY_SKIM ? 'active' : ''" [href]="appUrl.DAILY_SKIM"
+                                        >Daily Skim</a
+                                    >
+                                </li>
+                                <li>
+                                    <a [ngClass]="router.url === '/' + appUrl.DEEP_DIVE ? 'active' : ''" [href]="appUrl.DEEP_DIVE"
+                                        >Deep Dive</a
+                                    >
+                                </li>
+                                <!-- <li>
+                                    <a href="javascript:void(0)">Policy Plunge</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">From the Corridors</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <div class="more-menu-box">
+                            <button type="button" class="more-menu-btn" mat-button (click)="gotoMenu()">
+                                <mat-icon>menu</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+<!-- Desktop Site Header Section End -->

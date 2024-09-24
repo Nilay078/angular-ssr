@@ -1,0 +1,147 @@
+<app-private-header (back)="onBackPage()" [pageName]="'News & Newsletter Alerts'" *ngIf="changeResolutionFlag"></app-private-header>
+
+<section class="news-notification-box" *ngIf="changeResolutionFlag">
+    <form [formGroup]="newsForm">
+        <div class="row news-form-box m-0">
+            <!-- <div class="col-12 p-0">
+                <h2 class="news-notification-title">Setup your preferences</h2>
+            </div>
+            <div class="col-12 p-0 mt-4 mb-3">
+                <div class="form-group mat-form-field-width">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select</mat-label>
+                        <mat-select
+                            formControlName="newsRelated"
+                            (selectionChange)="onNewsRelatedChange($event)"
+                            [compareWith]="utils.keyValueComparer"
+                            [(ngModel)]="newsAlerts"
+                        >
+                            <mat-option *ngFor="let news of newsRelatedList" [value]="news.key">
+                                {{ news.value }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div> -->
+            <app-line-skeleton-loader [theme]="theme" *ngIf="!hasNewsletter"></app-line-skeleton-loader>
+            <div class="row m-0 p-0" *ngIf="hasNewsletter">
+                <div class="col-12 news-slide-toggle-box" *ngFor="let newsletter of newsletterList">
+                    <span>{{ newsletter.name }}</span>
+                    <mat-slide-toggle
+                        color="primary"
+                        (change)="onChange($event, newsletter)"
+                        formControlName="newsletter"
+                        [ngModel]="newsletter?.active"
+                    ></mat-slide-toggle>
+                </div>
+            </div>
+            <!-- <div class="row m-0 p-0" *ngIf="newsNotifications">
+                <div class="col-12 news-slide-toggle-box">
+                    <span>Policy</span>
+                    <mat-slide-toggle color="primary" formControlName="policy" [ngModel]="newsView?.policy"></mat-slide-toggle>
+                </div>
+                <div class="col-12 news-slide-toggle-box">
+                    <span>Bureaucracy</span>
+                    <mat-slide-toggle color="primary" formControlName="bureaucracy" [ngModel]="newsView?.bureaucracy"></mat-slide-toggle>
+                </div>
+                <div class="col-12 news-slide-toggle-box">
+                    <span>RTI</span>
+                    <mat-slide-toggle color="primary" formControlName="rti" [ngModel]="newsView?.rti"></mat-slide-toggle>
+                </div>
+                <div class="col-12 news-slide-toggle-box">
+                    <span>PSU's</span>
+                    <mat-slide-toggle color="primary" formControlName="psu" [ngModel]="newsView?.psu"></mat-slide-toggle>
+                </div>
+            </div> -->
+        </div>
+    </form>
+</section>
+
+<!-- Desktop News Section Start -->
+<section class="news-notification-box desktop-news-notification-box" *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-3 menu-border-right">
+                    <app-my-account-menu></app-my-account-menu>
+                </div>
+                <div class="col-md-9">
+                    <div class="bookmark-title-filter-box">
+                        <app-breadcrumb [breadcrumbs]="breadcrumbs" *ngIf="!changeResolutionFlag"></app-breadcrumb>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-md-8">
+                                <h6>News & Newsletters Alerts</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-12 p-0">
+                            <form [formGroup]="newsForm">
+                                <div class="row news-form-box m-0">
+                                    <!-- <div class="col-12 mb-3">
+                                        <mat-chip-list selectable class="newsletter-news-notification-mat-chip">
+                                            <mat-chip
+                                                *ngFor="let news of newsRelatedListDesktop"
+                                                [selected]="news.selected"
+                                                (click)="selectionChange(news)"
+                                            >
+                                                {{ news.value }}
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </div> -->
+                                    <app-line-skeleton-loader [theme]="theme" *ngIf="!hasNewsletter"></app-line-skeleton-loader>
+                                    <div class="row m-0" *ngIf="hasNewsletter">
+                                        <div class="col-12 news-slide-toggle-box" *ngFor="let newsletter of newsletterList">
+                                            <span>{{ newsletter.name }}</span>
+                                            <mat-slide-toggle
+                                                color="primary"
+                                                formControlName="newsletter"
+                                                [ngModel]="newsView?.active"
+                                                (change)="onChange($event, newsletter)"
+                                            ></mat-slide-toggle>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row m-0" *ngIf="newsNotifications">
+                                        <div class="col-12 news-slide-toggle-box">
+                                            <span>Policy</span>
+                                            <mat-slide-toggle
+                                                color="primary"
+                                                formControlName="policy"
+                                                [ngModel]="newsView?.policy"
+                                            ></mat-slide-toggle>
+                                        </div>
+                                        <div class="col-12 news-slide-toggle-box">
+                                            <span>Bureaucracy</span>
+                                            <mat-slide-toggle
+                                                color="primary"
+                                                formControlName="bureaucracy"
+                                                [ngModel]="newsView?.bureaucracy"
+                                            ></mat-slide-toggle>
+                                        </div>
+                                        <div class="col-12 news-slide-toggle-box">
+                                            <span>RTI</span>
+                                            <mat-slide-toggle
+                                                color="primary"
+                                                formControlName="rti"
+                                                [ngModel]="newsView?.rti"
+                                            ></mat-slide-toggle>
+                                        </div>
+                                        <div class="col-12 news-slide-toggle-box">
+                                            <span>PSU's</span>
+                                            <mat-slide-toggle
+                                                color="primary"
+                                                formControlName="psu"
+                                                [ngModel]="newsView?.psu"
+                                            ></mat-slide-toggle>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop News Section End -->

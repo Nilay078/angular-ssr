@@ -1,0 +1,45 @@
+@import '/src/assets/scss/variables';
+.news-notification-box {
+    .news-form-box {
+        padding: 0px 20px 10px;
+        .news-notification-title {
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 38px;
+            font-family: $cabinetGrotesk;
+            color: $secondaryOuterSpaceCrayola;
+        }
+        .news-slide-toggle-box {
+            padding: 20px 0;
+            &:not(:last-child) {
+                border-bottom: dotted 1px rgba($blackColor, 0.2);
+            }
+            span {
+                float: left;
+                font-size: 18px;
+                line-height: 23px;
+                font-weight: 500;
+                color: $secondaryOuterSpaceCrayola;
+                font-family: $cabinetGrotesk;
+            }
+            .mat-slide-toggle {
+                float: right;
+            }
+        }
+    }
+}
+
+// Desktop Site Css Start
+::ng-deep .desktop-news-notification-box {
+    &.news-notification-box {
+        .news-form-box {
+            padding: 0 !important;
+            .newsletter-news-notification-mat-chip {
+                .mat-chip-list-wrapper {
+                    justify-content: center;
+                }  
+            }
+        }
+    }
+}
+// Desktop Site Css End

@@ -1,0 +1,128 @@
+@import '/src/assets/scss/variables';
+
+// BookMark Start
+.date-bar {
+  background-color: rgba($primaryPaleChestnut, 0.5);
+  color: $primarySapphireBlue;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-top: 12px;
+  padding-bottom: 10px;
+}
+.common-text-with-pic {
+  border-top:1px solid rgba($blackColor, 0.1);
+  padding-top: 30px;
+  padding-bottom: 20px;
+  &:first-child {border: 0;}
+  .title-point {
+    color: $primarySapphireBlue;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding-bottom: 5px;
+  }
+  .title-article {
+    font-weight: 500;
+    color: $blackColor;
+    font-size: 20px;
+    text-decoration: none;
+    line-height: 26px;
+    @include lineClamp(3);
+    &:hover {
+      color: $blackColor !important;
+    }
+  }
+  .by-and-icon {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    .by-author {
+      text-decoration: none;
+      font-family: $literata;
+      font-size: 12px;
+      color: rgba($blackColor, 0.7);
+      &:hover {
+        color: $primarySapphireBlue;
+      }
+    }
+    .bookmark-and-upload {
+      margin-left: auto;
+      .btn-link {
+        padding: 5px;
+        margin-left: 5px;
+        color: $secondaryOuterSpaceCrayola;
+        line-height: normal;
+        height: 36px;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+    &.article-by-author-bookmark-share-icon {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      .article-by-author-detail-box {
+        width: calc(100% - 85px);
+        padding-right: 10px;
+      }
+      .bookmark-and-upload {
+        width: 85px;
+      }
+    }
+  }
+  .object-fit-img-box {
+    display: inline-block;
+    text-align: right;
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+// BookMark End
+
+// Desktop Site Css Start
+.bookmark-title-filter-box {
+  border-bottom: solid 1px rgba($primaryPaleChestnut, 0.5);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  h6 {
+    font-family: $cabinetGrotesk;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    color: $secondaryOuterSpaceCrayola;
+    margin-bottom: 0;
+  }
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+// Desktop Site Css End
+
+@media (max-width: 420px) {
+  .common-text-with-pic {
+    .by-and-icon {
+      .by-author {
+        font-size: 11px;
+      }
+      .bookmark-and-upload {
+        .btn-link {
+          margin-left: 0px;
+          .mat-icon {
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
+}

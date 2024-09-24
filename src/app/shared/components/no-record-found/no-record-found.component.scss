@@ -1,0 +1,41 @@
+@import '/src/assets/scss/variables';
+
+// No record Found Css Start
+.no-record-con {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: $secondaryOuterSpaceCrayola;
+    font-family: $literata;
+    height: calc(100vh -  64px);
+    padding: 0 20px;
+    .no-record-box {
+        text-align: center;
+        .no-records-detail {
+            img {
+                width: 200px;
+            }
+            h5 {
+                font-family: $literata;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 25px;
+                text-align: center;
+                color: $secondaryOuterSpaceCrayola;
+            }
+        }
+        .no-record-btn {
+            padding: 0px 15px;
+        }
+    }
+}
+// No record Found Css End
+
+// Desktop Design Css Start
+@media (min-width: 767px) {
+    .no-record-con {
+        height: auto;
+        padding: 20px;
+    }
+}
+// Desktop Design Css End

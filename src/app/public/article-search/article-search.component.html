@@ -1,0 +1,123 @@
+<div class="content-box" [ngClass]="{ 'article-search-content-box': !hasSearchedData }" *ngIf="changeResolutionFlag">
+    <section class="article-search-con">
+        <div class="article-search-box">
+            <div class="search-article-input-box">
+                <form [formGroup]="articleSearchForm" (submit)="openSearch()">
+                    <mat-form-field appearance="outline">
+                        <input noSpecialCharacters formControlName="articleSearch" matInput placeholder="Search" />
+                        <button matPrefix mat-icon-button type="submit">
+                            <mat-icon matPrefix>search</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </form>
+                <h6 class="my-3 result-title-detail-txt-box" *ngIf="hasSearchedData">
+                    <span class="results-title"> Result for </span>{{ articleSearchResult }}
+                </h6>
+            </div>
+            <div *ngIf="hasSearchedData">
+                <div class="search-filter-con mt-4" *ngIf="hasOptionsData">
+                    <div
+                        infiniteScroll
+                        [infiniteScrollDistance]="0"
+                        [scrollWindow]="true"
+                        [infiniteScrollThrottle]="1500"
+                        (scrolled)="onScroll()"
+                    >
+                        <mat-tab-group (selectedTabChange)="onSelectClick($event)">
+                            <mat-tab label="{{ filter.value }}" *ngFor="let filter of articleFilteredOptionsList">
+                                <app-thumbnail
+                                    *ngIf="!hasError"
+                                    [data]="articles"
+                                    [articleType]="true"
+                                    [hide]="true"
+                                    [showCategory]="true"
+                                ></app-thumbnail>
+                                <div *ngIf="!hasData">
+                                    <div *ngFor="let i of [0, 1, 2, 3, 4]">
+                                        <app-line-skeleton-loader [theme]="bannerTheme"></app-line-skeleton-loader>
+                                    </div>
+                                </div>
+                                <div class="no-article-box text-center" *ngIf="hasError">
+                                    <div class="row m-0 mt-4">
+                                        <div class="col-12">
+                                            <img src="assets/images/no-article.png" class="logo-img" alt="header-logo" />
+                                        </div>
+                                    </div>
+
+                                    <div class="no-article-header row m-0 mt-4">
+                                        <div class="col-12">
+                                            <div class="no-article-msg">
+                                                <p>No matches found for your search.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                    <div class="text-center" *ngIf="blockUI">
+                        <img src="/assets/images/loader.gif" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- desktop view -->
+<div class="content-box desktop-content-box mb-4" *ngIf="!changeResolutionFlag">
+    <section class="article-search-con">
+        <div class="container">
+            <div class="article-search-box m-0" *ngIf="hasOptionsData">
+                <div class="p-0">
+                    <div class="search-filter-con">
+                        <h4 class="my-4 result-title-detail-txt-box">
+                            <span class="results-title"> Result for </span>{{ articleSearchResult }}
+                        </h4>
+                        <div
+                            infiniteScroll
+                            [infiniteScrollDistance]="0"
+                            [scrollWindow]="true"
+                            [infiniteScrollThrottle]="1500"
+                            (scrolled)="onScroll()"
+                        >
+                            <mat-tab-group (selectedTabChange)="onSelectClick($event)">
+                                <mat-tab label="{{ filter.value }}" *ngFor="let filter of articleFilteredOptionsList">
+                                    <app-banner *ngIf="!hasError" [data]="articles" [articleType]="true" [hide]="true"></app-banner>
+                                    <div class="row mt-4" *ngIf="!hasData">
+                                        <div class="col-md-6" *ngFor="let i of [0, 1, 2, 3, 4, 5]">
+                                            <app-line-skeleton-loader [theme]="bannerTheme"></app-line-skeleton-loader>
+                                        </div>
+                                    </div>
+                                    <div class="no-article-box text-center" *ngIf="hasError">
+                                        <div class="row m-0 mt-4">
+                                            <div class="col-12">
+                                                <img src="assets/images/no-article.png" class="logo-img" alt="header-logo" />
+                                            </div>
+                                        </div>
+
+                                        <div class="no-article-header row m-0 mt-4">
+                                            <div class="col-12">
+                                                <div class="no-article-msg">
+                                                    <p>No matches found for your search.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                        <div class="text-center" *ngIf="blockUI">
+                            <img src="/assets/images/loader.gif" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4" *ngIf="!hasData">
+                <div class="col-md-4" *ngFor="let i of [0, 1, 2, 3, 4, 5]">
+                    <app-line-skeleton-loader [theme]="bannerTheme"></app-line-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

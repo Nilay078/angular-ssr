@@ -1,0 +1,23 @@
+.registration-title-txt {
+    font-size: 28px;
+    line-height: 38px;
+    color: $secondaryOuterSpaceCrayola;
+}
+.registration-subtitle-txt {
+    font-size: 16px;
+    line-height: 24px;
+    font-family: $literata;
+    letter-spacing: 1px;
+    color: rgba($secondaryOuterSpaceCrayola, 0.7);
+}
+
+@media (min-width: 767px) {
+    .registration-title-txt {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .registration-subtitle-txt {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}

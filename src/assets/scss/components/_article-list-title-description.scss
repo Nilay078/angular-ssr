@@ -1,0 +1,36 @@
+// Mobile Css Start
+.article-txt-con {
+    .article-category-txt {
+        p {
+            @include text(12px, 16px, $secondaryTxtColor, $cabinetGrotesk, $mediumBold);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+    }
+    .article-txt {
+        .article-title-txt {
+            p {
+                @include text(22px, 28px, $blackColor, $cabinetGrotesk, $medium);
+                @include lineClamp(3);
+            }
+        }
+        .article-sub-description-txt {
+            @include text(16px, 22px, $secondaryOuterSpaceCrayola, $literata, $normal);
+            @include lineClamp(2);
+        }
+    }
+}
+// Mobile Css End
+// Desktop Css Start
+@media (min-width: 768px) {
+    .article-txt-con {
+        .article-category-txt {
+            p {
+                @include text(14px, 18px, $secondaryTxtColor, $cabinetGrotesk, $mediumBold);
+                letter-spacing: 1.4px;
+            }
+        }
+    }
+}
+// Desktop Css End

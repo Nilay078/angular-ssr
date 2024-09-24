@@ -1,0 +1,79 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+.login-waitlist-screen-box {
+    text-align: center;
+    .logo-img {
+        width: 200px;
+    }
+    .exclusive-login-content {
+        margin-top: 50px !important;
+        .send-otp-btn {
+            border: 0;
+        }
+        .scan-txt-box {
+            p {
+                @include text(17px, 25px, $secondaryOuterSpaceCrayola, $cabinetGrotesk, $medium);
+                margin-bottom: 0;
+                text-align: left;
+                span {
+                    @include text(26px, 32px, $blackColor, $cabinetGrotesk, $medium);
+                }
+            }
+        }
+        .privacy-terms-txt {
+            @include text(12px, 18px, $blackColor, $cabinetGrotesk, $normal);
+            margin-top: 65px;
+            a {
+                font-weight: 700;
+                color: $blackColor;
+                text-decoration: none;
+            }
+        }
+        .error-msg-outer {
+            text-align: left;
+        }
+    }
+    .login-mobile-input-box {
+        .mat-form-field {
+            text-align: left !important;
+        }
+    }
+}
+
+// Desktop Site Design Css Start
+.desktop-login-waitlist-screen-box {
+    padding: 0px;
+    .exclusive-login-content {
+        margin-top: 0px !important;
+        .privacy-terms-txt {
+            margin-top: 25px;
+        }
+    }
+    .registration-con {
+        border: none;
+        padding: 0;
+        .login-modal-header-box {
+            border-bottom: solid 1px $primaryPaleChestnut;
+            .header-title-txt {
+                @include text(20px, 26px, $blackColor, $cabinetGrotesk, $bold);
+            }
+        }
+        .registration-box {
+            border: none;
+        }
+        .close-modal-btn {
+            width: 100%;
+            text-align: right;
+            padding-right: 10px;
+            button  {
+                background-color: transparent;
+                box-shadow: none;
+                font-size: 28px;
+                color: $secondaryOuterSpaceCrayola;
+                padding: 0;
+                min-width: 30px;
+            }
+        }
+    }  
+}

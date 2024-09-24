@@ -1,0 +1,219 @@
+<app-private-header (back)="onBackPage()" [pageName]="title" *ngIf="changeResolutionFlag"></app-private-header>
+
+<div *ngIf="changeResolutionFlag">
+    <section class="feedback-us-con" *ngIf="!productFeedback && !reportFeedback">
+        <div class="row feedback-box m-0">
+            <div class="col-12 mt-4">
+                <h2 class="feedback-title mb-3">How are we doing?</h2>
+                <p class="feedback-txt">We are always working to bond with you; so let us know what's working for you and what's not.</p>
+            </div>
+            <div class="col-12 mt-5">
+                <button class="btn w-100" type="button" mat-flat-button (click)="onProduct()">Give Product Feedback</button>
+            </div>
+            <div class="col-12 mt-4">
+                <button class="btn w-100" type="button" mat-flat-button (click)="onReport()">Report A Bug</button>
+            </div>
+            <div class="col-12 mt-5">
+                <p class="feedback-description">
+                    This isn't a way to contact us though. We can't respond to feedback or bug report individually, If you have a question
+                    or need help resolving a problem, you can
+                </p>
+            </div>
+            <div class="col-12 text-center">
+                <a class="contact-btn" [href]="[appUrl.CONTACT]">CONTACT US</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-us-con" *ngIf="productFeedback">
+        <div class="row feedback-box m-0">
+            <form [formGroup]="productFeedbackForm" (submit)="onSubmit(1)">
+                <div class="col-12">
+                    <div class="form-group mat-form-field-width">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Related To</mat-label>
+                            <mat-select formControlName="type">
+                                <mat-option *ngFor="let feedbackRelated of productDropDownList" [value]="feedbackRelated">
+                                    {{ feedbackRelated.value }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="msg-box">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <textarea
+                            autosize
+                            matInput
+                            cdkTextareaAutosize
+                            cdkAutosizeMinRows="4"
+                            placeholder="Tell us a little more"
+                            id="tellUsMeassage"
+                            formControlName="message"
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 mt-4">
+                    <button class="w-100" type="submit" mat-flat-button color="primary">SUBMIT</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="feedback-us-con" *ngIf="reportFeedback">
+        <div class="row feedback-box m-0">
+            <form [formGroup]="bugFeedbackForm" (submit)="onSubmit(2)">
+                <div class="col-12">
+                    <div class="form-group mat-form-field-width">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Related To</mat-label>
+                            <mat-select formControlName="type">
+                                <mat-option *ngFor="let feedbackRelated of bugDropDownList" [value]="feedbackRelated">
+                                    {{ feedbackRelated.value }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="msg-box">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <textarea
+                            autosize
+                            matInput
+                            cdkTextareaAutosize
+                            cdkAutosizeMinRows="4"
+                            placeholder="Tell ua a little more"
+                            id="bugTellUsMeassage"
+                            formControlName="message"
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 mt-4">
+                    <button class="w-100" type="submit" mat-flat-button color="primary">REPORT BUG</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<!-- Desktop Feedback Section Start -->
+<div class="desktop-feedback-con" *ngIf="!changeResolutionFlag">
+    <section class="feedback-us-con" *ngIf="!productFeedback && !reportFeedback">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row feedback-box m-0">
+                    <div class="col-12 mt-4">
+                        <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+                        <h2 class="contact-title mb-3">Feedback</h2>
+                        <h4 class="contact-sub-title mb-3">How are we doing?</h4>
+                        <p class="feedback-txt">
+                            We are always working to bond with you; so let us know what's working for you and what's not.
+                        </p>
+                    </div>
+                    <div class="col-12 mt-5">
+                        <button class="btn w-100" type="button" mat-flat-button (click)="onProduct()">Give Product Feedback</button>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <button class="btn w-100" type="button" mat-flat-button (click)="onReport()">Report A Bug</button>
+                    </div>
+                    <div class="col-12 mt-5">
+                        <p class="feedback-description">
+                            This isn't a way to contact us though. We can't respond to feedback or bug report individually, If you have a
+                            question or need help resolving a problem, you can
+                        </p>
+                    </div>
+                    <div class="col-12 text-center mb-4">
+                        <a class="contact-btn" [href]="[appUrl.CONTACT]">CONTACT US</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-us-con" *ngIf="productFeedback">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row feedback-box m-0">
+                    <div class="col-12 mt-4">
+                        <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+                        <h2 class="feedback-title mb-3">Product Feedback</h2>
+                    </div>
+                    <form [formGroup]="productFeedbackForm" (submit)="onSubmit(1)">
+                        <div class="col-12">
+                            <div class="form-group mat-form-field-width">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Related To</mat-label>
+                                    <mat-select formControlName="type">
+                                        <mat-option *ngFor="let feedbackRelated of productDropDownList" [value]="feedbackRelated">
+                                            {{ feedbackRelated.value }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="msg-box">
+                            <mat-form-field class="w-100" appearance="outline">
+                                <textarea
+                                    autosize
+                                    matInput
+                                    cdkTextareaAutosize
+                                    cdkAutosizeMinRows="4"
+                                    placeholder="Tell us a little more"
+                                    id="tellUsMeassage"
+                                    formControlName="message"
+                                ></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 my-4">
+                            <button class="w-100" type="submit" mat-flat-button color="primary">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-us-con" *ngIf="reportFeedback">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row feedback-box m-0">
+                    <div class="col-12 mt-4">
+                        <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+                        <h2 class="feedback-title mb-3">Report a bug</h2>
+                    </div>
+                    <form [formGroup]="bugFeedbackForm" (submit)="onSubmit(2)">
+                        <div class="col-12">
+                            <div class="form-group mat-form-field-width">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Related To</mat-label>
+                                    <mat-select formControlName="type">
+                                        <mat-option *ngFor="let feedbackRelated of bugDropDownList" [value]="feedbackRelated">
+                                            {{ feedbackRelated.value }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="msg-box">
+                            <mat-form-field class="w-100" appearance="outline">
+                                <textarea
+                                    autosize
+                                    matInput
+                                    cdkTextareaAutosize
+                                    cdkAutosizeMinRows="4"
+                                    placeholder="Tell ua a little more"
+                                    id="bugTellUsMeassage"
+                                    formControlName="message"
+                                ></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 my-4">
+                            <button class="w-100" type="submit" mat-flat-button color="primary">REPORT BUG</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Desktop Feedback Section End -->

@@ -1,0 +1,42 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+// Banner Section Css Start
+.banner-section-box {
+    .article-img-box {
+        img {
+            width: 100%;
+        }
+    }
+}
+// Banner Section Css End
+
+// Desktop Site Banner Section Css Start
+.desktop-banner-section-box {
+    &.banner-section-box {
+        .banner-article-click-box {
+            position: relative;
+            margin-top: 20px;
+            .banner-article-by-btn-box {
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+            }
+        }
+        .article-txt-con {
+            .banner-article-txt {
+                height: 100px;
+            }
+        }
+        // Banner with Dark Background Css Start
+        .banner-bg-box {
+            background-color: $primaryPaleChestnut;
+            padding: 20px 0 30px;
+            .section-heading-txt-box {
+                border-top: 0;
+            }
+        }
+        // Banner with Dark Background Css End
+    }
+}
+// Desktop Site Banner Section Css End

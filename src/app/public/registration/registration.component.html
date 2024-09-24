@@ -1,0 +1,147 @@
+<div class="content-box mb-3" *ngIf="changeResolutionFlag">
+    <section class="registration-con">
+        <div class="row registration-box m-0">
+            <div class="col-12 p-0 mt-3">
+                <form [formGroup]="registrationForm" #form="ngForm" (submit)="gotoVerification()">
+                    <div class="mb-3">
+                        <mat-radio-group (change)="onTypeSelect($event)" formControlName="registerType">
+                            <mat-radio-button [checked]="type.key === selectedType" [value]="type" *ngFor="let type of registerTypeList">{{
+                                type.value
+                            }}</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div *ngIf="selectedType === registerType.MOBILE">
+                        <div class="form-group mat-form-field-width login-mobile-input-box login-with-country-code-input">
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <span matPrefix readonly>+91&nbsp;</span>
+                                <input
+                                    id="registerMobileNumber"
+                                    matInput
+                                    type="tel"
+                                    formControlName="registerMobileNumber"
+                                    placeholder="Mobile Number*"
+                                />
+                            </mat-form-field>
+                        </div>
+                        <div
+                            class="error-msg-outer"
+                            [hidden]="
+                                registrationForm.controls.registerMobileNumber.valid ||
+                                registrationForm.controls.registerMobileNumber.pristine
+                            "
+                        >
+                            <app-error-message class="error-message" [errors]="registrationForm.controls['registerMobileNumber'].errors">
+                            </app-error-message>
+                        </div>
+                    </div>
+                    <div *ngIf="selectedType === registerType.EMAIL">
+                        <div class="form-group mat-form-field-width">
+                            <mat-form-field appearance="outline">
+                                <input id="email" matInput type="email" formControlName="email" placeholder="Email Address*" />
+                            </mat-form-field>
+                        </div>
+                        <div
+                            class="error-msg-outer"
+                            [hidden]="registrationForm.controls.email.valid || registrationForm.controls.email.pristine"
+                        >
+                            <app-error-message class="error-message" [errors]="registrationForm.controls['email'].errors">
+                            </app-error-message>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button
+                            class="w-100 generate-otp-btn"
+                            type="submit"
+                            mat-flat-button
+                            color="primary"
+                            [disabled]="clicked || registrationForm.invalid"
+                        >
+                            {{ clicked ? '' : 'Generate OTP' }}
+                            <app-loader [count]="3" *ngIf="clicked"></app-loader>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Desktop Site Home Section Start -->
+<div class="content-box desktop-content-box" *ngIf="!changeResolutionFlag">
+    <section class="registration-con">
+        <div class="close-modal-btn">
+            <button mat-flat-button type="button" class="close" aria-label="Close" (click)="onClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="row registration-box m-0">
+            <div class="col-12 p-0 mt-3">
+                <form [formGroup]="registrationForm" #form="ngForm" (submit)="gotoVerification()">
+                    <div class="mb-3">
+                        <mat-radio-group (change)="onTypeSelect($event)" formControlName="registerType">
+                            <mat-radio-button [checked]="type.key === selectedType" [value]="type" *ngFor="let type of registerTypeList">{{
+                                type.value
+                            }}</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div *ngIf="selectedType === registerType.MOBILE">
+                        <div class="form-group mat-form-field-width login-with-country-code-input">
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <span matPrefix readonly>+91&nbsp;</span>
+                                <input
+                                    id="registerMobileNumber"
+                                    matInput
+                                    type="tel"
+                                    formControlName="registerMobileNumber"
+                                    placeholder="Mobile Number*"
+                                />
+                            </mat-form-field>
+                        </div>
+                        <div
+                            class="error-msg-outer"
+                            [hidden]="
+                                registrationForm.controls.registerMobileNumber.valid ||
+                                registrationForm.controls.registerMobileNumber.pristine
+                            "
+                        >
+                            <app-error-message class="error-message" [errors]="registrationForm.controls['registerMobileNumber'].errors">
+                            </app-error-message>
+                        </div>
+                    </div>
+                    <div *ngIf="selectedType === registerType.EMAIL">
+                        <div class="form-group mat-form-field-width">
+                            <mat-form-field appearance="outline">
+                                <input id="email" matInput type="email" formControlName="email" placeholder="Email Address*" />
+                            </mat-form-field>
+                        </div>
+                        <div
+                            class="error-msg-outer"
+                            [hidden]="registrationForm.controls.email.valid || registrationForm.controls.email.pristine"
+                        >
+                            <app-error-message class="error-message" [errors]="registrationForm.controls['email'].errors">
+                            </app-error-message>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button
+                            class="w-100 generate-otp-btn"
+                            type="submit"
+                            mat-flat-button
+                            color="primary"
+                            [disabled]="clicked || registrationForm.invalid"
+                        >
+                            {{ clicked ? '' : 'Generate OTP' }}
+                            <app-loader [count]="3" *ngIf="clicked"></app-loader>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12 p-0">
+                <p class="privacy-terms-txt">
+                    By Signing up, I agree to the <a [href]="appUrl.TERMS_CONDITIONS">Terms & Conditions</a> and
+                    <a [href]="appUrl.PRIVACY_POLICY">Privacy Policy</a> of The Secretariat.
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Desktop Site Home Section End -->

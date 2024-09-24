@@ -1,0 +1,26 @@
+.mat-tab-group {
+    .mat-tab-nav-bar, .mat-tab-header {
+        border-bottom: 0;
+    }
+    .mat-tab-list {
+        .mat-tab-labels {
+            align-items: center;
+            .mat-tab-label {
+                background: $whiteColor;
+                height: 32px;
+                @include border-radius(16px);
+                &.mat-tab-label-active  {
+                    border: solid 2px $primarySapphireBlue;
+                    color: $primarySapphireBlue;
+                    opacity: 1;
+                }
+                &:not(:last-child) {
+                    margin-right: 10px;
+                }
+            }
+        }
+        .mat-ink-bar {
+            display: none;
+        }
+    }
+}

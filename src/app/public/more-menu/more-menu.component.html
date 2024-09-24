@@ -1,0 +1,147 @@
+<section *ngIf="changeResolutionFlag && hasData">
+    <div class="more-menu">
+        <div class="row m-0 container-width">
+            <div class="col-9 ps-0 intro-text" *ngIf="name">
+                <h2><span>hello!</span>&nbsp; {{ name }}</h2>
+                <p>Happy {{ currentDate | date: 'EEEE' }} !</p>
+            </div>
+            <div class="col-9 ps-0 intro-text" *ngIf="!name">
+                <button mat-flat-button color="primary" class="btn" (click)="openHome()">Login / Sign Up</button>
+            </div>
+            <div class="col-3 pe-0 close-modal-btn">
+                <button mat-flat-button type="button" class="close" aria-label="Close" (click)="onCloseMenu()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="three-dot-line"></div>
+
+            <div class="row m-0 discover-box p-0">
+                <div class="col-12 discover-title-box">
+                    <h6 class="discover-title-txt">DISCOVER</h6>
+                </div>
+                <div class="col-12 discover-detail-con">
+                    <div class="discover-detail-box" *ngFor="let favCategory of favCatgories">
+                        <a
+                            class="discover-detail-title"
+                            routerLink="/{{ appUrl.ARTICLES_BY_CATEGORY }}{{ favCategory.slug }}-{{ favCategory.id }}"
+                        >
+                            {{ favCategory.name }}
+                        </a>
+                        <p class="discover-title-txt">{{ favCategory.description }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="three-dot-line"></div>
+
+            <ul class="menu-simple-list">
+                <li *ngIf="name"><a [href]="[appUrl.MY_ACCOUNT]">My Account</a></li>
+                <!-- <li><a href="javascript:void(0)">Change Theme</a></li> -->
+                <li><a [href]="[appUrl.FEEDBACK]">Give Feedback</a></li>
+                <li><a (click)="onShareApp()">Share the app</a></li>
+                <li><a [href]="[appUrl.ABOUT_US]">About Us</a></li>
+                <li><a [href]="appUrl.CONTACT">Contact</a></li>
+                <li *ngIf="name"><a (click)="onLogout()">Logout</a></li>
+            </ul>
+
+            <div class="three-dot-line"></div>
+
+            <ul class="two-col-menu clearfix">
+                <li *ngFor="let category of categoryList">
+                    <a [href]="authorService.generateSlug(category.name, category.id, articleType.CATEGORY)">
+                        {{ category.name }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="made-with-love">Made with love ❤️ in India</div>
+</section>
+
+<!-- Desktop view -->
+<section class="modal-body desktop-more-menu" *ngIf="!changeResolutionFlag && hasData">
+    <div class="more-menu">
+        <div class="container-width">
+            <div class="row mb-4">
+                <div class="col-9">
+                    <h4 class="modal-title">Menu</h4>
+                </div>
+                <div class="col-3 text-end">
+                    <button type="button" class="close" aria-label="Close" (click)="onClose()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="intro-text" *ngIf="name">
+                <h6><span>hello!</span>&nbsp; {{ name }}</h6>
+                <p>Happy {{ currentDate | date: 'EEEE' }} !</p>
+            </div>
+            <div class="intro-text" *ngIf="!name">
+                <button mat-flat-button color="primary" class="btn" (click)="openRegister()">Login / Sign Up</button>
+            </div>
+
+            <div class="three-dot-line"></div>
+
+            <div class="row m-0 discover-box p-0">
+                <div class="col-12 p-0 discover-title-box">
+                    <h6 class="discover-title-txt">DISCOVER</h6>
+                </div>
+                <div class="col-12 p-0 discover-detail-con">
+                    <div class="discover-detail-box" *ngFor="let favCategory of favCatgories">
+                        <a
+                            class="discover-detail-title"
+                            routerLink="/{{ appUrl.ARTICLES_BY_CATEGORY }}{{ favCategory.slug }}-{{ favCategory.id }}"
+                        >
+                            {{ favCategory.name }}
+                        </a>
+                        <p class="discover-title-txt">{{ favCategory.description }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="three-dot-line"></div>
+
+            <ul class="menu-simple-list">
+                <li *ngIf="name"><a [href]="[appUrl.EDIT_PROFILE]">My Account</a></li>
+                <!-- <li><a href="javascript:void(0)">Change Theme</a></li> -->
+                <li><a [href]="[appUrl.FEEDBACK]">Give Feedback</a></li>
+                <li><a (click)="onShareApp()">Share the app</a></li>
+                <li><a [href]="[appUrl.ABOUT_US]">About Us</a></li>
+                <li><a [href]="appUrl.CONTACT">Contact</a></li>
+                <li *ngIf="name"><a (click)="onLogout()">Logout</a></li>
+            </ul>
+
+            <div class="three-dot-line"></div>
+
+            <ul class="two-col-menu clearfix">
+                <li *ngFor="let category of categoryList">
+                    <a [href]="authorService.generateSlug(category.name, category.id, articleType.CATEGORY)">
+                        {{ category.name }}
+                    </a>
+                </li>
+            </ul>
+
+            <div class="three-dot-line"></div>
+
+            <div class="follow-us-txt-box">
+                <h6 class="mb-4">Follow us on</h6>
+                <div class="menu-social-icon-box">
+                    <a [href]="social_media_url.SOCIAL_MEDIA_FACEBOOK" target="_blank">
+                        <img src="assets/images/facebook-black.svg" />
+                    </a>
+                    <a [href]="social_media_url.SOCIAL_MEDIA_TWITTER" target="_blank">
+                        <img src="assets/images/twitter-black.svg" />
+                    </a>
+                    <a [href]="social_media_url.SOCIAL_MEDIA_INSTAGRAM" target="_blank">
+                        <img src="assets/images/instagram-black.svg" />
+                    </a>
+                    <a [href]="social_media_url.SOCIAL_MEDIA_LINKEDIN" target="_blank">
+                        <img src="assets/images/linkedin-black.svg" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="made-with-love">Made with love ❤️ in India</div>
+</section>

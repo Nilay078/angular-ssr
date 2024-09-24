@@ -1,0 +1,32 @@
+.terms-policies-con {
+    .terms-policies-box {
+        padding: 20px;
+        .terms-policies-txt {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            font-family: $literata;
+        }
+        .terms-policies-heading-title {
+            font-weight: 700;
+            font-family: $literata;
+            margin: 20px 0;
+        }
+    }
+}
+
+// Desktop Site Css Start
+.desktop-terms-policies-con {
+    &.terms-policies-con {
+        .terms-policies-box {
+            padding: 15px;
+            max-width: 850px;
+            margin: 0 auto;
+            .terms-policies-txt {
+                font-size: 18px;
+                line-height: 32px;
+            }
+        }
+    }
+}
+// Desktop Site Css End

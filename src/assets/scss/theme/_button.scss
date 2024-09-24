@@ -1,0 +1,51 @@
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+  background-color: $primarySapphireBlue;
+  font-family: $cabinetGrotesk;
+  font-size: 16px;
+  min-width: 100px !important;
+  padding: 5px 0;
+  color: $whiteColor;
+  text-transform: uppercase;
+  @include border-radius(0);
+  letter-spacing: 1px;
+  border: solid 1px $primarySapphireBlue;
+}
+.view-all-btn-box {
+  background-color: rgba($primarySapphireBlue, 0.1);
+  font-family: $cabinetGrotesk;
+  font-size: 16px;
+  min-width: 100px !important;
+  padding: 5px 0 !important;
+  color: $primarySapphireBlue;
+  text-transform: uppercase;
+  @include border-radius(0 !important);
+  letter-spacing: 1px;
+}
+.black-bg-btn-box {
+  background-color: $secondaryOuterSpaceCrayola;
+  font-family: $cabinetGrotesk;
+  font-size: 16px;
+  min-width: 100px !important;
+  padding: 5px 0 !important;
+  color: $whiteColor;
+  text-transform: uppercase;
+  @include border-radius(0 !important);
+  letter-spacing: 1px;
+}
+.border-btn {
+  &.mat-flat-button {
+    background-color: transparent;
+    font-family: $cabinetGrotesk;
+    font-size: 16px;
+    min-width: 100px !important;
+    padding: 5px 0;
+    color: $primarySapphireBlue;
+    border: solid 1px $primarySapphireBlue;
+    text-transform: uppercase;
+    @include border-radius(0);
+    letter-spacing: 1px;
+  }
+}

@@ -1,0 +1,183 @@
+@import '/src/assets/scss/variables';
+
+::ng-deep .header {
+  background-color: $primarySapphireBlue;
+  padding: 15px 0;
+  position: sticky;
+  top: 0px;
+  z-index: 99;
+  .logo{
+    img{
+      width: 150px;
+    }
+  }
+  .language-box{
+    .mat-form-field-appearance-outline {
+      .mat-form-field-wrapper {
+        padding-bottom: 0;
+        margin: 0 !important;
+        .mat-form-field-prefix, .mat-form-field-suffix {
+          top: 0.40em;
+          .mat-icon {
+            color: $whiteColor;
+            margin-right: 10px;
+          }
+        }
+        .mat-form-field-outline {
+          color: transparent !important;
+          background-color: $primarySapphireBlue;
+        }
+        .mat-form-field-infix {
+          border-top: 0;
+          width: 100px;
+          padding: 1em 0 !important;
+          .mat-form-field-label {
+            color: $primarySapphireBlue !important;
+            font-family: $cabinetGrotesk !important;
+          }
+          .mat-select-value {
+            color: $whiteColor;
+            font-size: 18px;
+            font-weight: 500;
+          }
+          .mat-select-arrow {
+            color: $whiteColor !important;
+            margin-top: 8px;
+          }
+          .mat-select-placeholder {
+            color: $whiteColor;
+          }
+        }
+      }
+    }
+    .mat-input-element, .mat-select-trigger, .mat-select-panel .mat-option {
+      font-family: $cabinetGrotesk !important;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-outline-start, .mat-form-field-appearance-outline .mat-form-field-outline-end,
+    .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+      border: 0 !important;
+    }
+  }
+  .header-logo {
+    text-align: left;
+  }
+  .search-btn {
+    text-align: right;
+    .nav-link {
+      mat-icon {
+        .material-symbols-outlined {
+          color: $whiteColor;
+        }
+      }
+      &.disabled {
+        cursor: none;
+        pointer-events: none;
+        mat-icon {
+          .material-symbols-outlined {
+            color: $greyColor;
+          }
+        }
+      }
+    }
+    .close {
+      background: transparent;
+      font-size: 28px;
+      color: $whiteColor;
+      min-width: auto;
+    }
+  }
+}
+
+// Desktop Site Design Css Start
+::ng-deep .desktop-header-box {
+  padding: 10px 0;
+  .update-time-login-btn-con {
+    border-bottom: solid 1px rgba($secondaryPowderBlue, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    .update-time-login-btn-box {
+      align-items: center;
+      .update-date-time-txt {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 15px;
+        color: $primarySeashell;
+        font-family: $cabinetGrotesk;
+        margin-bottom: 0;
+      }
+      .login-subscribe-btn-box {
+        text-align: right;
+        .login-subscribe-btn {
+          color: $whiteColor;
+          font-family: $cabinetGrotesk;
+          font-size: 16px;
+          &:hover {
+            .mat-button-focus-overlay {
+              opacity: 0 !important;
+            }
+          }
+          &.subscribe-btn {
+            background-color: rgba($secondaryOuterSpaceCrayola, 0.3);
+          }
+        }
+      }
+    }
+  }
+  .logo-menu-box {
+    align-items: center;
+    .logo-state-box {
+      display: inline-flex;
+      align-items: center;
+      &.language-box{
+        .mat-form-field-appearance-outline {
+          .mat-form-field-wrapper {
+            .mat-form-field-infix {
+              padding: 0 !important;
+            }
+          }
+        }
+      }
+    }
+    .menu-con {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      .menu-box {
+        ul {
+          display: inline-flex;
+          align-items: center;
+          li {
+            margin-right: 15px;
+            a {
+              color: $primarySeashell !important;
+              text-decoration: none;
+              font-size: 14px;
+              line-height: 20px;
+              font-weight: 500;
+              font-family: $cabinetGrotesk;
+            }
+          }
+        }
+        .active {
+          border-bottom: dotted 2px $primarySeashell;
+          padding-bottom: 8px;
+        }
+      }
+      .more-menu-box {
+        .more-menu-btn {
+          color: $whiteColor;
+          font-family: $cabinetGrotesk;
+          font-size: 16px;
+          padding: 0;
+          min-width: 30px;
+          &:hover {
+            .mat-button-focus-overlay {
+              opacity: 0 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Desktop Site Design Css End

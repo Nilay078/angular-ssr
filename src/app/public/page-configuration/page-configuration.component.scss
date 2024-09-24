@@ -1,0 +1,283 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+.deep-dive-header-box {
+  background-color: $darkBlueColor;
+  text-align: center;
+  padding: 7px;
+  position: sticky;
+  top: 70px;
+  z-index: 9;
+  p {
+    @include text(14px, 20px, $whiteColor, $cabinetGrotesk, $medium);
+    margin-bottom: 0;
+  }
+}
+
+// Section with banner image & article Css Start
+.article-with-banner-img-box {
+  background-color: rgba($primaryPaleChestnut, 0.5);
+  // padding: 30px 0;
+}
+// Section with banner image & article Css End
+
+// Section without image (list of articles) Css Start
+.article-list-box {
+  .section-heading-txt-box {
+    padding: 0 20px;
+    .section-heading-txt {
+      border-top: solid 2px $secondaryTxtColor;
+      padding: 20px 0;
+      h5 {
+        font-weight: 700;
+        color: $primarySapphireBlue;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .article-list-con {
+    .article-list-count-box {
+      p {
+        font-size: 40px;
+        color: $secondaryOuterSpaceCrayola;
+        line-height: 50px;
+      }
+    }
+    .article-txt-con {
+      .article-category-txt {
+        p {
+          font-size: 12px;
+          font-weight: 800;
+          line-height: 15px;
+          color: $primarySapphireBlue;
+          margin-bottom: 0;
+          text-transform: uppercase;
+        }
+      }
+      .article-txt {
+        p {
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 28px;
+          color: $blackColor;
+        }
+      }
+    }
+    .article-by-read-time-box {
+      display: inline-flex;
+      align-items: center;
+      span {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 18px;
+        font-family: $literata;
+        color: $secondaryOuterSpaceCrayola;
+      }
+      .dot-circle-txt {
+        margin: 0 10px;
+      }
+    }
+  }
+}
+// Section without image (list of articles) Css End
+
+.mobile-home-page-con {
+  padding: 20px 20px 0;
+}
+// Register User Detail section Css Start
+.register-user-name-box {
+  padding: 20px 20px 0;
+  h4 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 28px;
+    color: $secondaryOuterSpaceCrayola;
+    font-family: $cabinetGrotesk;
+    span {
+      font-family: $literata;
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    font-family: $cabinetGrotesk;
+    color: rgba($secondaryOuterSpaceCrayola, 0.7);
+  }
+  .subscribe-now-btn {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: $primarySapphireBlue;
+    font-family: $cabinetGrotesk;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+// Register User Detail section Css End
+
+// Desktop Site Css Start
+// Section with image & 3 articles Css Start
+.three-article-one-img-box {
+  .section-heading-txt-box {
+    align-items: center;
+    padding: 0 0 20px;
+    .section-heading-txt {
+      h5 {
+        font-weight: 700;
+        color: $primarySapphireBlue;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .article-img-box {
+    img {
+      width: 100%;
+    }
+  }
+  .article-txt-con {
+    &:not(:first-child) {
+      padding-top: 20px;
+    }
+    &:not(:last-child) {
+      border-bottom: solid 1px rgba($primaryPaleChestnut, 0.3);
+      padding-bottom: 20px;
+    }
+    .article-txt {
+      p {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: $blackColor;
+      }
+    }
+  }
+  .article-by-read-time-box {
+    display: inline-flex;
+    align-items: center;
+    span {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 18px;
+      font-family: $literata;
+      color: $secondaryOuterSpaceCrayola;
+    }
+    .dot-circle-txt {
+      margin: 0 10px;
+    }
+  }
+}
+.desktop-register-user-name-con {
+  padding-bottom: 0;
+  .desktop-register-user-name-box {
+    display: inline-flex;
+    align-items: center;
+    p {
+      margin-bottom: 0;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+    .subscribe-now-btn {
+      margin-left: 20px;
+      border-bottom: dotted 2px $primarySapphireBlue;
+      font-size: 16px;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .deep-dive-header-box {
+    padding: 10px;
+    top: 149px;
+    p {
+      @include text(16px, 22px, $whiteColor, $cabinetGrotesk, $medium);
+    }
+  }
+}
+@media (max-width: 992px) {
+  .three-article-txt-one-img-box {
+    margin-bottom: 20px;
+  }
+  .desktop-register-user-name-con {
+    .desktop-register-user-name-box {
+      h4 {
+        font-size: 18px;
+      }
+      p {
+        margin-left: 10px;
+        font-size: 12px;
+      }
+      .subscribe-now-btn {
+        margin-left: 10px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+// Section with image & 3 articles Css End
+// Desktop Site Css End
+
+::ng-deep .about-us-con {
+  .about-us-title {
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 38px;
+      font-family: $cabinetGrotesk;
+  }
+  .about-us-box {
+      padding: 0 10px 20px;
+      .about-us-txt {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 32px;
+        font-family: $literata;
+        ul {
+          list-style: disc;
+          margin-bottom: 1rem;
+          padding-left: 2rem;
+          li {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 28px;
+            font-family: $literata;
+            color: $secondaryOuterSpaceCrayola;
+          }
+        }
+        ol {
+          ul {
+            list-style: circle;
+          }
+        }
+      }
+      .about-us-txt-ul {
+          list-style: disc;
+          margin-bottom: 1rem;
+          padding-left: 1rem;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 32px;
+          font-family: $literata;
+      }
+  }
+}
+// Desktop Site Css Start
+.desktop-about-us-con {
+  &.about-us-con {
+      .about-us-box {
+          padding: 15px;
+          max-width: 850px;
+          margin: 0 auto;
+          .about-us-heading-txt-box {
+              text-align: center;
+              .about-us-main-heading {
+                  font-size: 44px;
+                  line-height: 54px;
+              }
+          }
+      }
+  }
+}
+// Desktop Site Css End

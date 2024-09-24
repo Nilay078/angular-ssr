@@ -1,0 +1,200 @@
+<app-private-header (back)="onBackPage()" [pageName]="'Edit Profile'" *ngIf="changeResolutionFlag"></app-private-header>
+<section class="user-registration-box desktop-user-registration-box">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-3 menu-border-right">
+                    <app-my-account-menu></app-my-account-menu>
+                </div>
+                <div class="col-md-9">
+                    <div class="row m-0">
+                        <div class="col-12 p-0">
+                            <app-breadcrumb [breadcrumbs]="breadcrumbs" *ngIf="!changeResolutionFlag"></app-breadcrumb>
+                            <h4 class="user-registration-title-txt edit-profile-txt mt-2" *ngIf="!changeResolutionFlag">Edit Profile</h4>
+                            <div class="row mt-4" *ngIf="!hasData">
+                                <div class="col-md-6" *ngFor="let i of [0, 1, 2, 3, 4, 5]">
+                                    <app-line-skeleton-loader [theme]="thumbnailTheme"></app-line-skeleton-loader>
+                                </div>
+                            </div>
+                            <form
+                                class="user-registration-form"
+                                [formGroup]="userForm"
+                                #form="ngForm"
+                                (submit)="onUpdate()"
+                                *ngIf="hasData"
+                            >
+                                <div class="row">
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group mat-form-field-width">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label for="firstName">First Name</mat-label>
+                                                <input
+                                                    id="firstName"
+                                                    matInput
+                                                    type="text"
+                                                    formControlName="firstName"
+                                                    [ngModel]="userView?.firstName"
+                                                />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="error-msg-outer" *ngIf="userForm.controls['firstName'].touched || form.submitted">
+                                            <app-error-message class="error-message" [errors]="userForm.controls['firstName'].errors">
+                                            </app-error-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group mat-form-field-width">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label for="lastName">Last Name</mat-label>
+                                                <input
+                                                    id="lastName"
+                                                    matInput
+                                                    type="text"
+                                                    formControlName="lastName"
+                                                    [ngModel]="userView?.lastName"
+                                                />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="error-msg-outer" *ngIf="userForm.controls['lastName'].touched || form.submitted">
+                                            <app-error-message class="error-message" [errors]="userForm.controls['lastName'].errors">
+                                            </app-error-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group mat-form-field-width login-with-country-code-input">
+                                            <mat-form-field appearance="outline" floatLabel="always">
+                                                <mat-label>Mobile Number</mat-label>
+                                                <span matPrefix readonly>+91&nbsp;</span>
+                                                <input matInput formControlName="mobile" [ngModel]="userView?.mobile" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="error-msg-outer" *ngIf="userForm.controls['mobile'].touched || form.submitted">
+                                            <app-error-message class="error-message" [errors]="userForm.controls['mobile'].errors">
+                                            </app-error-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group mat-form-field-width">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label for="email">Email ID</mat-label>
+                                                <input
+                                                    id="email"
+                                                    matInput
+                                                    type="email"
+                                                    formControlName="email"
+                                                    [ngModel]="userView?.email"
+                                                />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="error-msg-outer" *ngIf="userForm.controls['email'].touched || form.submitted">
+                                            <app-error-message class="error-message" [errors]="userForm.controls['email'].errors">
+                                            </app-error-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group mat-form-field-width">
+                                            <mat-form-field appearance="outline">
+                                                <mat-label for="state">Select State</mat-label>
+                                                <mat-select
+                                                    #select
+                                                    formControlName="stateView"
+                                                    [compareWith]="utils.idComparer"
+                                                    [(ngModel)]="userView.stateView"
+                                                >
+                                                    <mat-select-filter
+                                                        placeholder="Search By State Name"
+                                                        *ngIf="select.focused"
+                                                        [array]="stateList"
+                                                        displayMember="name"
+                                                        (filteredReturn)="filteredStateList = $event"
+                                                    ></mat-select-filter>
+                                                    <mat-option *ngFor="let data of filteredStateList" [value]="data">
+                                                        {{ data.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="error-msg-outer" *ngIf="userForm.controls['stateView'].touched || form.submitted">
+                                            <app-error-message class="error-message" [errors]="userForm.controls['stateView'].errors">
+                                            </app-error-message>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2 mb-5">
+                                    <div class="col-4 gender-select-box">
+                                        <a
+                                            [ngClass]="selectedGender?.key === genderList[0].key ? 'active' : ''"
+                                            (click)="onSelect(genderList[0])"
+                                        >
+                                            <mat-card class="gender-card-box">
+                                                <mat-card-content>
+                                                    <img src="assets/images/male-icon.png" />
+                                                    <p>Male</p>
+                                                </mat-card-content>
+                                            </mat-card>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 gender-select-box">
+                                        <a
+                                            [ngClass]="selectedGender?.key === genderList[1].key ? 'active' : ''"
+                                            (click)="onSelect(genderList[1])"
+                                        >
+                                            <mat-card class="gender-card-box">
+                                                <mat-card-content>
+                                                    <img src="assets/images/female-icon.png" />
+                                                    <p>Female</p>
+                                                </mat-card-content>
+                                            </mat-card>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 gender-select-box">
+                                        <a
+                                            [ngClass]="selectedGender?.key === genderList[2].key ? 'active' : ''"
+                                            (click)="onSelect(genderList[2])"
+                                        >
+                                            <mat-card class="gender-card-box">
+                                                <mat-card-content>
+                                                    <img src="assets/images/other-icon.png" />
+                                                    <p>Other</p>
+                                                </mat-card-content>
+                                            </mat-card>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <h6>Get top news over email</h6>
+                                <p class="user-registration-subtitle-txt">
+                                    We will send you the latest and the best of stories straight to your inbox.
+                                </p>
+
+                                <div class="row m-0 mb-5">
+                                    <div class="col-12 user-register-slide-toggle-box">
+                                        <span>The Secretariat Skim</span>
+                                        <mat-slide-toggle
+                                            color="primary"
+                                            formControlName="skimMode"
+                                            [ngModel]="userView?.skimMode"
+                                        ></mat-slide-toggle>
+                                    </div>
+                                    <div class="col-12 user-register-slide-toggle-box">
+                                        <span>The Secretariat Deep Dives</span>
+                                        <mat-slide-toggle
+                                            color="primary"
+                                            formControlName="deepDive"
+                                            [ngModel]="userView?.deepDive"
+                                        ></mat-slide-toggle>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="update-btn" type="submit" mat-flat-button color="primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

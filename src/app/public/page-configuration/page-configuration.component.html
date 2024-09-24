@@ -1,0 +1,395 @@
+<app-private-header
+    (back)="onBackPage()"
+    [pageName]="staticPageView.name"
+    *ngIf="changeResolutionFlag && staticPageView"
+></app-private-header>
+
+<section *ngIf="changeResolutionFlag">
+    <div class="mobile-home-page-con" *ngIf="!userView && router.url === '/' + appUrl.HOME && hasData">
+        <div class="mobile-registration-con">
+            <app-registration></app-registration>
+        </div>
+    </div>
+
+    <!-- Register User Detail Section start -->
+    <section class="register-user-name-box" *ngIf="userView?.firstName && router.url === '/' + appUrl.HOME && hasData">
+        <div class="row">
+            <div class="col-12">
+                <div class="register-user-name-txt">
+                    <h4><span>hello!</span>&nbsp; {{ userView.firstName }} {{ userView.lastName }}</h4>
+                    <p>Happy {{ currentDate | date: 'EEEE' }} !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Register User Detail Section end -->
+
+    <!-- Deep Dive Header Section start -->
+    <!-- <div class="row deep-dive-header-box m-0" *ngIf="router.url === '/' + appUrl.DEEP_DIVE && hasData">
+        <div class="col-12">
+            <p>The Secret Door — Free access for a limited time.</p>
+        </div>
+    </div> -->
+    <!-- Deep Dive Header Section end -->
+
+    <div class="mt-4 article-with-banner-img-box" *ngIf="!hasData">
+        <div class="default-other-address-txt" *ngFor="let i of [0, 1]">
+            <app-line-skeleton-loader [theme]="theme"></app-line-skeleton-loader>
+        </div>
+    </div>
+    <div *ngFor="let data of articleList; let i = index">
+        <div *ngIf="data.type.key === 1 && data.contentViews.length !== 0">
+            <!-- Hero Banner Section Code Start -->
+            <app-hero-banner
+                *ngIf="data.mobileArticleLayout.key === mobileSectionType.HERO_BANNER"
+                [data]="data"
+                (changeBookmark)="onSearch()"
+                [removeBorder]="i === 0 && router.url !== '/' + appUrl.HOME"
+            ></app-hero-banner>
+            <!-- Hero Banner Section Code End -->
+
+            <!-- Slider Section Code Start -->
+            <app-slider
+                *ngIf="
+                    data.mobileArticleLayout.key === mobileSectionType.SLIDER && data.articleType && data.articleType.key !== 3 && isBrowser
+                "
+                [data]="data"
+                (changeBookmark)="onSearch()"
+                [removeBorder]="i === 0 && router.url !== '/' + appUrl.HOME"
+            ></app-slider>
+            <!-- Slider Section Code End -->
+
+            <!-- Slider Section Code Start -->
+            <section
+                class="slider-article-box"
+                *ngIf="
+                    data.mobileArticleLayout.key === mobileSectionType.SLIDER && data.articleType && data.articleType.key === 3 && isBrowser
+                "
+            >
+                <div class="row m-0 section-heading-txt-box align-items-center">
+                    <div
+                        [ngClass]="
+                            i === 0 && router.url !== '/' + appUrl.HOME
+                                ? 'remove-top-border col-12 section-heading-txt'
+                                : 'col-12 section-heading-txt'
+                        "
+                    >
+                        <div class="state-drop-down-box">
+                            <span class="state-title-txt"> STATE WATCH &nbsp;&nbsp; </span>
+                            <div class="spacer"></div>
+                            <mat-form-field appearance="outline">
+                                <button type="button" class="btn filter-btn p-0" (click)="select1.open(); stateSearch()">
+                                    <mat-icon>
+                                        <span class="material-symbols-outlined">instant_mix</span>
+                                    </mat-icon>
+                                </button>
+                                <mat-select
+                                    #select1
+                                    [compareWith]="utils.idComparer"
+                                    [(ngModel)]="data.stateView"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    (selectionChange)="onStateChange($event, i)"
+                                    class="state-filter-dropdown"
+                                >
+                                    <mat-select-filter
+                                        placeholder="Search By State Name"
+                                        *ngIf="select1.focused"
+                                        [array]="stateList"
+                                        displayMember="name"
+                                        (filteredReturn)="filteredStateList = $event"
+                                    ></mat-select-filter>
+                                    <mat-option *ngFor="let stateData of filteredStateList" [value]="stateData">
+                                        {{ stateData.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <app-slider-state-selection
+                    [data]="data"
+                    (changeBookmark)="onSearch()"
+                    [removeBorder]="i === 0 && router.url !== '/' + appUrl.HOME"
+                ></app-slider-state-selection>
+            </section>
+            <!-- Slider Section Code End -->
+
+            <!-- Thumbnail Section Code Start -->
+            <app-thumbnail
+                *ngIf="
+                    data.mobileArticleLayout.key === mobileSectionType.THUMBNAIL_DARK_BACKGROUND ||
+                    data.mobileArticleLayout.key === mobileSectionType.THUMBNAIL_LIGHT_BACKGROUND
+                "
+                [data]="data"
+                (changeBookmark)="onSearch()"
+                [removeBorder]="i === 0 && router.url !== '/' + appUrl.HOME"
+            ></app-thumbnail>
+            <!-- Thumbnail Section Code End -->
+
+            <!-- Banner Section Code Start -->
+            <app-banner
+                *ngIf="
+                    data.mobileArticleLayout.key === mobileSectionType.BANNER ||
+                    data.mobileArticleLayout.key === mobileSectionType.BANNER_DESCRIPTION
+                "
+                [data]="data"
+                (changeBookmark)="onSearch()"
+                [removeBorder]="i === 0 && router.url !== '/' + appUrl.HOME"
+            ></app-banner>
+            <!-- Banner Section Code End -->
+
+            <!-- Hero Banner with Thumbnail Section Code Start -->
+            <app-hero-banner-with-thumbnail
+                *ngIf="data.mobileArticleLayout.key === mobileSectionType.HERO_BANNER_THUMBNAIL_DESCRIPTION"
+                [data]="data"
+                (changeBookmark)="onSearch()"
+                [removeBorder]="i === 0 && router.url !== '/' + appUrl.HOME"
+            ></app-hero-banner-with-thumbnail>
+            <!-- Hero Banner with Thumbnail Section Code End -->
+
+            <!-- Without Image Section Code Start -->
+            <app-without-image
+                *ngIf="data.mobileArticleLayout.key === mobileSectionType.WITHOUT_IMAGE"
+                [data]="data"
+                (changeBookmark)="onSearch()"
+                [removeBorder]="i === 0 && router.url !== '/' + appUrl.HOME"
+            ></app-without-image>
+            <!-- Without Image Section Code End -->
+
+            <!-- Without Image Number Section Code Start -->
+            <app-without-image-number
+                *ngIf="data.mobileArticleLayout.key === mobileSectionType.NUMBER"
+                [data]="data"
+                (changeBookmark)="onSearch()"
+                [removeBorder]="i === 0 && router.url !== '/' + appUrl.HOME"
+            ></app-without-image-number>
+            <!-- Without Image Number Section Code End -->
+        </div>
+
+        <!-- Advertisement section Code Start -->
+        <div *ngIf="data.type.key === 2">
+            <app-newsletter [data]="data.newsLetterView"></app-newsletter>
+        </div>
+        <!-- Advertisement section Code End -->
+    </div>
+
+    <!-- Advertisement section Code Start -->
+    <app-newsletter [layout]="4"></app-newsletter>
+    <!-- Advertisement section Code End -->
+
+    <div class="about-us-con" *ngIf="staticPageView">
+        <div class="row about-us-box m-0">
+            <div class="col-12 mt-3">
+                <div class="about-us-txt" [innerHTML]="staticPageView.content"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Desktop Site Home Section Start -->
+<section *ngIf="!changeResolutionFlag">
+    <!-- Deep Dive Header Section start -->
+    <!-- <div
+        class="row deep-dive-header-box m-0"
+        *ngIf="router.url === '/' + appUrl.DEEP_DIVE && hasData && !cookieService.check('auth-token')"
+    >
+        <div class="col-12">
+            <p>The Secret Door — Free access for a limited time.</p>
+        </div>
+    </div> -->
+    <!-- Deep Dive Header Section end -->
+    <div class="container-fluid">
+        <div class="container">
+            <!-- Register User Detail Section start -->
+            <div
+                class="register-user-name-box desktop-register-user-name-con"
+                *ngIf="userView?.firstName && router.url === '/' + appUrl.HOME && hasData"
+            >
+                <div class="row">
+                    <div class="col-12 desktop-register-user-name-box px-0">
+                        <h4><span>hello!</span>&nbsp; {{ userView?.firstName }} {{ userView?.lastName }}</h4>
+                        <p>Happy {{ currentDate | date: 'EEEE' }} !</p>
+                        <!-- <a class="subscribe-now-btn" href="javascript:void(0)"> Subscribe Now </a> -->
+                    </div>
+                </div>
+            </div>
+            <!-- Register User Detail Section end -->
+
+            <div class="row mt-4" *ngIf="!hasData">
+                <div class="col-md-6" *ngFor="let i of [0, 1, 2, 3, 4, 5]">
+                    <app-line-skeleton-loader [theme]="thumbnailTheme"></app-line-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let data of articleList; let i = index">
+        <div class="my-2" *ngIf="data.type.key === 1 && data.contentViews.length !== 0">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row m-0" *ngIf="data.desktopArticleLayout.key === desktopSectionType.HERO_BANNER">
+                        <div class="col-12">
+                            <app-hero-banner
+                                [data]="data"
+                                (changeBookmark)="onSearch()"
+                                [removeBorder]="(i === 0 && router.url !== '/' + appUrl.HOME) || !userView?.firstName"
+                            ></app-hero-banner>
+                        </div>
+                    </div>
+
+                    <div class="row m-0" *ngIf="data.desktopArticleLayout.key === desktopSectionType.HERO_BANNER_THUMBNAIL_DESCRIPTION">
+                        <div class="col-12">
+                            <app-hero-banner-with-thumbnail
+                                [data]="data"
+                                (changeBookmark)="onSearch()"
+                                [removeBorder]="(i === 0 && router.url !== '/' + appUrl.HOME) || !userView?.firstName"
+                            ></app-hero-banner-with-thumbnail>
+                        </div>
+                    </div>
+
+                    <div class="row m-0" *ngIf="data.desktopArticleLayout.key === desktopSectionType.NUMBER">
+                        <div class="col-12">
+                            <app-without-image-number
+                                [data]="data"
+                                (changeBookmark)="onSearch()"
+                                [removeBorder]="(i === 0 && router.url !== '/' + appUrl.HOME) || !userView?.firstName"
+                            ></app-without-image-number>
+                        </div>
+                    </div>
+
+                    <div class="row m-0" *ngIf="data.desktopArticleLayout.key === desktopSectionType.HERO_BANNER_BOTTOM_TEXT">
+                        <div class="col-12">
+                            <app-hero-banner-bottom-text
+                                [data]="data"
+                                (changeBookmark)="onSearch()"
+                                [removeBorder]="(i === 0 && router.url !== '/' + appUrl.HOME) || !userView?.firstName"
+                            ></app-hero-banner-bottom-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="row m-0"
+                *ngIf="
+                    data.desktopArticleLayout.key === desktopSectionType.BANNER ||
+                    data.desktopArticleLayout.key === desktopSectionType.BANNER_DESCRIPTION ||
+                    data.desktopArticleLayout.key === desktopSectionType.BANNER_DARK_BACKGROUND
+                "
+            >
+                <div class="col-12 p-0">
+                    <app-banner
+                        [data]="data"
+                        (changeBookmark)="onSearch()"
+                        [removeBorder]="(i === 0 && router.url !== '/' + appUrl.HOME) || !userView?.firstName"
+                    ></app-banner>
+                </div>
+            </div>
+
+            <div
+                class="row m-0"
+                *ngIf="
+                    data.desktopArticleLayout.key === desktopSectionType.SLIDER && data.articleType && [1, 2].includes(data.articleType.key)
+                "
+            >
+                <div class="col-12 p-0" *ngIf="isBrowser">
+                    <app-slider
+                        [data]="data"
+                        (changeBookmark)="onSearch()"
+                        [removeBorder]="(i === 0 && router.url !== '/' + appUrl.HOME) || !userView?.firstName"
+                    ></app-slider>
+                </div>
+            </div>
+
+            <div
+                class="row m-0"
+                *ngIf="data.desktopArticleLayout.key === desktopSectionType.SLIDER && data.articleType && data.articleType.key === 3"
+            >
+                <div class="col-12 p-0">
+                    <section class="slider-article-box desktop-slider-article-box">
+                        <div class="container-fluid">
+                            <div class="container slider-article-con">
+                                <div
+                                    class="row m-0 section-heading-txt-box mb-3"
+                                    [ngClass]="
+                                        (i === 0 && router.url !== '/' + appUrl.HOME) || !userView?.firstName ? 'remove-top-border' : ''
+                                    "
+                                >
+                                    <div class="col-md-12 section-heading-txt">
+                                        <div class="state-drop-down-box">
+                                            <span class="state-title-txt"> STATE WATCH &nbsp;&nbsp; </span>
+                                            <mat-form-field appearance="outline" *ngIf="isBrowser">
+                                                <button type="button" class="btn filter-btn" (click)="select.open(); stateSearch()">
+                                                    <mat-icon>
+                                                        <span class="material-symbols-outlined">instant_mix</span>
+                                                    </mat-icon>
+                                                </button>
+                                                <mat-select
+                                                    #select
+                                                    [compareWith]="utils.idComparer"
+                                                    [(ngModel)]="data.stateView"
+                                                    [ngModelOptions]="{ standalone: true }"
+                                                    (selectionChange)="onStateChange($event, i)"
+                                                    class="state-filter-dropdown"
+                                                >
+                                                    <mat-select-filter
+                                                        placeholder="Search By State Name"
+                                                        *ngIf="select.focused"
+                                                        [array]="stateList"
+                                                        displayMember="name"
+                                                        (filteredReturn)="filteredStateList = $event"
+                                                    ></mat-select-filter>
+                                                    <mat-option *ngFor="let stateData of filteredStateList" [value]="stateData">
+                                                        {{ stateData.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                                <app-slider-state-selection
+                                    [data]="data"
+                                    (changeBookmark)="onSearch()"
+                                    [removeBorder]="(i === 0 && router.url !== '/' + appUrl.HOME) || !userView?.firstName"
+                                ></app-slider-state-selection>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid my-3" *ngIf="data.type.key === 2">
+            <div class="container">
+                <div class="row m-0">
+                    <div class="col-12">
+                        <app-newsletter [data]="data.newsLetterView"></app-newsletter>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row m-0">
+                <div class="col-12">
+                    <app-newsletter [layout]="4"></app-newsletter>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-us-con desktop-about-us-con" *ngIf="staticPageView">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row about-us-box">
+                    <div class="col-12 p-0 mt-4 mb-4">
+                        <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
+                        <h2 class="about-us-title mb-3">{{ staticPageView.name }}</h2>
+                        <div class="about-us-txt" [innerHTML]="staticPageView.content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Site Home Section End -->

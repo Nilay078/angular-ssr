@@ -1,0 +1,71 @@
+@import '/src/assets/scss/variables';
+@import '/src/assets/scss/mixins';
+
+.contact-us-con {
+    .profile-upload {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        background-color: $whiteColor;
+        width: 100%;
+        .profile-img-name {
+            width: calc(100% - 115px);
+            span {
+                color: $secondaryOuterSpaceCrayola;
+                font-size: 18px;
+                font-family: $cabinetGrotesk;
+                font-weight: 500;
+            }
+            .profile-img-title-txt {
+                word-break: break-word;
+            }
+            .placeholder-txt {
+                color: rgba($secondaryOuterSpaceCrayola, 0.3);
+                font-size: 18px;
+                font-family: $cabinetGrotesk;
+                font-weight: 500;
+            }
+        }
+        .profile-img-delete-box {
+            width: 40px;
+            .cancel-icon {
+                background-color: $primarySapphireBlue; 
+                color: $whiteColor;
+                border: 0;
+                @include border-radius(50%);
+                padding:0;
+                width: 20px;
+                min-width: 20px;
+                height: 20px;
+                line-height: 22px;
+                vertical-align: middle;
+                font-size: 16px;
+                display: inline-block;
+                margin-left: 10px;
+            }
+        }
+        .file-input {
+            position: relative;
+            background-color: $primarySapphireBlue;
+            color: $whiteColor;
+            @include border-radius(0);
+            padding:5px 15px;
+            display: inline-block;
+            width: 75px;
+            input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+                cursor: pointer;
+                background-color: $whiteColor;
+            }
+        }
+    }
+}
+.contact-write-drop-message {
+    top: 0;
+}

@@ -1,0 +1,24 @@
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: transparent;
+}
+.mat-form-field-label {
+  color: $secondaryOuterSpaceCrayola !important;
+  font-family: $cabinetGrotesk !important;
+}
+.mat-input-element, .mat-select-trigger, .mat-select-panel .mat-option {
+  font-family: $cabinetGrotesk !important;
+  caret-color: $secondaryOuterSpaceCrayola !important;
+  font-size: 18px !important;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline-start, .mat-form-field-appearance-outline .mat-form-field-outline-end,
+.mat-form-field-appearance-outline .mat-form-field-outline-gap {
+  border: 0 !important;
+  border-bottom: solid 1px $primaryPaleChestnut !important;
+  @include border-radius(0 !important);
+}
+.mat-form-field-infix{
+  padding: 0.5em 0 !important;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $primarySapphireBlue;
+}

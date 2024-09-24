@@ -1,0 +1,10 @@
+<div class="app-splash-screen" [ngStyle]="{ left: windowWidth }">
+    <div class="app-splash-inner">
+        <div class="text-center">
+            <div class="splash-screen-img-box">
+                <img *ngIf="showSplash" [src]="'assets/images/splash-symbol.svg'" class="symbol-img" alt="symbol" width="100" />
+                <img *ngIf="showSecondSplash" [src]="'assets/images/thesecretariat-logo.svg'" class="logo-img" alt="logo" width="250" />
+            </div>
+        </div>
+    </div>
+</div>

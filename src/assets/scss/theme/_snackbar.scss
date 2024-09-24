@@ -1,0 +1,47 @@
+.mat-snack-bar-container {
+    background: none;
+    padding: 0 !important;
+    min-height: auto !important;
+}
+.snackbar-box {
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    background-color: $snackbarBgColor;
+    display: inline-flex;
+    align-items: flex-start;
+    width: 100%;
+    .mat-icon {
+        width: 24px;
+    }
+    .snackbar-description-txt {
+        width: calc(100% - 40px);
+        padding: 0 10px;
+    }
+    .cancel-icon {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        cursor: pointer;
+        span {
+            @include icon(16px, $secondaryOuterSpaceCrayola, $bold);
+        }
+    }
+    &.success-snackbar-box {
+        border-left: solid 5px $successMessage;
+    }
+    &.error-snackbar-box {
+        border-left: solid 5px $errorMessage;
+    }
+    .snackbar-title-message {
+        @include textWithoutColor(18px, 24px, $cabinetGrotesk, $bold);
+    }
+    .success-snackbar-txt {
+        color: $successMessage;
+    }
+    .error-snackbar-txt {
+        color: $errorMessage;
+    }
+    .snackbar-sub-txt {
+        @include text(14px, 20px, $secondaryOuterSpaceCrayola, $cabinetGrotesk, $medium);
+    }
+}

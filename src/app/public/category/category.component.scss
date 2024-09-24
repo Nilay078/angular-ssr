@@ -1,0 +1,45 @@
+@import '/src/assets/scss/variables';
+
+::ng-deep html, ::ng-deep body {
+    height: 100%;
+}
+.category-box {
+    padding: 30px 20px 0;
+    height: 100%;
+    .category-list-box {
+        display: inline-flex;
+        flex-direction: column;
+        .spacer-box {
+            flex: 2;
+        }
+    }
+}
+
+// Desktop Site Design Css Start
+.category-box {
+    &.desktop-category-box {
+        padding: 10px 20px;
+        .close-modal-btn {
+            width: 100%;
+            text-align: right;
+            button  {
+              background-color: transparent;
+              box-shadow: none;
+              font-size: 28px;
+              color: $secondaryOuterSpaceCrayola;
+              padding: 0;
+              min-width: 30px;
+            }
+        }
+    }
+}
+// Desktop Site Design Css End
+::ng-deep .chip-skeleton-loader {
+    .skeleton-loader, .progress {
+        border-radius: 20px;
+        background: rgba($blackColor, 0.09);
+    }
+}
+::ng-deep .cdk-overlay-container {
+    z-index: 9999;
+}

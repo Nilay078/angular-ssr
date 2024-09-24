@@ -1,0 +1,33 @@
+// Mobile Css Start
+.section-heading-txt-box {
+    padding: 0 0 0 20px;
+    .section-heading-txt {
+        border-top: solid 2px $secondaryTxtColor;
+        padding: 15px 20px 15px 0;
+        h5 {
+            a {
+                @include text(20px, 24px, $secondaryTxtColor !important, $cabinetGrotesk, $mediumBold);
+                text-transform: uppercase;
+                letter-spacing: 1.2px;
+            }
+        }
+    }
+}
+// Mobile Css End
+// Desktop Css Start
+@media (min-width: 768px) {
+    .section-heading-txt-box {
+        padding: 25px 0 0;
+        align-items: center;
+        border-top: solid 2px $secondaryTxtColor;
+        .section-heading-txt {
+          border-top: 0;
+          padding: 0;
+          &.banner-border-bottom {
+              border-bottom: solid 2px $secondaryTxtColor;
+              padding: 0 0 20px !important;
+          }
+        }
+    }
+}
+// Desktop Css End

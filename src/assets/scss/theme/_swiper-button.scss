@@ -1,0 +1,21 @@
+.slider-article-con {
+    position: relative;
+    .swiper-container {
+        position: initial;
+        .swiper-button-prev, .swiper-button-next {
+            top: -48px;
+            color: $blackColor;
+            &::after {
+                font-size: 20px;
+                font-weight: $bold;
+            }
+        }
+        .swiper-button-prev {
+            left: auto !important;
+            right: 27px;
+        }
+        .swiper-button-next {
+            right: 0px !important;
+        }
+    }
+}

@@ -1,0 +1,165 @@
+<section class="exclusive-screen-box" *ngIf="changeResolutionFlag">
+    <div class="row m-0 mt-4">
+        <div class="col-12">
+            <img src="assets/images/thesecretariat-logo.png" class="logo-img" alt="header-logo" />
+        </div>
+    </div>
+    <div class="row m-0 mt-4">
+        <div class="col-12">
+            <img src="assets/images/login-header-img.png" class="logo-img" alt="header-logo" />
+        </div>
+    </div>
+
+    <div class="exclusive-login-content row m-0 mt-4">
+        <div class="col-12">
+            <div class="scan-txt-box">
+                <p>
+                    <span>Policy Matters! <br />Ideas, Insights, Intelligence.</span>
+                </p>
+            </div>
+            <div class="my-3">
+                <form [formGroup]="codeVerificationForm" #ngForm="ngForm" (submit)="onVerify()">
+                    <div class="form-group mat-form-field-width login-mobile-input-box">
+                        <mat-form-field appearance="outline" [hideRequiredMarker]="true">
+                            <input
+                                id="registerMobileNumber"
+                                class="text-uppercase"
+                                maxlength="6"
+                                formControlName="code"
+                                matInput
+                                type="text"
+                                placeholder="Enter your exclusive code"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div class="error-msg-outer" *ngIf="codeVerificationForm.controls['code'].touched || ngForm.submitted">
+                        <app-error-message class="error-message" [errors]="codeVerificationForm.controls['code'].errors">
+                        </app-error-message>
+                    </div>
+                    <button
+                        mat-flat-button
+                        color="primary"
+                        class="btn w-100 exclusive-screen-btn mt-2"
+                        type="submit"
+                        [disabled]="codeVerificationForm.invalid"
+                    >
+                        SUBMIT
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row m-0 join-us-login-privacy-box">
+            <div class="col-12">
+                <a class="join-us-login-btn-box" [href]="appUrl.JOIN_WAITLIST">
+                    Join our waitlist
+                    <span class="spacer"></span>
+                    <mat-icon>chevron_right</mat-icon>
+                </a>
+            </div>
+            <div class="col-12">
+                <a class="join-us-login-btn-box" [href]="appUrl.LOGIN">
+                    Already registered? Login here
+                    <span class="spacer"></span>
+                    <mat-icon>chevron_right</mat-icon>
+                </a>
+            </div>
+            <div class="col-12 free-articles-txt-box">
+                <a class="free-articles-txt" [href]="appUrl.HOME"> Skip & explore free articles </a>
+            </div>
+            <div class="col-12 my-3 mb-2">
+                <div class="privacy-terms-txt mt-3 mx-5">
+                    By Signing up, I agree to the <a [href]="appUrl.TERMS_CONDITIONS">Terms & Conditions</a> and
+                    <a [href]="appUrl.PRIVACY_POLICY">Privacy Policy</a> of The Secretariat.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Desktop Site Exclusive Section Start -->
+<section class="exclusive-screen-box desktop-exclusive-screen-box" *ngIf="!changeResolutionFlag">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-lg-5 exclusive-screen-con">
+                    <div class="row m-0 mt-3">
+                        <div class="col-12">
+                            <img src="assets/images/thesecretariat-logo.png" class="logo-img" alt="header-logo" />
+                        </div>
+                    </div>
+                    <div class="row m-0 mt-4">
+                        <div class="col-12">
+                            <img src="assets/images/login-header-img.png" class="logo-img" alt="header-logo" />
+                        </div>
+                    </div>
+
+                    <div class="exclusive-login-content row m-0 mt-3">
+                        <div class="col-12">
+                            <div class="scan-txt-box">
+                                <p>
+                                    <span>Policy Matters! <br />Ideas, Insights, Intelligence.</span>
+                                </p>
+                            </div>
+                            <div class="mt-2">
+                                <form [formGroup]="codeVerificationForm" #ngForm="ngForm" (submit)="onVerify()">
+                                    <div class="form-group mat-form-field-width login-mobile-input-box">
+                                        <mat-form-field appearance="outline" [hideRequiredMarker]="true">
+                                            <input
+                                                id="code"
+                                                class="text-uppercase"
+                                                maxlength="6"
+                                                formControlName="code"
+                                                matInput
+                                                type="text"
+                                                placeholder="Enter your exclusive code"
+                                            />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="error-msg-outer" *ngIf="codeVerificationForm.controls['code'].touched || ngForm.submitted">
+                                        <app-error-message class="error-message" [errors]="codeVerificationForm.controls['code'].errors">
+                                        </app-error-message>
+                                    </div>
+                                    <button
+                                        mat-flat-button
+                                        color="primary"
+                                        class="btn w-100 exclusive-screen-btn"
+                                        type="submit"
+                                        [disabled]="codeVerificationForm.invalid"
+                                    >
+                                        SUBMIT
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row m-0 join-us-login-privacy-box">
+                            <div class="col-12">
+                                <a class="join-us-login-btn-box" (click)="gotoJoinWaitList()">
+                                    Join our waitlist
+                                    <span class="spacer"></span>
+                                    <mat-icon>chevron_right</mat-icon>
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a class="join-us-login-btn-box" (click)="gotoLogin()">
+                                    Already registered? Login here
+                                    <span class="spacer"></span>
+                                    <mat-icon>chevron_right</mat-icon>
+                                </a>
+                            </div>
+                            <div class="col-12 free-articles-txt-box">
+                                <a class="free-articles-txt" [href]="appUrl.HOME"> Skip & explore free articles </a>
+                            </div>
+                            <div class="col-12 my-3 mb-2">
+                                <div class="privacy-terms-txt mt-0 mx-5">
+                                    By Signing up, I agree to the <a [href]="appUrl.TERMS_CONDITIONS">Terms & Conditions</a> and
+                                    <a [href]="appUrl.PRIVACY_POLICY">Privacy Policy</a> of The Secretariat.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Desktop Site Exclusive Section End -->
